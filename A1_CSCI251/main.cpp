@@ -15,7 +15,7 @@ int main()
     //cin >> inputtext;
 
     //execute read from file
-    readFromFile("../A1_CSCI251/citylocation.txt");
+    readFromFile("citylocation.txt");
 
 
     return 0;
