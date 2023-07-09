@@ -4,8 +4,9 @@
 #include <vector>
 
 using namespace std;
+
 void readFromFile(string filename)
-{
+{   
     //declare input file stream
     ifstream inputfile;
 
