@@ -8,16 +8,15 @@ using namespace std;
 
 int main()
 {
-    string s = "Kurwa, blyat, cyka nahui";
+    cout << "Enter configuration file name: ";
+    
+    string inputtext;
 
-    string delim = ", ";
+    cin >> inputtext;
 
-    vector<string>dataItems = splitString(s, delim);
+    //execute read from file
+    readFromFile(inputtext);
 
-    for (size_t i = 0; i < dataItems.size(); ++i)
-    {
-        cout << dataItems[i] << endl;
-    }
 
     return 0;
 }

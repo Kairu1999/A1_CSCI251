@@ -9,25 +9,33 @@ void readFromFile(string filename)
     //declare input file stream
     ifstream inputfile;
 
+    cout << "opening the file :" << filename << endl;
+
     //open input file stream
     inputfile.open(filename.c_str());
-
-    //check if inputfile exists
-    while (inputfile.good())
+    if (inputfile) 
     {
-        //declare string line variable
-        string line;
+        cout << "File " << filename << " successfully opened! " << endl;
+        //check if inputfile exists
+        while (inputfile.good())
+        {
+            //declare string line variable
+            string line;
 
-        //store file data in variable
-        getline(inputfile, line);
+            //store file data in variable
+            getline(inputfile, line);
 
-        //print to debug     
-        cout << line << endl;
+            //print to debug     
+            cout << line << endl;
 
-        //declare a vector
-        std::vector<string> vect1{};
+            //declare a vector
+            std::vector<string> vect1{};
 
-        //use 'new" to store map data in assignment vect1
+            //use 'new" to store map data in assignment vect1
+        }
+    }
+    else {
+        cout << "Unable to find the file " << filename << endl;
     }
 
     //close filestream
