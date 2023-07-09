@@ -8,14 +8,14 @@ using namespace std;
 
 int main()
 {
-    //cout << "enter configuration file name: ";
+    cout << "enter configuration file name: ";
     
-    //string inputtext;
+    string inputtext;
 
-    //cin >> inputtext;
+    cin >> inputtext;
 
     //execute read from file
-    readFromFile("citylocation.txt");
+    readFromFile(inputtext);
 
 
     return 0;
