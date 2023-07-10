@@ -10,6 +10,7 @@ int main()
 {
     //variable declaration:
     string str{}, choice{};
+    vector<string> files{};
 
     //print name
     cout << "Student ID   : "   << "8039082" << endl;
@@ -40,7 +41,13 @@ int main()
             cin >> str;
 
             //parse filename to read from file
-            readFromFile(str); 
+            files = readFromFile(str); 
+
+            for (int i = 0; i < files.size(); ++i) 
+            {
+                cout << files[i] << " ";
+            }
+
         case 2:
         case 3:
         case 4:

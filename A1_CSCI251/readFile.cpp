@@ -7,7 +7,7 @@
 using namespace std;
 
 //function prototype:
-void readFromFile(string filename);
+vector<string> readFromFile(string filename);
 vector<string> splitString(string input, string delimiter);
 void readFromFileToMap(string filename);
 
@@ -88,10 +88,19 @@ void readFromFileToMap(string filename)
     //close filestream
     inputfile.close();
 }
-void readFromFile(string filename)
+vector<string> readFromFile(string filename)
 {   
     //declare input file stream
     ifstream inputfile;
+    //store lines from configuration file
+    vector<string> store_line1{}, store_line2{};
+
+    //to store minimum and maximum
+    vector<string>temp{};
+
+
+    //boolean to check
+    bool no_comment = false;
 
     cout << "opening the file :" << filename << endl;
 
@@ -107,18 +116,75 @@ void readFromFile(string filename)
             string line;
 
             //store file data in variable
-            getline(inputfile, line);
-
-            if (line[0] == '/ ') 
+            while (getline(inputfile, line))
             {
+                if (!line.empty())
+                {
+                    store_line1.push_back(line);
+                }
+            }
+            
+        }
+        
+        for (int i = 0; i < store_line1.size(); ++i) 
+        {
+            //Debug
+            //cout << store_line1[i] << endl;
+            
+            //use this comment to find the commented lines
+            string comment{"/"};
+
+            //search if the string in each value of vector has this comment
+            if (store_line1[i].find("/") != string::npos)
+            {
+                //if found, skip the line
+                //cout << "Found Comment, Skipping Line!" << endl;
                 continue;
             }
-
-            //print to debug
-            cout << line << endl;
-
-
+            else 
+            {
+                //only push non commented lines of code inside
+                store_line2.push_back(store_line1[i]);
+            }
         }
+
+        //for (int j = 0; j < store_line2.size(); ++j) 
+        //{
+        //    cout << store_line2[j] << endl;
+        //}
+
+        for (int j = 0; j < store_line2[0].length(); ++j)
+        {
+            if (isdigit(store_line2[0][j])) 
+            {
+                //cout << "detected digit :" << value << endl;
+                string value(1,store_line2[0][j]);
+                temp.push_back(value);
+            }
+        }
+
+        for (int k = 0; k < store_line2[1].length(); ++k)
+        {
+            if (isdigit(store_line2[1][k]))
+            {
+                //cout << "detected digit :" << value << endl;
+                string value(1, store_line2[0][k]);
+                temp.push_back(value);
+            }
+        }
+       /* for (int l = 0; l < temp.size(); ++l) 
+        {
+            cout << temp[l] << endl;
+        }*/
+
+        for (int m = 2; m < store_line2.size(); ++m) 
+        {
+            //push back the file names into the file
+            temp.push_back(store_line2[m]);
+        }
+
+        //debug
+     /*   cout << "Size of config text vector " << store_line2.<< endl;*/
     }
     else {
         cout << "Unable to find the file " << filename << endl;
@@ -126,6 +192,9 @@ void readFromFile(string filename)
 
     //close filestream
     inputfile.close();
+
+    //return file_names to be parsed!
+    return temp;
 }
 
 
