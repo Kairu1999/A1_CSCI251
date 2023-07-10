@@ -47,7 +47,6 @@ int main()
     //run the main meny
     choice = display_main_menu();
  
-
     switch (stoi(choice)) 
     {
         returnToMain = false;
@@ -87,7 +86,7 @@ int main()
             //test read cloud cover file
             //readMapFile(files[4]);
             //readCloudCoverFile(files[5]);
-            readPressureFile(files[6]);
+            //readPressureFile(files[6]);
 
             /*============================================*/
             /*          Allocate Memory for Data          */ 
@@ -101,18 +100,21 @@ int main()
         case 6:
         case 7:
         case 8:
-            return 0;
-
+            returnToMain = false;
+            break;
         default:
-            cout << "That is not a valid option!" << endl;
             returnToMain = true;
 
     }
 
-    if (returnToMain = true) 
+    if (returnToMain = true)
     {
         returnToMain = false;
         main();
     }
-    return 0;
+    else {
+        return 0;
+    }
+
+    //return 0;
 }
