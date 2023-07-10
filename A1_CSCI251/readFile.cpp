@@ -53,25 +53,29 @@ void readFromFile(string filename)
             //every 3 = coordinates so += 3, Do for Coordinates
             for (int i = 0; i < vect1.size(); i += 3)
             {
-                //cout << vect1[i] << endl;
+                //erase first character
+                cout << vect1[i].length() << endl;
+                //vect1[i] = vect1[i].substr(1, vect1[i].length());
                 //Need to find a way to remove the "[ ]" and the ","
-            }
 
+            }
             //every 3 = coordinates so += 3, do the same for city Area!
-            for (int j = 1; j < vect1.size(); j+=3) 
+            /*for (int j = 1; j < vect1.size(); j += 3)
             {
                 //cout << vect1[j] << endl;
 
                 //string to integer conversion
                 City_Area.push_back(stoi(vect1[j]));
             }
+            */
 
             //every 3 = coordinates so += 3, do the same for city Type!
-            for (int k = 2; k < vect1.size(); k += 3)
+            /*for (int k = 2; k < vect1.size(); k += 3)
             {
                 //cout << vect1[k] << endl;
                 City_Type.push_back(vect1[k]);
             }
+            */
 
         }
     }
@@ -96,8 +100,5 @@ vector<string> splitString(string input, string delimiter)
         result.push_back(token);
         input.erase(0, pos + delimiter.length());
     }
-
-    result.push_back(input);
-
     return (result);
 }
