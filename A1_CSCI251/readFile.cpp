@@ -54,8 +54,9 @@ void readFromFile(string filename)
             for (int i = 0; i < vect1.size(); i += 3)
             {
                 //erase first character
-                cout << vect1[i].length() << endl;
-                //vect1[i] = vect1[i].substr(1, vect1[i].length());
+                //cout << vect1[i].length() << endl;
+                vect1[i] = vect1[i].substr(1, vect1[i].length() - 2);
+                cout << vect1[i] << endl;
                 //Need to find a way to remove the "[ ]" and the ","
 
             }
