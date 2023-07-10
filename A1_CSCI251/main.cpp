@@ -107,14 +107,14 @@ int main()
 
     }
 
-    if (returnToMain = true)
-    {
-        returnToMain = false;
-        main();
-    }
-    else {
-        return 0;
-    }
+    //if (returnToMain = true)
+    //{
+    //    returnToMain = false;
+    //    main();
+    //}
+    //else {
+    //    return 0;
+    //}
 
-    //return 0;
+    return 0;
 }
