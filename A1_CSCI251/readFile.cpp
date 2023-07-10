@@ -7,12 +7,13 @@
 using namespace std;
 
 //function prototype:
-
 void readFromFile(string filename);
 vector<string> splitString(string input, string delimiter);
+void readFromFileToMap(string filename);
 
-void readFromFile(string filename)
-{   
+
+void readFromFileToMap(string filename)
+{
     //declare input file stream
     ifstream inputfile;
 
@@ -20,7 +21,7 @@ void readFromFile(string filename)
 
     //open input file stream
     inputfile.open(filename.c_str());
-    if (inputfile) 
+    if (inputfile)
     {
         cout << "File " << filename << " successfully opened! " << endl;
         //check if inputfile exists
@@ -49,7 +50,7 @@ void readFromFile(string filename)
 
             //split the string
             vect1 = splitString(line, "-");
-            
+
             //every 3 = coordinates so += 3, Do for Coordinates
             for (int i = 0; i < vect1.size(); i += 3)
             {
@@ -77,6 +78,39 @@ void readFromFile(string filename)
                 City_Type.push_back(vect1[k]);
             }
             */
+
+        }
+    }
+    else {
+        cout << "Unable to find the file " << filename << endl;
+    }
+
+    //close filestream
+    inputfile.close();
+}
+void readFromFile(string filename)
+{   
+    //declare input file stream
+    ifstream inputfile;
+
+    cout << "opening the file :" << filename << endl;
+
+    //open input file stream
+    inputfile.open(filename.c_str());
+    if (inputfile) 
+    {
+        cout << "File " << filename << " successfully opened! " << endl;
+        //check if inputfile exists
+        while (inputfile.good())
+        {
+            //declare string line variable
+            string line;
+
+            //store file data in variable
+            getline(inputfile, line);
+
+            //print to debug
+            cout << line << endl;
 
         }
     }

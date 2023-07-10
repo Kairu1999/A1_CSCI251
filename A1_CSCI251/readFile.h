@@ -9,4 +9,5 @@
 using namespace std;
 void readFromFile(string filename);
 vector<string> splitString(string input, string delimiter);
+void readFromFileToMap(string filename);
 #endif
