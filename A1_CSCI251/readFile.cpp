@@ -109,8 +109,14 @@ void readFromFile(string filename)
             //store file data in variable
             getline(inputfile, line);
 
+            if (line[0] == '/ ') 
+            {
+                continue;
+            }
+
             //print to debug
             cout << line << endl;
+
 
         }
     }

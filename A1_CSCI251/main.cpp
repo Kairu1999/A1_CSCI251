@@ -40,8 +40,7 @@ int main()
             cin >> str;
 
             //parse filename to read from file
-            readFromFile(str);
-
+            readFromFile(str); 
         case 2:
         case 3:
         case 4:
