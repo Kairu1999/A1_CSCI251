@@ -7,7 +7,10 @@
 #include <vector>
 
 using namespace std;
-vector<string> readFromFile(string filename);
+vector<string> readConfigFile(string filename);
 vector<string> splitString(string input, string delimiter);
-void readFromFileToMap(string filename);
+void readMapFile(string filename);
+void readCloudCoverFile(string filename);
+void readPressureFile(string filename);
+
 #endif
