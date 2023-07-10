@@ -8,7 +8,11 @@ using namespace std;
 
 int main()
 {
-    cout << "enter configuration file name: ";
+    //print name
+    cout << "Student ID : "   << "8039082" << endl;
+    cout << "Student Name : " << "Shane-Kyle Chua" << endl;
+    cout << "--------------------------------------- " << endl;
+    //cout << "enter configuration file name: ";
     
     string inputtext;
 
