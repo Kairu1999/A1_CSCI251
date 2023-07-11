@@ -47,6 +47,7 @@ int main()
     //run the main meny
     while (true) 
     {
+        //run main menu loop
         choice = display_main_menu();
         switch (stoi(choice))
         {
