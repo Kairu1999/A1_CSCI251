@@ -60,28 +60,32 @@ int main()
             //parse filename to read from file
             files = readConfigFile(str);
 
-            //debug
-           /* for (int i = 0; i < files.size(); ++i)
-            {
-                cout << files[i] << " ";
-            }*/
+            if (!files.empty()) {
+         
 
-            cout << "Reading in GridX_IdxRange: " << files[0] << "-" << files[1] << "...done!" << endl;
-            cout << "Reading in GridX_IdxRange: " << files[2] << "-" << files[3] << "...done!" << endl;
+                cout << "Reading in GridX_IdxRange: " << files[0] << "-" << files[1] << "...done!" << endl;
+                cout << "Reading in GridX_IdxRange: " << files[2] << "-" << files[3] << "...done!" << endl;
 
-            cout << endl;
+                cout << endl;
 
-            cout << "Storing data from input_file: " << endl;
-            for (int i = 4; i < files.size(); ++i)
-            {
-                cout << files[i] << "...done!" << endl;
+                cout << "Storing data from input_file: " << endl;
+                for (int i = 4; i < files.size(); ++i)
+                {
+                    cout << files[i] << "...done!" << endl;
+                }
+
+
+                cout << endl;
+                cout << "All records successfully stored. Going back to main menu..." << endl;
+                cout << endl;
+
             }
-
-
-            cout << endl;
-            cout << "All records successfully stored. Going back to main menu..." << endl;
-            cout << endl;
-
+            else {
+                cout << "Filename: " << str << " could not be parsed. Going back to main menu..." << endl;
+                cout << endl;
+            }
+            break;
+           
             //test read cloud cover file
             //readMapFile(files[4]);
             //readCloudCoverFile(files[5]);
@@ -91,9 +95,6 @@ int main()
             /*          Allocate Memory for Data          */
             /*============================================*/
             //option to return to main menu
-            returnToMain = true;
-            break;
-
         case 2:
             cout << "Displaying City Map!" << endl;
             break;

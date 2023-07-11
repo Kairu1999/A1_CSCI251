@@ -88,7 +88,7 @@ void readMapFile(string filename)
     inputfile.close();
 }
 vector<string> readConfigFile(string filename)
-{   
+{
     //declare input file stream
     ifstream inputfile;
     //store lines from configuration file
@@ -105,7 +105,9 @@ vector<string> readConfigFile(string filename)
 
     //open input file stream
     inputfile.open(filename.c_str());
-    if (inputfile) 
+
+
+    if (inputfile)
     {
         cout << "File " << filename << " successfully opened! " << endl;
         //check if inputfile exists
@@ -122,16 +124,16 @@ vector<string> readConfigFile(string filename)
                     store_line1.push_back(line);
                 }
             }
-            
+
         }
-        
-        for (int i = 0; i < store_line1.size(); ++i) 
+
+        for (int i = 0; i < store_line1.size(); ++i)
         {
             //Debug
             //cout << store_line1[i] << endl;
-            
+
             //use this comment to find the commented lines
-            string comment{"/"};
+            string comment{ "/" };
 
             //search if the string in each value of vector has this comment
             if (store_line1[i].find("/") != string::npos)
@@ -140,7 +142,7 @@ vector<string> readConfigFile(string filename)
                 //cout << "Found Comment, Skipping Line!" << endl;
                 continue;
             }
-            else 
+            else
             {
                 //only push non commented lines of code inside
                 store_line2.push_back(store_line1[i]);
@@ -149,10 +151,10 @@ vector<string> readConfigFile(string filename)
 
         for (int j = 0; j < store_line2[0].length(); ++j)
         {
-            if (isdigit(store_line2[0][j])) 
+            if (isdigit(store_line2[0][j]))
             {
                 //cout << "detected digit :" << value << endl;
-                string value(1,store_line2[0][j]);
+                string value(1, store_line2[0][j]);
                 temp.push_back(value);
             }
         }
@@ -167,24 +169,20 @@ vector<string> readConfigFile(string filename)
             }
         }
 
-        for (int m = 2; m < store_line2.size(); ++m) 
+        for (int m = 2; m < store_line2.size(); ++m)
         {
             //push back the file names into the file
             temp.push_back(store_line2[m]);
         }
 
-        //debug
-     /*   cout << "Size of config text vector " << store_line2.<< endl;*/
+        //close filestream
+        inputfile.close();
+        return temp;
     }
     else {
         cout << "Unable to find the file " << filename << endl;
+        return {};
     }
-
-    //close filestream
-    inputfile.close();
-
-    //return file_names to be parsed!
-    return temp;
 }
 
 void readCloudCoverFile(string filename) 
