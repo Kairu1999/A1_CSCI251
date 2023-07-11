@@ -9,12 +9,12 @@ using namespace std;
 string display_main_menu() 
 {
     string choice{};
-
+    cout << "========================================================" << endl;
     //print name
     cout << "Student ID   : " << "8039082" << endl;
     cout << "Student Name : " << "Shane-Kyle Chua" << endl;
-    cout << "------------------------------------------------- " << endl;
-    cout << "Welcome to Weather Information Processing System! " << endl;
+    cout << "========================================================"<< endl;
+    cout << "Welcome to Weather Information Processing System!" << endl;
     cout << endl;
     cout << "1)     " << "Read in and process a configuration file" << endl;
     cout << "2)     " << "Display city map" << endl;
@@ -24,8 +24,8 @@ string display_main_menu()
     cout << "6)     " << "Display atmospheric pressure map(LMH symbols)" << endl;
     cout << "7)     " << "Show Weather forecast summary report" << endl;
     cout << "8)     " << "Quit" << endl;
-
-    cout << "Please enter your choice :";
+    cout << "========================================================" << endl;
+    cout << "Please enter your choice : " ;
 
     //take input!
     cin >> choice;
@@ -45,13 +45,12 @@ int main()
 
 
     //run the main meny
-    choice = display_main_menu();
- 
-    switch (stoi(choice)) 
+    while (true) 
     {
-        returnToMain = false;
-
-        //switch cases:
+        choice = display_main_menu();
+        switch (stoi(choice))
+        {
+            //switch cases:
         case 1:
             cout << "[Read in and process a configuration file]" << endl;
             cout << "Please enter config filename :";
@@ -59,10 +58,10 @@ int main()
 
             cout << endl;
             //parse filename to read from file
-            files = readConfigFile(str); 
+            files = readConfigFile(str);
 
             //debug
-           /* for (int i = 0; i < files.size(); ++i) 
+           /* for (int i = 0; i < files.size(); ++i)
             {
                 cout << files[i] << " ";
             }*/
@@ -73,7 +72,7 @@ int main()
             cout << endl;
 
             cout << "Storing data from input_file: " << endl;
-            for (int i = 4; i < files.size(); ++i) 
+            for (int i = 4; i < files.size(); ++i)
             {
                 cout << files[i] << "...done!" << endl;
             }
@@ -82,39 +81,45 @@ int main()
             cout << endl;
             cout << "All records successfully stored. Going back to main menu..." << endl;
             cout << endl;
-            
+
             //test read cloud cover file
             //readMapFile(files[4]);
             //readCloudCoverFile(files[5]);
             //readPressureFile(files[6]);
 
             /*============================================*/
-            /*          Allocate Memory for Data          */ 
+            /*          Allocate Memory for Data          */
             /*============================================*/
             //option to return to main menu
             returnToMain = true;
-
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-            returnToMain = false;
             break;
+
+        case 2:
+            cout << "Displaying City Map!" << endl;
+            break;
+        case 3:
+            cout << "Displaying Cloud Coverage Map!" << endl;
+            break;
+        case 4:
+            cout << "Displaying Cloud Coverage Map with LMH Symbols!" << endl;
+            break;
+        case 5:
+            cout << "Displaying Atmospheric Pressure! " << endl;
+            break;
+        case 6:
+            cout << "Displaying Atmospheric Pressure with LMH Symbols!" << endl;
+            break;
+        case 7:
+            cout << "Displaying Weather Forecast Summary Report!" << endl;
+            break;
+        case 8:
+            cout << "Exiting Program. Goodbye!" << endl;
+            return 0;
         default:
-            returnToMain = true;
+            cout << "Play Pong?" << endl;
+            break;
 
+        }
     }
-
-    //if (returnToMain = true)
-    //{
-    //    returnToMain = false;
-    //    main();
-    //}
-    //else {
-    //    return 0;
-    //}
-
     return 0;
 }
