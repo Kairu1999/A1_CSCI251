@@ -8,9 +8,9 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 	//row and columns to be used for array
 	const int row{row_col[0]}, col{row_col[1]};
 
-	//============================
-	//allocate memory for 2d array
-	//============================
+	/*==================================
+	= (1) allocate memory for 2d array =
+	==================================*/
 	
 	//allocate memory rows first
 	int** temp = new int* [row];
@@ -20,8 +20,12 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 		//allocate memory for columns
 		temp[i] = new int[col];
 	}
+	/*=================================*/
 
-	//COMMENCE GRID GENERATION HERE!!
+
+	/*==================================
+	= (2) generate the grid from mode  =
+	==================================*/
 	switch (mode)
 	{
 		//generate grid with numbers
@@ -31,10 +35,11 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 		case 1:
 			cout << "Generating grid with LMH Values!" << endl;
 	}
+	/*=================================*/
 
-	//==============================
-	//delete the memory for 2D array
-	//==============================
+	/*==================================
+	= (3) delete memory for 2d array   =
+	==================================*/
 	for (int i = 0; i < row; ++i) 
 	{
 		//1st --> Columns
@@ -43,4 +48,5 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 
 	//delete row memory next
 	delete[] temp;
+	/*=================================*/
 }
