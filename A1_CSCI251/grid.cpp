@@ -29,8 +29,12 @@ void generate_grid(int** coordinates, vector<int> row_col)
 	//==============================
 	for (int i = 0; i < row; ++i) 
 	{
+		//1st --> Columns
 		delete[] temp[i];
 	}
+
+	//delete row memory next
+	delete[] temp;
 
 
 }
