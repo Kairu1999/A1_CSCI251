@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void generate_grid(int** coordinates, vector<int> row_col)
+void generate_grid(int** coordinates, vector<int> row_col, int mode)
 {
 	//row and columns to be used for array
 	const int row{row_col[0]}, col{row_col[1]};
@@ -22,7 +22,14 @@ void generate_grid(int** coordinates, vector<int> row_col)
 	}
 
 	//COMMENCE GRID GENERATION HERE!!
+	switch (mode)
+	{
+		//generate grid with numbers
+		case 0:
 
+		//generate grid with LMH values
+		case 1:
+	}
 
 	//==============================
 	//delete the memory for 2D array
@@ -35,6 +42,4 @@ void generate_grid(int** coordinates, vector<int> row_col)
 
 	//delete row memory next
 	delete[] temp;
-
-
 }
