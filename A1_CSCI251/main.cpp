@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "readFile.h"
-
+#include "grid.h"
 using namespace std;
 
 string display_main_menu() 
@@ -93,10 +93,6 @@ int main()
             //readCloudCoverFile(files[5]);
             //readPressureFile(files[6]);
 
-            /*============================================*/
-            /*          Allocate Memory for Data          */
-            /*============================================*/
-            //option to return to main menu
         case 2:
             cout << "Displaying City Map!" << endl;
             break;

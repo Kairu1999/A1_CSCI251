@@ -127,10 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="readFile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="grid.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="readFile.h" />
   </ItemGroup>
