@@ -26,9 +26,10 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 	{
 		//generate grid with numbers
 		case 0:
-
+			cout << "Generating grid with numbers!" << endl;
 		//generate grid with LMH values
 		case 1:
+			cout << "Generating grid with LMH Values!" << endl;
 	}
 
 	//==============================
