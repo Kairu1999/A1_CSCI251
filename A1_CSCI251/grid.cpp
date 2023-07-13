@@ -6,19 +6,19 @@ using namespace std;
 void generate_grid(int** coordinates, vector<int> row_col, int mode)
 {
 	//row and columns to be used for array
-	const int row{row_col[0]}, col{row_col[1]};
+	const int rect_length{ row_col[0] }, rect_breadth{ row_col[1] };
 
 	/*==================================
 	= (1) allocate memory for 2d array =
 	==================================*/
-	
-	//allocate memory rows first
-	int** temp = new int* [row];
 
-	for (int i = 0; i < row; ++i) 
+	//allocate memory rows first
+	int** temp = new int* [rect_length];
+
+	for (int i = 0; i < rect_length; ++i)
 	{
 		//allocate memory for columns
-		temp[i] = new int[col];
+		temp[i] = new int[rect_breadth];
 	}
 	/*=================================*/
 
@@ -29,18 +29,54 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 	switch (mode)
 	{
 		//generate grid with numbers
-		case 0:
-			cout << "Generating grid with numbers!" << endl;
+	case 0:
+		cout << "Generating grid with numbers!" << endl;
+
+		//generate grid
+		for (int row = 0; row < rect_breadth; ++row)
+		{
+			for (int col = 0; col < rect_length; ++col)
+			{
+				if ((row == 0) || (row = rect_breadth - 1) ||
+					(col == 0) || (col = rect_length - 1))
+				{
+					cout << "#";
+				}
+				else 
+				{
+					cout << " ";
+				}
+				cout << endl;
+			}
+		}
 		//generate grid with LMH values
 		case 1:
 			cout << "Generating grid with LMH Values!" << endl;
+
+			//generate grid
+			for (int row = 0; row < rect_breadth; ++row)
+			{
+				for (int col = 0; col < rect_length; ++col)
+				{
+					if ((row == 0) || (row = rect_breadth - 1) ||
+						(col == 0) || (col = rect_length - 1))
+					{
+						cout << "#";
+					}
+					else
+					{
+						cout << " ";
+					}
+					cout << endl;
+				}
+			}
 	}
 	/*=================================*/
 
 	/*==================================
 	= (3) delete memory for 2d array   =
 	==================================*/
-	for (int i = 0; i < row; ++i) 
+	for (int i = 0; i < rect_length; ++i) 
 	{
 		//1st --> Columns
 		delete[] temp[i];
