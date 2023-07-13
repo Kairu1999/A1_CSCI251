@@ -13,7 +13,7 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 	==================================*/
 
 	//allocate memory rows first
-	int** temp = new int* [rect_length];
+	int** temp = new int* [rect_length * rect_breadth];
 
 	for (int i = 0; i < rect_length; ++i)
 	{
