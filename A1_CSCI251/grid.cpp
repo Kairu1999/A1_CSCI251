@@ -9,22 +9,7 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 	const int rect_length{ row_col[0] }, rect_breadth{ row_col[1] };
 
 	/*==================================
-	= (1) allocate memory for 2d array =
-	==================================*/
-
-	//allocate memory rows first
-	int** temp = new int* [rect_length * rect_breadth];
-
-	for (int i = 0; i < rect_length; ++i)
-	{
-		//allocate memory for columns
-		temp[i] = new int[rect_breadth];
-	}
-	/*=================================*/
-
-
-	/*==================================
-	= (2) generate the grid from mode  =
+	= (1) generate the grid from mode  =
 	==================================*/
 	switch (mode)
 	{
@@ -71,18 +56,5 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 				}
 			}
 	}
-	/*=================================*/
-
-	/*==================================
-	= (3) delete memory for 2d array   =
-	==================================*/
-	for (int i = 0; i < rect_length; ++i) 
-	{
-		//1st --> Columns
-		delete[] temp[i];
-	}
-
-	//delete row memory next
-	delete[] temp;
 	/*=================================*/
 }
