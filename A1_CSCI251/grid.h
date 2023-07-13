@@ -4,5 +4,5 @@
 
 using namespace std;
 
-void generate_grid(int** coordinates, vector<int> row_col);
+void generate_grid(int** coordinates, vector<int> row_col, int mode);
 #endif

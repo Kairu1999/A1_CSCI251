@@ -89,7 +89,11 @@ int main()
             }
             break;
            
-            //test read cloud cover file
+            /*================================
+            = Allocate Memory for Grid Here  =
+            ================================*/
+
+
             //readMapFile(files[4]);
             //readCloudCoverFile(files[5]);
             //readPressureFile(files[6]);
