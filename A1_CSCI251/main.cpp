@@ -41,12 +41,9 @@ int main()
     string str{}, choice;
     vector<string> files{};
 
-    //boolean to exit program
-    bool exitMenu = false;
+    //return to main menu boolean
+    bool returnToMain = true;
 
-    //pointer to 2d array
-    int** coordinates;
-    int max_x, max_y;
 
     //run the main meny
     while (true) 
@@ -74,28 +71,10 @@ int main()
                 cout << endl;
 
                 cout << "Storing data from input_file: " << endl;
-
                 for (int i = 4; i < files.size(); ++i)
                 {
                     cout << files[i] << "...done!" << endl;
                 }
-
-                //get max grid value
-                max_x = stoi(files[1]);
-                max_y = stoi(files[3]);
-
-
-                /*==================================
-                =  (1) Allocate Memory for Grid!   =
-                ==================================*/
-
-
-
-                /*==================================
-                =       (2) Populate the Array:    =
-                ==================================*/
-
-
 
 
                 cout << endl;
@@ -108,12 +87,13 @@ int main()
                 cout << endl;
 
             }
+            break;
+           
             //test read cloud cover file
             //readMapFile(files[4]);
             //readCloudCoverFile(files[5]);
             //readPressureFile(files[6]);
 
-            break;
         case 2:
             cout << "Displaying City Map!" << endl;
             break;
@@ -134,10 +114,9 @@ int main()
             break;
         case 8:
             cout << "Exiting Program. Goodbye!" << endl;
-
             return 0;
         default:
-            cout << "Default Menu Noises Here!" << endl;
+            cout << "Play Pong?" << endl;
             break;
 
         }
