@@ -4,19 +4,30 @@
 #include <vector>
 #include <sstream>
 
+//struct is here
+#include "structs.h"
+
 using namespace std;
 
 //function prototype:
 vector<string> readConfigFile(string filename);
 vector<string> splitString(string input, string delimiter);
+//vector<cityStructure>readMapFile(string filename);
 void readMapFile(string filename);
 void readCloudCoverFile(string filename);
 void readPressureFile(string filename);
 
+
+
+//vector<cityStructure> readMapFile(string filename)
 void readMapFile(string filename)
 {
     //declare input file stream
     ifstream inputfile;
+
+    //to store the city information
+    vector<cityStructure> cityInfo;
+    
 
     cout << "opening the file :" << filename << endl;
 
@@ -41,13 +52,15 @@ void readMapFile(string filename)
             vector<string> vect1{};
 
             //Used for X and Y Coordinates
-            vector<vector<int>> Coordinates{};
+            vector<coords> Coordinates{};
 
             //store the city type
             vector<int> City_Area{};
 
             //store the last perimeter
             vector<string> City_Type{};
+
+            vector<cityStructure> temp{};
 
             //split the string
             vect1 = splitString(line, "-");
@@ -58,9 +71,12 @@ void readMapFile(string filename)
                 //erase first character
                 //cout << vect1[i].length() << endl;
                 cout << vect1[i] << endl;
+
+                //vector of x, y
                 vect1[i] = vect1[i].substr(1, vect1[i].length() - 2);
             }
-            //every 3 = coordinates so += 3, do the same for city Area!
+
+            //every 3 = coordinates so += 3, do the same for city Area!(1, 2, 3 etc)
             for (int j = 1; j < vect1.size(); j += 3)
             {
                 cout << vect1[j] << endl;
@@ -70,18 +86,27 @@ void readMapFile(string filename)
             }
             
 
-            //every 3 = coordinates so += 3, do the same for city Type!
+            //every 3 = coordinates so += 3, do the same for city Type!(BIG CITY, MID CITY etc)
             for (int k = 2; k < vect1.size(); k += 3)
             {
                 cout << vect1[k] << endl;
                 City_Type.push_back(vect1[k]);
             }
             
+            for (int l = 0; l < vect1.size(); ++l) 
+            {
+                //split the string
+                splitString(vect1[l], ",");
+
+                //temp[l].coordinates = vect1[l];
+            }
 
         }
+        //return {};
     }
     else {
         cout << "Unable to find the file " << filename << endl;
+        //return {};
     }
 
     //close filestream
@@ -96,10 +121,6 @@ vector<string> readConfigFile(string filename)
 
     //to store minimum and maximum
     vector<string>temp{};
-
-
-    //boolean to check
-    bool no_comment = false;
 
     cout << "opening the file :" << filename << endl;
 
@@ -289,6 +310,7 @@ void readPressureFile(string filename)
                 //erase first character
                 //cout << vect1[i].length() << endl;
                 vect1[i] = vect1[i].substr(1, vect1[i].length() - 2);
+                
                 //cout << vect1[i] << endl;
             }
 

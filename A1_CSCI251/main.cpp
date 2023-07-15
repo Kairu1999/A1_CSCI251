@@ -81,6 +81,10 @@ int main()
                 cout << "All records successfully stored. Going back to main menu..." << endl;
                 cout << endl;
 
+
+                //try
+                readMapFile(files[4]);
+
             }
             else {
                 cout << "Filename: " << str << " could not be parsed. Going back to main menu..." << endl;
@@ -94,7 +98,9 @@ int main()
             ================================*/
 
 
-            //readMapFile(files[4]);
+            
+
+
             //readCloudCoverFile(files[5]);
             //readPressureFile(files[6]);
 
@@ -118,9 +124,13 @@ int main()
             break;
         case 8:
             cout << "Exiting Program. Goodbye!" << endl;
+            /*=================================
+            = Deallocate Memory for Grid Here =
+            =================================*/
+
             return 0;
+
         default:
-            cout << "Play Pong?" << endl;
             break;
 
         }
