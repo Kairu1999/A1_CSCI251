@@ -129,12 +129,14 @@
   <ItemGroup>
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MemoryAllocation.cpp" />
     <ClCompile Include="readFile.cpp" />
     <ClCompile Include="Structs.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grid.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MemoryAllocation.h" />
     <ClInclude Include="readFile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
