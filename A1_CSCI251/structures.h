@@ -4,27 +4,34 @@
 #include <string>
 
 using namespace std;
-struct
+
+struct coords 
+{
+    int x;
+    int y;
+};
+
+struct cityStructure
 {
     //store x and y coordinates
-    std::vector<int> coordinates;
+    coords coordinates;
 
     //store the city type
-    std::vector<int> cityType;
+    int cityType;
 
     //city type name
-    std::vector<string> cityTypeName;
-} cityStructure;
+    string cityTypeName;
+};
 
 
-struct
+struct CloudyPressure
 {
     //x and y coordinates
-    vector<int> coordinates;
+    coords coordinates;
 
     //next day forecast;
-    vector<int> NextDayForecast;
-}CloudyPressure;
+    int NextDayForecast;
+};
 
 
 #endif
