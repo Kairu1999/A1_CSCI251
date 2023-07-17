@@ -13,9 +13,8 @@ using namespace std;
 vector<string> readConfigFile(string filename);
 vector<string> splitString(string input, string delimiter);
 vector<cityStructure>readMapFile(string filename);
-void readCloudCoverFile(string filename);
-//vector<cloudyPressure>readCloudCoverFile(string filename);
-void readPressureFile(string filename);
+vector<cloudyPressure> readCloudCoverFile(string filename);
+vector<cloudyPressure> readPressureFile(string filename);
 
 
 vector<cityStructure> readMapFile(string filename)
@@ -249,11 +248,23 @@ vector<string> readConfigFile(string filename)
     }
 }
 
-void readCloudCoverFile(string filename) 
+vector<cloudyPressure> readCloudCoverFile(string filename)
 {
 
     //declare input file stream
     ifstream inputfile;
+
+
+    //variable declaration:
+    coords coords1{};
+
+    //declare a vector
+    vector<string> vect1{};
+
+    vector<coords> coordinates{};
+    vector<int> nextdayForecast{};
+
+    vector <cloudyPressure> CloudyCover{};
 
     cout << "opening the file :" << filename << endl;
 
@@ -272,38 +283,76 @@ void readCloudCoverFile(string filename)
             //store file data in variable
             getline(inputfile, line);
 
-            //declare a vector
-            vector<string> vect1{};
-            vector<int> nextdayForecast{};
-
             //cout << line << endl;
 
             //split the string
             vect1 = splitString(line, "-");
 
-            //for (int i = 0; i < vect1.size(); ++i) {
-            //    cout << vect1[i] << endl;
-            //}
-
             //every 3 = coordinates so += 3, Do for Coordinates
             for (int i = 0; i < vect1.size(); i += 2)
             {
-                //erase first character
-                //cout << vect1[i].length() << endl;
+                //make a substring
                 vect1[i] = vect1[i].substr(1, vect1[i].length() - 2);
-                //cout << vect1[i] << endl;
+
+                //remove whitespaces from string
+                vect1[i].erase(std::remove_if(vect1[i].begin(), vect1[i].end(), ::isspace), vect1[i].end());
+
+                //split the string into individual strings
+                vector<string> temp2 = splitString(vect1[i], ",");
+
+
+                //DEBUG --> Print values of temp2 vector x and y!
+                for (int i = 0; i < temp2.size(); ++i)
+                {
+                    //cout << temp2[i] << endl;
+
+                    if (i % 2 == 0) {
+                        coords1.x = stoi(temp2[i]);
+                    }
+                    else {
+                        coords1.y = stoi(temp2[i]);
+                    }
+                }
+
+                //debug coordinates
+                //cout << coords1.x << " " << coords1.y << endl;
+
+
+                //push back into vector
+                coordinates.push_back(coords1);
             }
 
             //every 3 = coordinates so += 3, Do for Coordinates
             for (int j = 1; j < vect1.size(); j += 2)
             {
+                //cout << vect1[j] << endl;
                 nextdayForecast.push_back(stoi(vect1[j]));
             }
         }
+        //cout << nextdayForecast.size() << " " << coordinates.size() << endl;
+
+        for (int m = 0; m < coordinates.size(); ++m) 
+        {
+            cloudyPressure cld;
+            cld.coordinates = coordinates[m];
+            cld.NextDayForecast = nextdayForecast[m];
+
+            CloudyCover.push_back(cld);
+        }
+
+       //PURELY USED FOR DEBUG KURWA
+       //for (int i = 0; i < CloudyCover.size(); ++i)
+       //{
+       //    cout << "city Information  : " << endl;
+       //    cout << "city coordinates  : " << CloudyCover[i].coordinates.x << " " << CloudyCover[i].coordinates.y << endl;
+       //    cout << "Next Day Forecast : " << CloudyCover[i].NextDayForecast << endl;
+       //}
+       return CloudyCover;
     }
     else
     {
         cout << "Unable to find the file " << filename << endl;
+        return {};
     }
 
     //close filestream
@@ -311,11 +360,22 @@ void readCloudCoverFile(string filename)
     
 }
 
-void readPressureFile(string filename)
+vector<cloudyPressure> readPressureFile(string filename)
 {
-
     //declare input file stream
     ifstream inputfile;
+
+
+    //variable declaration:
+    coords coords1{};
+
+    //declare a vector
+    vector<string> vect1{};
+
+    vector<coords> coordinates{};
+    vector<int> nextdayForecast{};
+
+    vector <cloudyPressure> Pressure{};
 
     cout << "opening the file :" << filename << endl;
 
@@ -334,43 +394,78 @@ void readPressureFile(string filename)
             //store file data in variable
             getline(inputfile, line);
 
-            //declare a vector
-            vector<string> vect1{};
-            vector<int> nextdayForecast{};
-
             //cout << line << endl;
 
             //split the string
             vect1 = splitString(line, "-");
 
-            for (int i = 0; i < vect1.size(); ++i) {
-                cout << vect1[i] << endl;
-            }
-
             //every 3 = coordinates so += 3, Do for Coordinates
             for (int i = 0; i < vect1.size(); i += 2)
             {
-                //erase first character
-                //cout << vect1[i].length() << endl;
+                //make a substring
                 vect1[i] = vect1[i].substr(1, vect1[i].length() - 2);
-                
-                //cout << vect1[i] << endl;
+
+                //remove whitespaces from string
+                vect1[i].erase(std::remove_if(vect1[i].begin(), vect1[i].end(), ::isspace), vect1[i].end());
+
+                //split the string into individual strings
+                vector<string> temp2 = splitString(vect1[i], ",");
+
+
+                //DEBUG --> Print values of temp2 vector x and y!
+                for (int i = 0; i < temp2.size(); ++i)
+                {
+                    //cout << temp2[i] << endl;
+
+                    if (i % 2 == 0) {
+                        coords1.x = stoi(temp2[i]);
+                    }
+                    else {
+                        coords1.y = stoi(temp2[i]);
+                    }
+                }
+
+                //debug coordinates
+                //cout << coords1.x << " " << coords1.y << endl;
+
+
+                //push back into vector
+                coordinates.push_back(coords1);
             }
 
             //every 3 = coordinates so += 3, Do for Coordinates
             for (int j = 1; j < vect1.size(); j += 2)
             {
+                //cout << vect1[j] << endl;
                 nextdayForecast.push_back(stoi(vect1[j]));
             }
         }
+        //cout << nextdayForecast.size() << " " << coordinates.size() << endl;
+
+        for (int m = 0; m < coordinates.size(); ++m)
+        {
+            cloudyPressure cld;
+            cld.coordinates = coordinates[m];
+            cld.NextDayForecast = nextdayForecast[m];
+
+            Pressure.push_back(cld);
+        }
+
+        //PURELY USED FOR DEBUG KURWA
+        //for (int i = 0; i < Pressure.size(); ++i)
+        //{
+        //    cout << "city Information  : " << endl;
+        //    cout << "city coordinates  : " << Pressure[i].coordinates.x << " " << Pressure[i].coordinates.y << endl;
+        //    cout << "Next Day Forecast : " << Pressure[i].NextDayForecast << endl;
+        //}
+
+        return Pressure;
     }
     else
     {
         cout << "Unable to find the file " << filename << endl;
+        return {};
     }
-
-    //close filestream
-    inputfile.close();
 
 }
 vector<string> splitString(string input, string delimiter)

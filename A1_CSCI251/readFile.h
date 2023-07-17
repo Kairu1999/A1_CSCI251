@@ -11,7 +11,7 @@ using namespace std;
 vector<string> readConfigFile(string filename);
 vector<string> splitString(string input, string delimiter);
 vector<cityStructure> readMapFile(string filename);
-void readCloudCoverFile(string filename);
-void readPressureFile(string filename);
+vector<cloudyPressure> readCloudCoverFile(string filename);
+vector<cloudyPressure> readPressureFile(string filename);
 
 #endif

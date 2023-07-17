@@ -93,11 +93,12 @@ int main()
                 cityStructure = Allocate2DArrayMemory(stoi(files[1]), stoi(files[3]));
                 Cloudy = Allocate2DArrayMemory(stoi(files[1]), stoi(files[3]));
                 Pressure = Allocate2DArrayMemory(stoi(files[1]), stoi(files[3]));
-                //try
-                readMapFile(files[4]);
+                
 
-                //readCloudCoverFile(files[5]);
-                //readPressureFile(files[6]);
+                //read the map files and populate the Vector of Structs:
+                readMapFile(files[4]);
+                readCloudCoverFile(files[5]);
+                readPressureFile(files[6]);
                 
 
             }
