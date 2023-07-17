@@ -2,9 +2,12 @@
 #include <fstream>
 #include <string>
 #include <vector>
+
+//Header Files:
 #include "main.h"
 #include "readFile.h"
 #include "grid.h"
+#include "MemoryAllocation.h"
 using namespace std;
 
 string display_main_menu() 
@@ -44,6 +47,11 @@ int main()
     //return to main menu boolean
     bool returnToMain = true;
 
+    
+    //2D Arrays to Allocate Memory For
+    int** cityStructure{};
+    int** Cloudy{};
+    int** Pressure{};
 
     //run the main meny
     while (true) 
@@ -81,9 +89,14 @@ int main()
                 cout << "All records successfully stored. Going back to main menu..." << endl;
                 cout << endl;
 
-
+                //allocate memory
+                cityStructure = Allocate2DArrayMemory(stoi(files[1]), stoi(files[3]));
+                Cloudy = Allocate2DArrayMemory(stoi(files[1]), stoi(files[3]));
+                Pressure = Allocate2DArrayMemory(stoi(files[1]), stoi(files[3]));
                 //try
                 readMapFile(files[4]);
+
+                
 
             }
             else {
@@ -92,10 +105,6 @@ int main()
 
             }
             break;
-           
-            /*================================
-            = Allocate Memory for Grid Here  =
-            ================================*/
 
 
             
@@ -124,9 +133,14 @@ int main()
             break;
         case 8:
             cout << "Exiting Program. Goodbye!" << endl;
-            /*=================================
-            = Deallocate Memory for Grid Here =
-            =================================*/
+            
+            //Deallocate memory here!
+            DeAllocate2DArrayMemory(cityStructure, stoi(files[1]));
+            DeAllocate2DArrayMemory(Cloudy, stoi(files[1]));
+            DeAllocate2DArrayMemory(Pressure, stoi(files[1]));
+                /*=================================
+                = Deallocate Memory for Grid Here =
+                =================================*/
 
             return 0;
 
