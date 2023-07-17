@@ -76,11 +76,22 @@ void readMapFile(string filename)
                 vector<string> temp2 = splitString(vect1[i], ",");
                 
 
-                //DEBUG
+                //DEBUG --> Print values of temp2 vector x and y!
                 for (int i = 0; i < temp2.size(); ++i) 
                 {
-                    cout << temp2[i] << endl;
+                    //cout << temp2[i] << endl;
+                    
+                    if (i % 2 == 0) {
+                        coords1.x = stoi(temp2[i]);
+                    }
+                    else {
+                        coords1.y = stoi(temp2[i]);
+                    }
                 }
+
+                cout << coords1.x << " " << coords1.y << endl;
+
+
 
             }
            

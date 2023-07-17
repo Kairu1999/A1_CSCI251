@@ -8,6 +8,8 @@
 #include "Structs.h"
 
 using namespace std;
+
+string RemoveWhiteSpace(string str);
 vector<string> readConfigFile(string filename);
 vector<string> splitString(string input, string delimiter);
 void readMapFile(string filename);
