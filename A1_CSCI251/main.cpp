@@ -96,6 +96,8 @@ int main()
                 //try
                 readMapFile(files[4]);
 
+                //readCloudCoverFile(files[5]);
+                //readPressureFile(files[6]);
                 
 
             }
@@ -105,13 +107,6 @@ int main()
 
             }
             break;
-
-
-            
-
-
-            //readCloudCoverFile(files[5]);
-            //readPressureFile(files[6]);
 
         case 2:
             cout << "Displaying City Map!" << endl;

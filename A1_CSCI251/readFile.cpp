@@ -12,14 +12,13 @@ using namespace std;
 //function prototype:
 vector<string> readConfigFile(string filename);
 vector<string> splitString(string input, string delimiter);
-//vector<cityStructure>readMapFile(string filename);
-void readMapFile(string filename);
+vector<cityStructure>readMapFile(string filename);
 void readCloudCoverFile(string filename);
+//vector<cloudyPressure>readCloudCoverFile(string filename);
 void readPressureFile(string filename);
 
 
-//vector<cityStructure> readMapFile(string filename)
-void readMapFile(string filename)
+vector<cityStructure> readMapFile(string filename)
 {
     //declare input file stream
     ifstream inputfile;
@@ -74,13 +73,13 @@ void readMapFile(string filename)
 
                 //split the string into individual strings
                 vector<string> temp2 = splitString(vect1[i], ",");
-                
+
 
                 //DEBUG --> Print values of temp2 vector x and y!
-                for (int i = 0; i < temp2.size(); ++i) 
+                for (int i = 0; i < temp2.size(); ++i)
                 {
                     //cout << temp2[i] << endl;
-                    
+
                     if (i % 2 == 0) {
                         coords1.x = stoi(temp2[i]);
                     }
@@ -89,12 +88,13 @@ void readMapFile(string filename)
                     }
                 }
 
-                cout << coords1.x << " " << coords1.y << endl;
+                //debug coordinates
+                //cout << coords1.x << " " << coords1.y << endl;
 
 
-
+                //push back into vector
+                coordinates.push_back(coords1);
             }
-           
 
             //every 3 = coordinates so += 3, do the same for city area!(1, 2, 3 etc)
             for (int j = 1; j < vect1.size(); j += 3)
@@ -117,11 +117,39 @@ void readMapFile(string filename)
                 cityName.push_back(vect1[k]);
             }
         }
-        //return {};
+        
+        //push 3 vectors into one giant vector
+        for (int i = 0; i < coordinates.size(); ++i) 
+        {
+            //temp variable created
+            cityStructure structure;
+
+            //extract the values
+            structure.coordinates = coordinates[i];
+            structure.cityType = cityType[i];
+            structure.cityTypeName = cityName[i];
+
+            //push everything into the end structure
+            cityInfo.push_back(structure);
+        }
+
+        //PURELY USED FOR DEBUG KURWA
+        /*for (int i = 0; i < cityInfo.size(); ++i)
+        {
+            cout << "city Information: " << endl;
+            cout << "city coordinates: " << cityInfo[i].coordinates.x << " " << cityInfo[i].coordinates.y << endl;
+            cout << "city Type       : " << cityInfo[i].cityType << endl;
+            cout << "city Name       : " << cityInfo[i].cityTypeName << endl;
+        }*/
+
+        //return the vector of structures
+        return cityInfo;
     }
     else {
         cout << "Unable to find the file " << filename << endl;
-        //return {};
+
+        //return blank vector
+        return {};
     }
 
     //close filestream

@@ -8,12 +8,9 @@
 #include "Structs.h"
 
 using namespace std;
-
-string RemoveWhiteSpace(string str);
 vector<string> readConfigFile(string filename);
 vector<string> splitString(string input, string delimiter);
-void readMapFile(string filename);
-//vector<cityStructure> readMapFile(string filename);
+vector<cityStructure> readMapFile(string filename);
 void readCloudCoverFile(string filename);
 void readPressureFile(string filename);
 
