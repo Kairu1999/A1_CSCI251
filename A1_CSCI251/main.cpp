@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "main.h";
+#include "main.h"
 #include "readFile.h"
 #include "grid.h"
 using namespace std;

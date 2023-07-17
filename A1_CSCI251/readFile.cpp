@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <sstream>
+#include <algorithm>
 
 //struct is here
 #include "structs.h"
@@ -18,16 +18,26 @@ void readCloudCoverFile(string filename);
 void readPressureFile(string filename);
 
 
-
 //vector<cityStructure> readMapFile(string filename)
 void readMapFile(string filename)
 {
     //declare input file stream
     ifstream inputfile;
 
-    //to store the city information
-    vector<cityStructure> cityInfo;
+
+    //individual struct variable
+    coords coords1{};
+
+    vector<coords> coordinates{};
+
+    vector<int> cityType{};
+
+    vector<string>cityName{};
+
     
+    //to store the city information
+    vector<cityStructure> cityInfo{};
+
 
     cout << "opening the file :" << filename << endl;
 
@@ -42,65 +52,59 @@ void readMapFile(string filename)
             //declare string line variable
             string line;
 
-            stringstream ss{};
-
-
             //store file data in variable
             getline(inputfile, line);
 
             //declare a vector
             vector<string> vect1{};
 
-            //Used for X and Y Coordinates
-            vector<coords> Coordinates{};
-
-            //store the city type
-            vector<int> City_Area{};
-
-            //store the last perimeter
-            vector<string> City_Type{};
-
-            vector<cityStructure> temp{};
-
             //split the string
             vect1 = splitString(line, "-");
+
 
             //every 3 = coordinates so += 3, Do for Coordinates
             for (int i = 0; i < vect1.size(); i += 3)
             {
-                //erase first character
-                //cout << vect1[i].length() << endl;
-                cout << vect1[i] << endl;
 
-                //vector of x, y
+                //make a substring
                 vect1[i] = vect1[i].substr(1, vect1[i].length() - 2);
-            }
 
-            //every 3 = coordinates so += 3, do the same for city Area!(1, 2, 3 etc)
+                //remove whitespaces from string
+                vect1[i].erase(std::remove_if(vect1[i].begin(), vect1[i].end(), ::isspace), vect1[i].end());
+
+                //split the string into individual strings
+                vector<string> temp2 = splitString(vect1[i], ",");
+                
+
+                //DEBUG
+                for (int i = 0; i < temp2.size(); ++i) 
+                {
+                    cout << temp2[i] << endl;
+                }
+
+            }
+           
+
+            //every 3 = coordinates so += 3, do the same for city area!(1, 2, 3 etc)
             for (int j = 1; j < vect1.size(); j += 3)
             {
-                cout << vect1[j] << endl;
+                //cout << vect1[j] << endl;
+                
+                int citytype = stoi(vect1[j]);
 
                 //string to integer conversion
-                City_Area.push_back(stoi(vect1[j]));
+                cityType.push_back(citytype);
             }
             
 
             //every 3 = coordinates so += 3, do the same for city Type!(BIG CITY, MID CITY etc)
             for (int k = 2; k < vect1.size(); k += 3)
             {
-                cout << vect1[k] << endl;
-                City_Type.push_back(vect1[k]);
-            }
-            
-            for (int l = 0; l < vect1.size(); ++l) 
-            {
-                //split the string
-                splitString(vect1[l], ",");
+                //cout << vect1[k] << "endl;
 
-                //temp[l].coordinates = vect1[l];
+                //push in name to the vector
+                cityName.push_back(vect1[k]);
             }
-
         }
         //return {};
     }
@@ -238,9 +242,9 @@ void readCloudCoverFile(string filename)
             //split the string
             vect1 = splitString(line, "-");
 
-            for (int i = 0; i < vect1.size(); ++i) {
-                cout << vect1[i] << endl;
-            }
+            //for (int i = 0; i < vect1.size(); ++i) {
+            //    cout << vect1[i] << endl;
+            //}
 
             //every 3 = coordinates so += 3, Do for Coordinates
             for (int i = 0; i < vect1.size(); i += 2)
