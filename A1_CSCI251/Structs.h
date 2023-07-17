@@ -14,22 +14,22 @@ struct coords
 struct cityStructure
 {
     //store x and y coordinates
-    vector<coords> coordinates;
+    coords coordinates;
 
     //store the city type
-    vector<int> cityType;
+    int cityType;
 
     //city type name
-    vector<string> cityTypeName;
+    string cityTypeName;
 };
 
 struct cloudyPressure
 {
     //x and y coordinates
-    vector<int> coordinates;
+    coords coordinates;
 
     //next day forecast;
-    vector<int> NextDayForecast;
+    int NextDayForecast;
 };
 
 #endif
