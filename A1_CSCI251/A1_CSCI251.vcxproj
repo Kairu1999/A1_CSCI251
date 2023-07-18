@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="debug.cpp" />
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MemoryAllocation.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Structs.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="debug.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MemoryAllocation.h" />

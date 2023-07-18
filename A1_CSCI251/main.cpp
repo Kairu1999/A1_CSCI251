@@ -8,6 +8,8 @@
 #include "readFile.h"
 #include "grid.h"
 #include "MemoryAllocation.h"
+#include "debug.h"
+
 using namespace std;
 
 string display_main_menu() 
@@ -49,9 +51,14 @@ int main()
 
     
     //2D Arrays to Allocate Memory For
-    int** cityStructure{};
+    int** CityStructure{};
     int** Cloudy{};
     int** Pressure{};
+
+    //Vector to Store Values
+    vector<cityStructure>cityVect{};
+    vector<cloudyPressure>cloudCoverVect{};
+    vector<cloudyPressure>PressureVect{};
 
     //run the main meny
     while (true) 
@@ -85,35 +92,44 @@ int main()
                 }
 
 
+
+                //read the map files and populate the Vector of Structs:
+                cityVect = readMapFile(files[4]);
+                cloudCoverVect = readCloudCoverFile(files[5]);
+                PressureVect = readPressureFile(files[6]);
+                
+                //allocate memory and populate the array
+
+                //populate the 2D array
+                CityStructure = Allocate2DArrayMemory_city(stoi(files[1]), stoi(files[3]), cityVect);
+
+                //Cloudy = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),cloudCoverVect);
+                //Pressure = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),PressureVect);
+
                 cout << endl;
                 cout << "All records successfully stored. Going back to main menu..." << endl;
                 cout << endl;
-
-                //allocate memory
-                cityStructure = Allocate2DArrayMemory(stoi(files[1]), stoi(files[3]));
-                Cloudy = Allocate2DArrayMemory(stoi(files[1]), stoi(files[3]));
-                Pressure = Allocate2DArrayMemory(stoi(files[1]), stoi(files[3]));
-                
-
-                //read the map files and populate the Vector of Structs:
-                readMapFile(files[4]);
-                readCloudCoverFile(files[5]);
-                readPressureFile(files[6]);
-                
+                break;
 
             }
             else {
                 cout << "Filename: " << str << " could not be parsed. Going back to main menu..." << endl;
                 cout << endl;
+                break;
 
             }
-            break;
 
         case 2:
             cout << "Displaying City Map!" << endl;
+
+            // NUMBERS MODE
+            generate_grid(CityStructure, { 8,8 }, 0);
             break;
         case 3:
             cout << "Displaying Cloud Coverage Map!" << endl;
+
+            //LMH MODE
+            generate_grid(CityStructure, { 8,8 }, 1);
             break;
         case 4:
             cout << "Displaying Cloud Coverage Map with LMH Symbols!" << endl;
@@ -131,7 +147,7 @@ int main()
             cout << "Exiting Program. Goodbye!" << endl;
             
             //Deallocate memory here!
-            DeAllocate2DArrayMemory(cityStructure, stoi(files[1]));
+            DeAllocate2DArrayMemory(CityStructure, stoi(files[1]));
             DeAllocate2DArrayMemory(Cloudy, stoi(files[1]));
             DeAllocate2DArrayMemory(Pressure, stoi(files[1]));
                 /*=================================

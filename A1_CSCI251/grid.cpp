@@ -8,20 +8,6 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 	//row and columns to be used for array
 	const int rect_length{ row_col[0] }, rect_breadth{ row_col[1] };
 
-	/*==================================
-	= (1) allocate memory for 2d array =
-	==================================*/
-
-	//allocate memory rows first
-	int** temp = new int* [rect_length * rect_breadth];
-
-	for (int i = 0; i < rect_length; ++i)
-	{
-		//allocate memory for columns
-		temp[i] = new int[rect_breadth];
-	}
-	/*=================================*/
-
 
 	/*==================================
 	= (2) generate the grid from mode  =
@@ -32,57 +18,40 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 	case 0:
 		cout << "Generating grid with numbers!" << endl;
 
-		//generate grid
-		for (int row = 0; row < rect_breadth; ++row)
+		for (int row = 0; row < rect_breadth; row++)
 		{
-			for (int col = 0; col < rect_length; ++col)
+			for (int col = 0; col < rect_length; col++)
 			{
-				if ((row == 0) || (row = rect_breadth - 1) ||
-					(col == 0) || (col = rect_length - 1))
+				if ((row == 0) || row == rect_breadth - 1 || (col == 0) || (col == rect_length - 1))
 				{
 					cout << "#";
 				}
-				else 
-				{
+				else {
 					cout << " ";
 				}
-				cout << endl;
 			}
+			cout << endl;
 		}
+		cout << endl;
+		break;
 		//generate grid with LMH values
-		case 1:
-			cout << "Generating grid with LMH Values!" << endl;
+	case 1:
+		cout << "Generating grid with LMH Values!" << endl;
 
-			//generate grid
-			for (int row = 0; row < rect_breadth; ++row)
+		for (int row = 0; row < rect_breadth; row++)
+		{
+			for (int col = 0; col < rect_length; col++)
 			{
-				for (int col = 0; col < rect_length; ++col)
+				if ((row == 0) || row == rect_breadth - 1 || (col == 0) || (col == rect_length - 1))
 				{
-					if ((row == 0) || (row = rect_breadth - 1) ||
-						(col == 0) || (col = rect_length - 1))
-					{
-						cout << "#";
-					}
-					else
-					{
-						cout << " ";
-					}
-					cout << endl;
+					cout << "#";
+				}
+				else {
+					cout << " ";
 				}
 			}
+			cout << endl;
+		}
+		cout << endl;
 	}
-	/*=================================*/
-
-	/*==================================
-	= (3) delete memory for 2d array   =
-	==================================*/
-	for (int i = 0; i < rect_length; ++i) 
-	{
-		//1st --> Columns
-		delete[] temp[i];
-	}
-
-	//delete row memory next
-	delete[] temp;
-	/*=================================*/
 }
