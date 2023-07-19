@@ -51,9 +51,9 @@ int main()
 
     
     //2D Arrays to Allocate Memory For
-    int** CityStructure{nullptr};
-    int** Cloudy{nullptr};
-    int** Pressure{nullptr};
+    int** CityStructure{};
+    int** Cloudy{};
+    int** Pressure{};
 
     //Vector to Store Values
     vector<cityStructure>cityVect{};
