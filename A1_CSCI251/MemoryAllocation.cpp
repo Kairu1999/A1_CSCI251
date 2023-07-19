@@ -71,7 +71,7 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 //Coordinates to check for --> [0,0] [0,1] [1,3] [2,1] [2,2]
 int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect)
 {
-	int i{ 0 }, j{ 0 }, k{ 0 };
+	int i = 0;
 
 	//allocate memory for pointer
 	int** ptr = new int* [xsize];
@@ -84,52 +84,42 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 	}
 
 	//populate with 0 first
-	for (int x = 0; x < xsize; ++x) 
+	for (int x = 0; x < xsize; ++x)
 	{
-		for (int y = 0; y < ysize; ++y) 
+		for (int y = 0; y < ysize; ++y)
 		{
 			ptr[x][y] = 0;
 		}
 	}
 
+
 	//loop through the vector with the values
 	//loop through vector(0 --> 8)
-	while(i != vect.size())
+	if (i != vect.size())
 	{
 		//1 --> 8
 		//example if j == 1 and value == 1;
-		if (j == vect[i].coordinates.x)
+		for (int j = 0; j < xsize; ++j)
 		{
-			//if k matches the coordinates of vect[i]
-			if (k == vect[i].coordinates.y)
+			//for each j, incrmeent k
+			for (int k = 0; k < ysize; ++k)
 			{
 				//insert value
 				ptr[j][k] = vect[i].NextDayForecast;
 
 				cout << "Match Found at: " << "[" << j << "," << k << "]" << " with value of: " << ptr[j][k] << endl;
 
-				//set back j and k to the start and increment i to the next variable!
-				j = 0;
-				k = 0;
+				//incrment i;
 				++i;
-
-			}
-			else
-			{
-				//increment k
-				++k;
 			}
 		}
-		else
-		{
-			//increment j
-			++j;
-		}
-
 	}
-	return ptr;
+	else
+	{
+		return ptr;
+	}
+	return {};
 }
-
 //DeAllocate Memory for 2D Array
 void DeAllocate2DArrayMemory(int** ptr, int x_size) 
 {
