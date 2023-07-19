@@ -99,11 +99,16 @@ int main()
                 PressureVect = readPressureFile(files[6]);
                 
 
-                //allocate memory and populate the array
-                CityStructure = Allocate2DArrayMemory_city(stoi(files[1]), stoi(files[3]), cityVect);
-                Cloudy = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),cloudCoverVect);
-                Pressure = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),PressureVect);
+                //allocate memory
+                Allocate2DArrayMemory_city(stoi(files[1]), stoi(files[3]),CityStructure);
+                Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),Cloudy);
+                Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),Pressure);
 
+
+
+
+                //populate the array
+                PopulateCity2DArray(stoi(files[1]), stoi(files[3]), cityVect, CityStructure);
 
 
                 print_2DArr_output_city(stoi(files[1]), stoi(files[3]), CityStructure);

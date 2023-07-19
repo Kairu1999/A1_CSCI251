@@ -4,19 +4,19 @@
 
 //Allocate Memory for 2D Array + Insert Values at certain areas
 //Coordinates to check for --> [1,1] [1,2] [1,3] [2,1] [2,2]
-int** Allocate2DArrayMemory_city(int xsize, int ysize,int** ptr);
+void Allocate2DArrayMemory_city(int xsize, int ysize,int** ptr);
 void PopulateCity2DArray(int xsize, int ysize, vector<cityStructure> vect, int** ptr);
-int** Allocate2DArrayMemory_cp(int xsize, int ysize, int** ptr);
+void Allocate2DArrayMemory_cp(int xsize, int ysize, int** ptr);
 void PopulateCloudyPressure2DArray(int xsize, int ysize, vector<cloudyPressure>vect, int** ptr);
 void DeAllocate2DArrayMemory(int** ptr, int x_size);
 
 
-int** Allocate2DArrayMemory_city(int xsize, int ysize,int** ptr)
+void Allocate2DArrayMemory_city(int xsize, int ysize,int** ptr)
 {
 	int i{ 0 }, j{ 0 }, k{ 0 };
 
 	//allocate memory for pointer
-	int** ptr = new int* [xsize];
+	ptr = new int* [xsize];
 
 	for (int i = 0; i < xsize; ++i)
 	{
@@ -75,12 +75,12 @@ void PopulateCity2DArray(int xsize, int ysize, vector<cityStructure> vect, int**
 
 //Allocate Memory for 2D Array + Insert Values at certain areas
 //Coordinates to check for --> [0,0] [0,1] [1,3] [2,1] [2,2]
-void Allocate2DArrayMemory_cp(int xsize, int ysize,int** ptr)
+void Allocate2DArrayMemory_cp(int xsize, int ysize, int** ptr)
 {
 	int i = 0;
 
 	//allocate memory for pointer
-	int** ptr = new int* [xsize];
+	ptr = new int* [xsize];
 
 
 	//Allocate memory for the 2d Array
