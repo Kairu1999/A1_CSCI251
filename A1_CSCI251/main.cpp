@@ -104,7 +104,9 @@ int main()
                 Cloudy = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),cloudCoverVect);
                 Pressure = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),PressureVect);
 
-                //print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
+
+
+                print_2DArr_output_city(stoi(files[1]), stoi(files[3]), CityStructure);
 
                 cout << endl;
                 cout << "All records successfully stored. Going back to main menu..." << endl;
