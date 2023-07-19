@@ -43,7 +43,7 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 				//insert value
 				ptr[j][k] = vect[i].cityType;
 
-				cout << "Match Found at: " << "[" << j << "," << k <<"]" << " with value of: " << ptr[j][k] << endl;
+				//cout << "Match Found at: " << "[" << j << "," << k <<"]" << " with value of: " << ptr[j][k] << endl;
 
 				//set back j and k to the start and increment i to the next variable!
 				j = 0;
@@ -114,11 +114,7 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 			}
 		}
 	}
-	else
-	{
-		return ptr;
-	}
-	return {};
+	return ptr;
 }
 
 //DeAllocate Memory for 2D Array

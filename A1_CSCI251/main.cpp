@@ -105,8 +105,17 @@ int main()
                 Pressure = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),PressureVect);
 
 
+                //try printing output
+                print_2DArr_output(stoi(files[1]), stoi(files[3]), CityStructure);
+                cout << endl;
+                print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
+                cout << endl;
+                print_2DArr_output(stoi(files[1]), stoi(files[3]), Pressure);
+                cout << endl;
 
-                print_2DArr_output_city(stoi(files[1]), stoi(files[3]), CityStructure);
+                cout << "Address of CityStructure pointer is: " << CityStructure << endl;
+                cout << "Address of CloudCover pointer is: " << Cloudy << endl;
+                cout << "Address of Pressure pointer is: " << Pressure << endl;
 
                 cout << endl;
                 cout << "All records successfully stored. Going back to main menu..." << endl;
