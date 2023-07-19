@@ -18,7 +18,7 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 	case 0:
 		cout << "Generating grid with numbers!" << endl;
 
-		for (int row = 0; row < rect_breadth; row++)
+	/*	for (int row = 0; row < rect_breadth; row++)
 		{
 			for (int col = 0; col < rect_length; col++)
 			{
@@ -31,23 +31,54 @@ void generate_grid(int** coordinates, vector<int> row_col, int mode)
 				}
 			}
 			cout << endl;
+		}*/
+		for (int i = 0; i < rect_length; ++i)
+		{
+			for (int j = 0; i < rect_breadth; ++j)
+			{
+				if (coordinates[i][j] == 0) {
+					cout << " ";
+				}
+				else
+				{
+					cout << coordinates[i][j] << ", ";
+				}
+			}
+			cout << endl;
 		}
+
 		cout << endl;
 		break;
 		//generate grid with LMH values
 	case 1:
-		cout << "Generating grid with LMH Values!" << endl;
+		cout << "Generating grid with LMH Values! in a " << rect_length << " by " << rect_breadth << " grid!" << endl;
 
-		for (int row = 0; row < rect_breadth; row++)
+
+		//for (int row = 0; row < rect_breadth; row++)
+		//{
+		//	for (int col = 0; col < rect_length; col++)
+		//	{
+		//		if ((row == 0) || row == rect_breadth - 1 || (col == 0) || (col == rect_length - 1))
+		//		{
+		//			cout << "#";
+		//		}
+		//		else {
+		//			cout << " ";
+		//		}
+		//	}
+		//	cout << endl;
+		//}
+
+		for (int i = 0; i < rect_length; ++i) 
 		{
-			for (int col = 0; col < rect_length; col++)
+			for (int j = 0; i < rect_breadth; ++j) 
 			{
-				if ((row == 0) || row == rect_breadth - 1 || (col == 0) || (col == rect_length - 1))
-				{
-					cout << "#";
-				}
-				else {
+				if (coordinates[i][j] == 0) {
 					cout << " ";
+				}
+				else 
+				{
+					cout << coordinates[i][j] << ", ";
 				}
 			}
 			cout << endl;

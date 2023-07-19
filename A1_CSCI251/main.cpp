@@ -125,16 +125,21 @@ int main()
             cout << "Displaying City Map!" << endl;
 
             // NUMBERS MODE
-            generate_grid(CityStructure, { 8,8 }, 0);
+            generate_grid(CityStructure, { stoi(files[1]),stoi(files[3]) }, 0);
             break;
         case 3:
             cout << "Displaying Cloud Coverage Map!" << endl;
 
-            //LMH MODE
-            generate_grid(CityStructure, { 8,8 }, 1);
+            //NORMAL MODE
+            generate_grid(Cloudy, {stoi(files[1]),stoi(files[3])}, 0);
             break;
+
+
         case 4:
             cout << "Displaying Cloud Coverage Map with LMH Symbols!" << endl;
+
+            //LMH MODE
+            generate_grid(Cloudy, { stoi(files[1]),stoi(files[3]) }, 1);
             break;
         case 5:
             cout << "Displaying Atmospheric Pressure! " << endl;
