@@ -107,7 +107,7 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 				//insert value
 				ptr[j][k] = vect[i].NextDayForecast;
 
-				cout << "Match Found at: " << "[" << j << "," << k << "]" << " with value of: " << ptr[j][k] << endl;
+				//cout << "Match Found at: " << "[" << j << "," << k << "]" << " with value of: " << ptr[j][k] << endl;
 
 				//incrment i;
 				++i;
@@ -120,6 +120,7 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 	}
 	return {};
 }
+
 //DeAllocate Memory for 2D Array
 void DeAllocate2DArrayMemory(int** ptr, int x_size) 
 {
