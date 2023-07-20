@@ -94,9 +94,7 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 
 
 	//loop through the vector with the values
-	//loop through vector(0 --> 8)
-	if (i != vect.size())
-	{
+
 		//1 --> 8
 		//example if j == 1 and value == 1;
 		for (int j = 0; j < xsize; ++j)
@@ -113,7 +111,7 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 				++i;
 			}
 		}
-	}
+
 	return ptr;
 }
 

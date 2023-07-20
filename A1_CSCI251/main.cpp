@@ -106,7 +106,7 @@ int main()
 
 
                 //try printing output
-               /* print_2DArr_output(stoi(files[1]), stoi(files[3]), CityStructure);
+                print_2DArr_output(stoi(files[1]), stoi(files[3]), CityStructure);
                 cout << endl;
                 print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
                 cout << endl;
@@ -115,7 +115,7 @@ int main()
 
                 cout << "Address of CityStructure pointer is: " << CityStructure << endl;
                 cout << "Address of CloudCover pointer is: " << Cloudy << endl;
-                cout << "Address of Pressure pointer is: " << Pressure << endl;*/
+                cout << "Address of Pressure pointer is: " << Pressure << endl;
 
                 cout << endl;
                 cout << "All records successfully stored. Going back to main menu..." << endl;
