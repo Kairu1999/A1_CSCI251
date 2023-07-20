@@ -118,8 +118,8 @@ int main()
 
 
                 //Update2DArray(Cloudy, stoi(files[1]), stoi(files[3]));
-
-                print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
+                //print_2DArr_output_city(stoi(files[1]), stoi(files[3]), CityStructure);
+                //print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
                 cout << endl;
 
                 cout << "Address of CityStructure pointer is: " << CityStructure << endl;

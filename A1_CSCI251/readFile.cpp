@@ -132,14 +132,14 @@ vector<cityStructure> readMapFile(string filename)
             cityInfo.push_back(structure);
         }
 
-        //PURELY USED FOR DEBUG KURWA
-        for (int i = 0; i < cityInfo.size(); ++i)
-        {
-            cout << "city Information: " << endl;
-            cout << "city coordinates: " << cityInfo[i].coordinates.x << " " << cityInfo[i].coordinates.y << endl;
-            cout << "city Type       : " << cityInfo[i].cityType << endl;
-            cout << "city Name       : " << cityInfo[i].cityTypeName << endl;
-        }
+        ////PURELY USED FOR DEBUG KURWA
+        //for (int i = 0; i < cityInfo.size(); ++i)
+        //{
+        //    cout << "city Information: " << endl;
+        //    cout << "city coordinates: " << cityInfo[i].coordinates.x << " " << cityInfo[i].coordinates.y << endl;
+        //    cout << "city Type       : " << cityInfo[i].cityType << endl;
+        //    cout << "city Name       : " << cityInfo[i].cityTypeName << endl;
+        //}
 
         //return the vector of structures
         return cityInfo;
