@@ -121,7 +121,7 @@ vector<cityStructure> readMapFile(string filename)
         for (int i = 0; i < coordinates.size(); ++i) 
         {
             //temp variable created
-            cityStructure structure;
+            cityStructure structure{};
 
             //extract the values
             structure.coordinates = coordinates[i];
@@ -133,13 +133,13 @@ vector<cityStructure> readMapFile(string filename)
         }
 
         //PURELY USED FOR DEBUG KURWA
-        /*for (int i = 0; i < cityInfo.size(); ++i)
+        for (int i = 0; i < cityInfo.size(); ++i)
         {
             cout << "city Information: " << endl;
             cout << "city coordinates: " << cityInfo[i].coordinates.x << " " << cityInfo[i].coordinates.y << endl;
             cout << "city Type       : " << cityInfo[i].cityType << endl;
             cout << "city Name       : " << cityInfo[i].cityTypeName << endl;
-        }*/
+        }
 
         //return the vector of structures
         return cityInfo;

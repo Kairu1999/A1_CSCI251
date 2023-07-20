@@ -10,6 +10,7 @@
 #include "MemoryAllocation.h"
 #include "debug.h"
 
+
 using namespace std;
 
 string display_main_menu() 
@@ -54,6 +55,8 @@ int main()
     int** CityStructure{nullptr};
     int** Cloudy{nullptr};
     int** Pressure{nullptr};
+    int** CloudyLMH{ nullptr };
+    int** PressureLMH{ nullptr };
 
     //Vector to Store Values
     vector<cityStructure>cityVect{};
@@ -103,14 +106,20 @@ int main()
                 CityStructure = Allocate2DArrayMemory_city(stoi(files[1]), stoi(files[3]), cityVect);
                 Cloudy = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),cloudCoverVect);
                 Pressure = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),PressureVect);
+                CloudyLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), cloudCoverVect);
+                PressureLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), PressureVect);
 
 
                 //try printing output
-                print_2DArr_output(stoi(files[1]), stoi(files[3]), CityStructure);
-                cout << endl;
+                /*print_2DArr_output(stoi(files[1]), stoi(files[3]), CityStructure);
+                cout << endl;*/
+                /*print_2DArr_output(stoi(files[1]), stoi(files[3]), Pressure);
+                cout << endl;*/
+
+
+                //Update2DArray(Cloudy, stoi(files[1]), stoi(files[3]));
+
                 print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
-                cout << endl;
-                print_2DArr_output(stoi(files[1]), stoi(files[3]), Pressure);
                 cout << endl;
 
                 cout << "Address of CityStructure pointer is: " << CityStructure << endl;
@@ -167,15 +176,12 @@ int main()
             DeAllocate2DArrayMemory(CityStructure, stoi(files[1]));
             DeAllocate2DArrayMemory(Cloudy, stoi(files[1]));
             DeAllocate2DArrayMemory(Pressure, stoi(files[1]));
-                /*=================================
-                = Deallocate Memory for Grid Here =
-                =================================*/
-
+            DeAllocate2DArrayMemory(CloudyLMH, stoi(files[1]));
+            DeAllocate2DArrayMemory(PressureLMH, stoi(files[1]));
             return 0;
 
         default:
             break;
-
         }
     }
     return 0;

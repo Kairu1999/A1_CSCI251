@@ -12,18 +12,14 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 		{
 			for (int col = 0; col < ysize; col++)
 			{
-				//if ((row == 0) || (col == 0))
-
 				//for up and down lines
-				if (row == 0 || (row = xsize - 1))
+				if ((row == 0) || (row = xsize - 1)) 
+				{
+					cout << "# ";
+				}
 
 				//for left and right lines
-				if (col == 0 || (col = ysize - 1))
-
-
-
-				//if ((row == 0) || row == xsize - 1 || (col == 0) || col == ysize - 1)
-				{
+				else if ((col == 0) || (col = ysize - 1)) {
 					cout << "#";
 				}
 				else {

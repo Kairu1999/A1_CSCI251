@@ -7,6 +7,8 @@
 
 int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vect);
 int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect);
+int Update2DArrayValues(int value, int mode);
+void Update2DArray(int** ptr, int xsize, int ysize);
 void DeAllocate2DArrayMemory(int** ptr, int x_size);
 
 int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vect)
@@ -104,7 +106,6 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 			{
 				//insert value
 				ptr[j][k] = vect[i].NextDayForecast;
-
 				//cout << "Match Found at: " << "[" << j << "," << k << "]" << " with value of: " << ptr[j][k] << endl;
 
 				//incrment i;
@@ -113,6 +114,99 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 		}
 
 	return ptr;
+}
+
+//updates the values of the 2d array
+int Update2DArrayValues(int value)
+{
+	cout << "value : " << value << endl;
+
+	int temp{ 0 };
+
+	//insert value
+	if ((value >= 0) && (value < 10))
+	{
+		value = 0;
+
+	}
+	if ((value >= 10) && (value < 20))
+	{
+		value = 1;
+	}
+	if ((value >= 20) && (value < 30))
+	{
+		value = 2;
+
+	}
+	if ((value >= 30) && (value < 40))
+	{
+		value = 3;
+
+	}
+	if ((value >= 40) && (value < 50))
+	{
+		value = 4;
+
+	}
+	if ((value >= 50) && (value < 60))
+	{
+		value = 5;
+	}
+	if ((value >= 60) && (value < 70))
+	{
+		value = 6;
+
+	}
+	if ((value >= 70) && (value < 80))
+	{
+		value = 7;
+
+	}
+	if ((value >= 80) && (value < 90))
+	{
+		value = 8;
+
+	}
+	if ((value >= 90) && (value < 100))
+	{
+		value = 9;
+	}
+
+	return value;
+}
+int Update2DArrayValuesLMH(int value) 
+{
+	int temp{0};
+	if ((value >= 0) && (value < 35))
+	{
+		temp = 'L';
+	}
+	if ((value >= 35) && (value < 65))
+	{
+		temp = 'M';
+	}
+	if((value >= 65) && (value < 100))
+	{
+		temp = 'H';
+	}
+
+	return temp;
+}
+
+void Update2DArray(int** ptr, int xsize, int ysize) 
+{
+	for (int i = 0; i < xsize; ++i) 
+	{
+		for (int j = 0; j < ysize; ++j)
+		{
+			int xan{ 0 };
+			xan = Update2DArrayValuesLMH(ptr[i][j]);
+
+			cout << "Old Value: " << ptr[i][j] << " replaced by: " << static_cast<char>(xan) << endl;
+
+			ptr[i][j] = xan;
+		}
+	}
 }
 
 //DeAllocate Memory for 2D Array
