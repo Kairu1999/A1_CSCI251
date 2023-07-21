@@ -47,7 +47,7 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 				//insert value
 				ptr[j][k] = vect[i].cityType;
 
-				cout << "Match Found at: " << "[" << j << "," << k <<"]" << " with value of: " << ptr[j][k] << endl;
+				//cout << "Match Found at: " << "[" << j << "," << k <<"]" << " with value of: " << ptr[j][k] << endl;
 
 				//set back j and k to the start and increment i to the next variable!
 				j = 0;
@@ -80,9 +80,16 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 	//allocate memory for pointer
 	int** ptr = new int* [xsize];
 
+
+	//cout << "Size of pointer :" << sizeof(ptr) << endl;
+
+	//should print 8 at base case
+	//cout << "Value of x :" << xsize << endl;
+
 	//Allocate memory for the 2d Array, +1 because 0 --> 8
-	for (int i = 0; i < (xsize + 1); i++)
+	for (int i = 0; i <= xsize; i++)
 	{
+		cout <<"y value: " << i << endl;
 		ptr[i] = new int[ysize];
 	}
 
@@ -92,7 +99,7 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 		for (int y = 0; y <= ysize; ++y)
 		{
 			ptr[x][y] = 0;
-			cout << "[" << x << "," << y << "]" << endl;
+			//cout << "[" << x << "," << y << "]" << endl;
 		}
 	}
 
@@ -101,18 +108,19 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 
 	//1 --> 8
 	//example if j == 1 and value == 1;
-	//for (int j = 0; j < (xsize + 1); ++j)
-	//{
-	//	//for each j, incrmeent k
-	//	for (int k = 0; k < (ysize + 1); ++k)
-	//	{
-	//		ptr[j][k] = vect[i].NextDayForecast;
-	//		cout << "Match Found at: " << "[" << j << "," << k << "]" << " with value of: " << ptr[j][k] << endl;
+	for (int j = 0; j <= (xsize); ++j)
+	{
+		//for each j, incrmeent k
+		for (int k = 0; k <= (ysize); ++k)
+		{
+			ptr[xsize - k][j] = vect[i].NextDayForecast;
+			//cout << "x" << k << " y" << (xsize - j) << endl;
+			//cout << "Match Found at: " << "[" << j << "," << k << "]" << " with value of: " << ptr[j][k] << endl;
 
-	//		//incrment i;
-	//		++i;
-	//	}
-	//}
+			//incrment i;
+			++i;
+		}
+	}
 
 
 	return ptr;
@@ -192,7 +200,7 @@ int Update2DArrayValuesLMH(int value)
 	{
 		temp = 'H';
 	}
-
+	
 	return temp;
 }
 
@@ -206,7 +214,7 @@ void Update2DArray(int** ptr, int xsize, int ysize)
 			int xan{ 0 };
 			xan = Update2DArrayValuesLMH(ptr[i][j]);
 
-			cout << "Old Value: " << ptr[i][j] << " replaced by: " << static_cast<char>(xan) << endl;
+			//cout << "Old Value: " << ptr[i][j] << " replaced by: " << static_cast<char>(xan) << endl;
 
 			ptr[i][j] = xan;
 		}

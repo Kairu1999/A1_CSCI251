@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//USE TO PRINT 2D Array for city
 void print_2DArr_output_city(int row, int col, int** ptr)
 {
 	for (int i = 0; i < row; i++)
@@ -21,11 +22,12 @@ void print_2DArr_output_city(int row, int col, int** ptr)
 //USE TO PRINT 2D ARRAY OF CITY
 void print_2DArr_output(int row, int col, int** ptr)
 {
-	for (int i = 0; i < row; i++)
+	for (int i = 0; i <= row; i++)
 	{
-		for (int j = 0; j < col; j++)
+		for (int j = 0; j <= col; j++)
 		{
-			cout << "[" << i << "," << j << "]" << "-" << ptr[i][j]  << " ";
+			//cout << "[" << i << "," << j << "]" << "-" << ptr[i][j]  << " ";
+			cout << "[" << i << "," << j << "]" << "-" << char(ptr[i][j]) << " ";
 			//cout << char(ptr[i][j]) << " ";
 		}
 		cout << endl;
