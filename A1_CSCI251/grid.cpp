@@ -14,10 +14,6 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 		{
 			cout << " # ";
 		}
-		/*if (i == ysize + 2) 
-		{
-			cout << "#";
-		}*/
 		else
 		{
 			cout << "# ";
@@ -106,10 +102,6 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 		{
 			cout << " # ";
 		}
-		/*if (i == ysize + 2)
-		{
-			cout << "#";
-		}*/
 		else
 		{
 			cout << "# ";
@@ -200,10 +192,6 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 		{
 			cout << " # ";
 		}
-		/*if (i == ysize + 2)
-		{
-			cout << "#";
-		}*/
 		else
 		{
 			cout << "# ";
