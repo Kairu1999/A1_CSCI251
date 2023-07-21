@@ -12,11 +12,15 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 	{
 		if (i == 0)
 		{
-			cout << " #";
+			cout << " # ";
 		}
-		else
+		/*if (i == ysize + 2) 
 		{
 			cout << "#";
+		}*/
+		else
+		{
+			cout << "# ";
 		}
 	}
 	cout << endl;
@@ -65,26 +69,26 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
-					cout << " #";
+					cout << " # ";
 				}
 				else if (i == ysize) 
 				{
-					cout << "###";
+					cout << "# # #";
 				}
 				else
 				{
-					cout << "#";
+					cout << "# ";
 				}
 			}
 			if (j == 1)
 			{
 				if (i == 0)
 				{
-					cout << "  " << i;
+					cout << "   " << i << " ";
 				}
 				else
 				{
-					cout << i;
+					cout << i << " ";
 				}
 			}
 		}
@@ -230,6 +234,7 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 				cout << "#";
 			}
 		}
+		//newline
 		cout << endl;
 	}
 
@@ -240,6 +245,7 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 
 		for (int i = 0; i <= ysize; ++i)
 		{
+			//top of the bottom area of the array
 			if (j == 0)
 			{
 				if (i == 0)
@@ -248,10 +254,12 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 				}
 				else if (i == ysize)
 				{
+					//fill up the array
 					cout << "###";
 				}
 				else
 				{
+					
 					cout << "#";
 				}
 			}
@@ -259,6 +267,7 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
+					//print the i value
 					cout << "  " << i;
 				}
 				else
