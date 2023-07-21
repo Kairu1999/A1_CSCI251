@@ -9,6 +9,7 @@
 #include "grid.h"
 #include "MemoryAllocation.h"
 #include "debug.h"
+#include "WeatherReport.h"
 
 
 using namespace std;
@@ -221,8 +222,8 @@ int main()
                 break;
             }
         case 7:
-            cout << "Weather Forecast Summary Report" << endl;
-            cout << "-------------------------------" << endl;
+            //Print Weather Report
+            print_weather_report(CityStructure, Cloudy, Pressure, stoi(files[1]), stoi(files[3]));
             break;
         case 8:
             cout << "Exiting Program. Goodbye!" << endl;

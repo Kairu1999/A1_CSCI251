@@ -133,6 +133,7 @@
     <ClCompile Include="MemoryAllocation.cpp" />
     <ClCompile Include="readFile.cpp" />
     <ClCompile Include="Structs.h" />
+    <ClCompile Include="WeatherReport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="MemoryAllocation.h" />
     <ClInclude Include="readFile.h" />
+    <ClInclude Include="WeatherReport.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
