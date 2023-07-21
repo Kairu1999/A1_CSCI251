@@ -20,14 +20,14 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 	int** ptr = new int* [xsize];
 
 	//allocate memory for pointer
-	for (int i = 0; i < xsize; ++i)
+	for (int i = 0; i <= xsize; ++i)
 	{
 		ptr[i] = new int[ysize];
 	}
 
-	for (int x = 0; x < xsize; ++x)
+	for (int x = 0; x <= xsize; ++x)
 	{
-		for (int y = 0; y < ysize; ++y)
+		for (int y = 0; y <= ysize; ++y)
 		{
 			ptr[x][y] = 0;
 		}
@@ -45,7 +45,7 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 			if (k == vect[i].coordinates.y)
 			{			
 				//insert value
-				ptr[j][k] = vect[i].cityType;
+				ptr[xsize - k][j] = vect[i].cityType;
 
 				//cout << "Match Found at: " << "[" << j << "," << k <<"]" << " with value of: " << ptr[j][k] << endl;
 
@@ -81,15 +81,10 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 	int** ptr = new int* [xsize];
 
 
-	//cout << "Size of pointer :" << sizeof(ptr) << endl;
-
-	//should print 8 at base case
-	//cout << "Value of x :" << xsize << endl;
-
 	//Allocate memory for the 2d Array, +1 because 0 --> 8
 	for (int i = 0; i <= xsize; i++)
 	{
-		cout <<"y value: " << i << endl;
+		//cout <<"y value: " << i << endl;
 		ptr[i] = new int[ysize];
 	}
 
@@ -113,7 +108,9 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 		//for each j, incrmeent k
 		for (int k = 0; k <= (ysize); ++k)
 		{
+			//THIS LINE WORKS GODDAMIT
 			ptr[xsize - k][j] = vect[i].NextDayForecast;
+
 			//cout << "x" << k << " y" << (xsize - j) << endl;
 			//cout << "Match Found at: " << "[" << j << "," << k << "]" << " with value of: " << ptr[j][k] << endl;
 

@@ -5,5 +5,6 @@
 using namespace std;
 
 void generate_grid(int** coordinates,int xsize, int ysize);
+void generate_gridLMH(int** coordinates, int xsize, int ysize);
 
 #endif
