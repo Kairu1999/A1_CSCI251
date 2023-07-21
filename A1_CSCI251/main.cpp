@@ -68,6 +68,7 @@ int main()
     {
         //run main menu loop
         choice = display_main_menu();
+
         switch (stoi(choice))
         {
             //switch cases:
@@ -106,6 +107,8 @@ int main()
                 CityStructure = Allocate2DArrayMemory_city(stoi(files[1]), stoi(files[3]), cityVect);
                 Cloudy = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),cloudCoverVect);
                 Pressure = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),PressureVect);
+                
+                //Low Medium High
                 CloudyLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), cloudCoverVect);
                 PressureLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), PressureVect);
 
@@ -113,12 +116,18 @@ int main()
                 //try printing output
                 //print_2DArr_output(stoi(files[1]), stoi(files[3]), CityStructure);
                 //cout << endl;
-                /*print_2DArr_output(stoi(files[1]), stoi(files[3]), Pressure);
-                cout << endl;*/
+                print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
+                cout << endl;
 
 
                 //Update the 2D Array Values:
-                Update2DArray(Cloudy, stoi(files[1]), stoi(files[3]));
+                Update2DArray(Cloudy, stoi(files[1]), stoi(files[3]), 0);
+                Update2DArray(CloudyLMH, stoi(files[1]), stoi(files[3]), 1);
+                Update2DArray(Pressure, stoi(files[1]), stoi(files[3]),0);
+                Update2DArray(PressureLMH, stoi(files[1]), stoi(files[3]),1);
+
+
+
                 //print_2DArr_output_city(stoi(files[1]), stoi(files[3]), CityStructure);
                 //print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
 
@@ -142,31 +151,75 @@ int main()
             }
 
         case 2:
-            cout << "Displaying City Map!" << endl;
+            if (CityStructure == nullptr)
+            {
+                cout << "Data and Memory Has not been Allocated! Please Return to #1!" << endl;
+                break;
+            }
+            else 
+            {
+                cout << "Displaying City Map!" << endl;
 
-            // NUMBERS MODE
-            generate_grid(CityStructure,stoi(files[1]),stoi(files[3]));
-            break;
+                // NUMBERS MODE
+                generate_grid_city(CityStructure, stoi(files[1]), stoi(files[3]));
+                break;
+            }
         case 3:
-            cout << "Displaying Cloud Coverage Map!" << endl;
+            if (Cloudy == nullptr)
+            {
+                cout << "Data and Memory Has not been Allocated! Please Return to #1!" << endl;
+                break;
+            }
+            else 
+            {
+                cout << "Displaying Cloud Coverage Map!" << endl;
 
-            //NORMAL MODE
-            //generate_grid(Cloudy, stoi(files[1]),stoi(files[3]));
-            break;
+                //NORMAL MODE
+                generate_grid(Cloudy, stoi(files[1]), stoi(files[3]));
+                break;
+            }
 
 
         case 4:
-            cout << "Displaying Cloud Coverage Map with LMH Symbols!" << endl;
+            if (CloudyLMH == nullptr)
+            {
+                cout << "Data and Memory Has not been Allocated! Please Return to #1!" << endl;
+                break;
+            }
+            else 
+            {
+                cout << "Displaying Cloud Coverage Map with LMH Symbols!" << endl;
+                cout << endl;
 
-            generate_gridLMH(Cloudy, stoi(files[1]), stoi(files[3]));
-            break;
+                generate_gridLMH(CloudyLMH, stoi(files[1]), stoi(files[3]));
+                break;
+            }
         case 5:
-            cout << "Displaying Atmospheric Pressure! " << endl;
-            //generate_grid(Pressure, stoi(files[1]), stoi(files[3]));
-            break;
+            if (Pressure == nullptr)
+            {
+                cout << "Data and Memory Has not been Allocated! Please Return to #1!" << endl;
+                break;
+            }
+            else
+            {
+                cout << "Displaying Pressure Map!" << endl;
+                cout << endl;
+
+                generate_grid(Pressure, stoi(files[1]), stoi(files[3]));
+                break;
+            }
         case 6:
-            cout << "Displaying Atmospheric Pressure with LMH Symbols!" << endl;
-            break;
+            if (Pressure == nullptr)
+            {
+                cout << "Data and Memory Has not been Allocated! Please Return to #1!" << endl;
+                break;
+            }
+            else
+            {
+                cout << "Displaying Atmospheric Pressure with LMH Symbols!" << endl;
+                generate_gridLMH(CloudyLMH, stoi(files[1]), stoi(files[3]));
+                break;
+            }
         case 7:
             cout << "Displaying Weather Forecast Summary Report!" << endl;
             break;

@@ -202,18 +202,29 @@ int Update2DArrayValuesLMH(int value)
 }
 
 //USED ONLY FOR CLOUDY AND PRESSURE.CPP
-void Update2DArray(int** ptr, int xsize, int ysize) 
+void Update2DArray(int** ptr, int xsize, int ysize, int mode) 
 {
 	for (int i = 0; i <= (xsize); ++i) 
 	{
 		for (int j = 0; j <= (ysize); ++j)
 		{
+			
 			int xan{ 0 };
-			xan = Update2DArrayValuesLMH(ptr[i][j]);
+
+			switch (mode) 
+			{
+				case 0:
+					xan = Update2DArrayValues(ptr[i][j]);
+					ptr[i][j] = xan;
+					break;
+				case 1:
+					xan = Update2DArrayValuesLMH(ptr[i][j]);
+					ptr[i][j] = xan;
+					break;
+			}
 
 			//cout << "Old Value: " << ptr[i][j] << " replaced by: " << static_cast<char>(xan) << endl;
 
-			ptr[i][j] = xan;
 		}
 	}
 }

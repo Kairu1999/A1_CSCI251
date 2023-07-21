@@ -42,7 +42,7 @@ void print_2DArr_output(int row, int col, int** ptr)
 		for (int j = 0; j <= col; j++)
 		{
 			//cout << "[" << i << "," << j << "]" << "-" << ptr[i][j]  << " ";
-			cout << "[" << i << "," << j << "]" << "-" << char(ptr[i][j]) << " ";
+			cout << "[" << i << "," << j << "]" << "-" << ptr[i][j] << " ";
 			//cout << char(ptr[i][j]) << " ";
 		}
 		cout << endl;
