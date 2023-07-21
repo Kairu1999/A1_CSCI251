@@ -34,18 +34,18 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 			if (j == 0) 
 			{
 				//i value + wall of #
-				cout << (ysize - i) << "#";
+				cout << (ysize - i) << "# ";
 			}
 
 			//print coordinates whether wall was printed or not
 			if (coordinates[i][j] == -1)
 			{
-				//print the rest of the grid
-				cout << " ";
+				//print the rest of the grid as blank if vector has -1 inside
+				cout << "  ";
 			}
 			else
 			{
-				cout << coordinates[i][j];
+				cout << coordinates[i][j] << " ";
 			}
 
 			//print back wall
