@@ -87,11 +87,12 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 	}
 
 	//populate with 0 first
-	for (int x = 0; x < xsize; ++x)
+	for (int x = 0; x <= xsize; ++x)
 	{
-		for (int y = 0; y < ysize; ++y)
+		for (int y = 0; y <= ysize; ++y)
 		{
 			ptr[x][y] = 0;
+			cout << "[" << x << "," << y << "]" << endl;
 		}
 	}
 
