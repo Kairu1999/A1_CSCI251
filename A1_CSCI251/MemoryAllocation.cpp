@@ -29,7 +29,7 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 	{
 		for (int y = 0; y <= ysize; ++y)
 		{
-			ptr[x][y] = 0;
+			ptr[x][y] = -1;
 		}
 	}
 
@@ -93,7 +93,7 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 	{
 		for (int y = 0; y <= ysize; ++y)
 		{
-			ptr[x][y] = 0;
+			ptr[x][y] = -1;
 			//cout << "[" << x << "," << y << "]" << endl;
 		}
 	}
@@ -126,8 +126,6 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 //updates the values of the 2d array
 int Update2DArrayValues(int value)
 {
-	cout << "value : " << value << endl;
-
 	int temp{ 0 };
 
 	//insert value
