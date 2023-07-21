@@ -221,7 +221,8 @@ int main()
                 break;
             }
         case 7:
-            cout << "Displaying Weather Forecast Summary Report!" << endl;
+            cout << "Weather Forecast Summary Report" << endl;
+            cout << "-------------------------------" << endl;
             break;
         case 8:
             cout << "Exiting Program. Goodbye!" << endl;
