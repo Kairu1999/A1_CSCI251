@@ -69,6 +69,14 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	//3: Now that all the adjacent coordinates have been gotten, retrieve the cloudcover and pressure values of each of them~!
 
 
+	//4: compute average cloud cover and average pressure
+
+	//5: compute Probability of Rain
+
+	//6: push it all into vector display
+
+	//7: Display Vector
+
 	
 }
 //pushes 8 values in
