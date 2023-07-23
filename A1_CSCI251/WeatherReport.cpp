@@ -55,12 +55,6 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 
 		//populate the vector<coords>
 		proliferate8tiles = find_adjacent_tiles(city[j].coordinates);
-		//cout << proliferate8tiles.size() << endl;
-
-		/*for (int k = 0; k < proliferate8tiles.size(); ++k) 
-		{
-			cout << proliferate8tiles[k].x << " " << proliferate8tiles[k].y << endl;
-		}*/
 		
 		//push back into vector<vectors>
 		Coordinates.push_back(proliferate8tiles);
