@@ -7,6 +7,17 @@
 #include "Structs.h";
 using namespace std;
 
+void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
+vector<coords>find_adjacent_tiles(cityStructure city);
+string compute_average_cloudcover(vector<int> cloudcover_values);
+string compute_average_pressure(vector<int> pressure_values);
+vector<int> findUnique(vector<int> info);
+string AsciiRainArt(char cloudCover, char Pressure, int rain);
+
+bool sortVector(int a, int b) 
+{
+	return a < b;
+}
 
 void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize)
 {
@@ -18,11 +29,15 @@ void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> clo
 	vector<cityStructure> cityInfo{};
 	vector<cityStructure> Temp{};
 
+	//to push back all the new coordinates from every cell
+	vector<coords> Coordinates;
+
 	//to use for display:
 	vector<cityStructure> displayVect{};
 
 	for (int i = 0; i < city.size(); ++i) 
 	{
+		//if citytype != -1:
 		if (city[i].cityType != -1) {
 
 			//remove -1 to push into unique function
@@ -50,29 +65,78 @@ void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> clo
 		}
 	}
 
-	//populate the display vector
-	for (int l = 0; l < cityType.size(); ++l) 
+	for (int m = 0; m < Temp.size(); ++m) 
 	{
-		cout << cityType[l] << endl;
+		vector<coords> temp{};
+
+		//find all the adjacent tiles
+		temp = find_adjacent_tiles(Temp[m]);
+
+		for (int z = 0; z < temp.size(); ++z) 
+		{
+			//transfer information from temp --> coordinates vector
+			Coordinates.push_back(temp[z]);
+		}
 	}
 
-	
+	//NEED TO SORT AND REMOVE DUPLICATE VALUES IN THE VECTOR
+	std::sort(
+		Coordinates.begin(),
+		Coordinates.end(),
+		[](coords const& l, coords const& r) {return l.x < r.x; }
+	);
 
 
+	//std::sort(
+	//	Coordinates.begin(),
+	//	Coordinates.end(),
+	//	[](coords const& l, coords const& r) {return l.y < r.y; }
+	//);
+
+	//cout << Coordinates.size() << endl;
+	for (int i = 0; i < Coordinates.size(); ++i) 
+	{
+		cout << Coordinates[i].x << " " << Coordinates[i].y << endl;
+	}
 
 }
 
+//pushes 8 values in
+vector<coords>find_adjacent_tiles(cityStructure city) 
+{
+	vector<coords> vect{};
+
+	// x - 1's first
+	coords x1 = { (city.coordinates.x - 1), (city.coordinates.y) };
+	coords x2 = { (city.coordinates.x - 1), (city.coordinates.y - 1)};
+	coords x3 = { (city.coordinates.x - 1), (city.coordinates.y - 1) };
+
+	//x + 1's next
+	coords x4 = { (city.coordinates.x + 1), (city.coordinates.y - 1) };
+	coords x5 = { (city.coordinates.x + 1), (city.coordinates.y) };
+	coords x6 = { (city.coordinates.x + 1), (city.coordinates.y + 1)};
+
+	//x's last
+	coords x7 = { (city.coordinates.x), (city.coordinates.y + 1) };
+	coords x8 = { (city.coordinates.x), (city.coordinates.y - 1) };
+
+
+	//insert them all into the vector
+	vect.insert(vect.end(), { x1,x2,x3,x4,x5,x6,x7,x8 });
+
+	return vect;
+}
 //compute the average pressure
 string compute_average_pressure(vector<int> pressure_values) 
 {
-
+	return "";
 }
 
 
 //compute average cloud pressure
 string compute_average_cloudcover(vector<int> cloudcover_values) 
 {
-
+	return "";
 }
 
 
