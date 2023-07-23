@@ -7,7 +7,7 @@
 #include "Structs.h";
 using namespace std;
 
-void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
+void print_weather_report(int** cityptr,vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
 vector<coords>find_adjacent_tiles(cityStructure city);
 string compute_average_cloudcover(vector<int> cloudcover_values);
 string compute_average_pressure(vector<int> pressure_values);
@@ -20,66 +20,19 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	cout << "Weather Forecast Summary Report" << endl;
 	cout << "-------------------------------" << endl;
 
+	/*================================
+	       Variable Declarations
+	==================================*/
 	vector<int> cityType{};
 	vector<int> cloudCoverArea{};
-
 	vector<cityStructure> cityInfo{};
 	vector<cityStructure> Temp{};
-
 	//to push back all the new coordinates from every set of 8
 	vector<vector<coords>> Coordinates{};
-
 	//to use for display:
 	vector<cityStructure> displayVect{};
+	/*=================================*/
 
-	//find the unique city type values
-	cityType = findUnique(cityType);
-
-	//should be 3....2....1 base case
-	for (int i = 0; i < cityType.size(); ++i) 
-	{
-		for (int j = 0; j < cityInfo.size(); ++j)
-		{
-			//push the vector in a sorted way
-			if (cityInfo[j].cityType == cityType[i]) 
-			{
-				Temp.push_back(cityInfo[j]);
-			}
-		}
-	}
-
-	//push back the starting point to the vector
-	for (int i = 0; i < Temp.size(); ++i)
-	{
-		coords temp = Temp[i].coordinates;
-		vector<coords> temp2;
-		temp2.push_back(temp);
-
-		//push back to vector<vector>
-		Coordinates.push_back(temp2);
-	}
-
-	for (int i = 0; i < Coordinates.size(); ++i) 
-	{
-		cout << Coordinates[i][0].x << " " << Coordinates[i][0].y << endl;
-		cout << endl;
-	}
-	//for (int m = 0; m < Temp.size(); ++m) 
-	//{
-	//	
-	//	//find all the adjacent tiles
-	//	vector<coords> temp = find_adjacent_tiles(Temp[m]);
-
-	//	for (int i = 0; i < temp.size(); ++i) 
-	//	{
-	//		//iterate through temp(should have 14 sets of 8 for base case)
-	//		//so it will be vector< 14 vector of structs>> at base case
-	//		//Push in coords --> vector<coords>
-	//		Coordinates[m].push_back(temp[i]);
-	//	}
-	//}
-
-	//get the values of the adjacent tiles!
 }
 //pushes 8 values in
 vector<coords>find_adjacent_tiles(cityStructure city) 
@@ -89,7 +42,7 @@ vector<coords>find_adjacent_tiles(cityStructure city)
 	// x - 1's first
 	coords x1 = { (city.coordinates.x - 1), (city.coordinates.y) };
 	coords x2 = { (city.coordinates.x - 1), (city.coordinates.y - 1)};
-	coords x3 = { (city.coordinates.x - 1), (city.coordinates.y - 1) };
+	coords x3 = { (city.coordinates.x - 1), (city.coordinates.y + 1) };
 
 	//x + 1's next
 	coords x4 = { (city.coordinates.x + 1), (city.coordinates.y - 1) };
