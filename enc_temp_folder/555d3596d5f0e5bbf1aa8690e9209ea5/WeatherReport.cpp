@@ -66,7 +66,33 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 		Coordinates.push_back(proliferate8tiles);
 	}
 
-	//3: Now that all the adjacent coordinates have been gotten, retrieve the cloudcover and pressure values of each of them~!
+	//base case 14
+	for (int i = 0; i < Coordinates.size(); i++)
+	{
+		//base case is 9
+		for (int j = 0; j < Coordinates[i].size(); j++) 
+		{
+			//COMPARE WITH CLOUDY VALUE VECTOR
+			for (int k = 0; k < cloudy.size(); ++k) 
+			{
+				//store the cloud cover area
+				//find 9 values, 14 times
+				if ((Coordinates[i][j].x == cloudy[k].coordinates.x) && (Coordinates[i][j].y == cloudy[k].coordinates.y)) 
+				{
+					cout << "Match with: " << Coordinates[i][j].x << "," << Coordinates[i][j].y << " and " << cloudy[k].coordinates.x << "," << cloudy[k].coordinates.y << endl;
+					int ndfc{};
+					vector<int> ndfcvect{};
+
+					ndfc = cloudy[k].NextDayForecast;
+					ndfcvect.push_back(ndfc);
+					
+					cloudCoverArea.push_back(ndfcvect);
+				}
+			}
+
+		}
+	}
+
 
 
 	
