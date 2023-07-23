@@ -30,7 +30,8 @@ void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> clo
 	vector<cityStructure> Temp{};
 
 	//to push back all the new coordinates from every cell
-	vector<coords> Coordinates;
+	vector<coords> Coordinates{};
+	vector<coords> Temp1{};
 
 	//to use for display:
 	vector<cityStructure> displayVect{};
@@ -79,9 +80,6 @@ void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> clo
 		}
 	}
 
-	//NEED TO SORT AND REMOVE DUPLICATE VALUES IN THE VECTOR
-
-
 	//SORTED THE VECTOR BY Y Axis while maintaining X values
 	for (int i = 0; i < (Coordinates.size() - 1); ++i) 
 	{
@@ -100,7 +98,13 @@ void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> clo
 		}
 	}
 
-	//Remove duplicates
+	//REMOVE DUPLICATES IN VECTOR!!
+
+
+	for (int i = 0; i < Temp1.size(); ++i) 
+	{
+		cout << Temp1[i].x << " " << Temp1[i].y << endl;
+	}
 
 
 }
