@@ -95,7 +95,7 @@ vector<coords>find_adjacent_tiles(coords cords)
 	coords x6 = { (cords.x + 1), (cords.y + 1) };
 
 	//x's last
-	coords x7 = { (cords.x), (cords.y) };
+	coords x7 = { (cords.x), (cords.y) }; //<- base values LOL
 	coords x8 = { (cords.x), (cords.y - 1) };
 	coords x9 = { (cords.x), (cords.y + 1) };
 
