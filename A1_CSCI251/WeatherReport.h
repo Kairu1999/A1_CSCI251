@@ -19,7 +19,7 @@ struct display
 };
 
 //methods
-void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
+void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
 vector<coords>find_adjacent_tiles(cityStructure city);
 string compute_average_cloudcover(vector<int> cloudcover_values);
 string compute_average_pressure(vector<int> pressure_values);

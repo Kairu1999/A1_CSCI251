@@ -32,6 +32,10 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	//to use for display:
 	vector<cityStructure> displayVect{};
 
+	for (int i = 0; i < city.size(); ++i) {
+		cout << city[i].coordinates.x << " " << city[i].coordinates.y << endl;
+	}
+
 	//find the unique city type values
 	cityType = findUnique(cityType);
 
