@@ -62,6 +62,20 @@ void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> clo
 
 }
 
+//compute the average pressure
+string compute_average_pressure(vector<int> pressure_values) 
+{
+
+}
+
+
+//compute average cloud pressure
+string compute_average_cloudcover(vector<int> cloudcover_values) 
+{
+
+}
+
+
 //PURELY USED TO FIND UNIQUE CITY TYPES
 vector<int> findUnique(vector<int> info) 
 {
