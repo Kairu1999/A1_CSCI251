@@ -8,7 +8,7 @@
 using namespace std;
 
 void print_weather_report(int** cityptr,vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
-vector<coords>find_adjacent_tiles(cityStructure city);
+vector<coords>find_adjacent_tiles(coords city);
 string compute_average_cloudcover(vector<int> cloudcover_values);
 string compute_average_pressure(vector<int> pressure_values);
 vector<int> findUnique(vector<int> info);
@@ -24,38 +24,80 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	       Variable Declarations
 	==================================*/
 	vector<int> cityType{};
+
+	//to hold unique city types
+	vector<int> uniqueCityType{};
+
+	//to hold next day forecast
 	vector<int> cloudCoverArea{};
-	vector<cityStructure> cityInfo{};
-	vector<cityStructure> Temp{};
+	
 	//to push back all the new coordinates from every set of 8
 	vector<vector<coords>> Coordinates{};
 	//to use for display:
 	vector<cityStructure> displayVect{};
 	/*=================================*/
 
+	//1: get the unique city types from city():
+	for (int i = 0; i < city.size(); ++i) 
+	{
+		cityType.push_back(city[i].cityType);
+	}
+
+	//find the unique values
+	 uniqueCityType = findUnique(cityType);
+
+
+
+	for (int j = 0; j < city.size(); ++j) 
+	{
+		vector<coords> proliferate8tiles{};
+
+		//populate the vector<coords>
+		proliferate8tiles = find_adjacent_tiles(city[j].coordinates);
+		//cout << proliferate8tiles.size() << endl;
+
+		/*for (int k = 0; k < proliferate8tiles.size(); ++k) 
+		{
+			cout << proliferate8tiles[k].x << " " << proliferate8tiles[k].y << endl;
+		}*/
+		
+		//push back into vector<vectors>
+		Coordinates.push_back(proliferate8tiles);
+	}
+
+	for (int i = 0; i < Coordinates.size(); i++)
+	{
+		for (int j = 0; j < Coordinates[i].size(); j++)
+		{
+			//FULL SIZE OF COORDINATES GOTTEN!
+			cout << Coordinates[i][j].x << " " << Coordinates[i][j].y << ",";
+		}
+		cout << endl;
+	}
 }
 //pushes 8 values in
-vector<coords>find_adjacent_tiles(cityStructure city) 
+vector<coords>find_adjacent_tiles(coords cords) 
 {
 	vector<coords> vect{};
 
 	// x - 1's first
-	coords x1 = { (city.coordinates.x - 1), (city.coordinates.y) };
-	coords x2 = { (city.coordinates.x - 1), (city.coordinates.y - 1)};
-	coords x3 = { (city.coordinates.x - 1), (city.coordinates.y + 1) };
+	coords x1 = { (cords.x - 1), (cords.y) };
+	coords x2 = { (cords.x - 1), (cords.y - 1)};
+	coords x3 = { (cords.x - 1), (cords.y + 1) };
 
 	//x + 1's next
-	coords x4 = { (city.coordinates.x + 1), (city.coordinates.y - 1) };
-	coords x5 = { (city.coordinates.x + 1), (city.coordinates.y) };
-	coords x6 = { (city.coordinates.x + 1), (city.coordinates.y + 1)};
+	coords x4 = { (cords.x + 1), (cords.y) };
+	coords x5 = { (cords.x + 1), (cords.y - 1) };
+	coords x6 = { (cords.x + 1), (cords.y + 1) };
 
 	//x's last
-	coords x7 = { (city.coordinates.x), (city.coordinates.y + 1) };
-	coords x8 = { (city.coordinates.x), (city.coordinates.y - 1) };
+	coords x7 = { (cords.x), (cords.y) };
+	coords x8 = { (cords.x), (cords.y - 1) };
+	coords x9 = { (cords.x), (cords.y + 1) };
 
 
 	//insert them all into the vector
-	vect.insert(vect.end(), { x1,x2,x3,x4,x5,x6,x7,x8 });
+	vect.insert(vect.end(), { x1,x2,x3,x4,x5,x6,x7,x8,x9 });
 
 	return vect;
 }
