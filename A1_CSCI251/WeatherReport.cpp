@@ -80,27 +80,30 @@ void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> clo
 	}
 
 	//NEED TO SORT AND REMOVE DUPLICATE VALUES IN THE VECTOR
-	std::sort(
-		Coordinates.begin(),
-		Coordinates.end(),
-		[](coords const& l, coords const& r) {return l.x < r.x; }
-	);
 
 
-	//std::sort(
-	//	Coordinates.begin(),
-	//	Coordinates.end(),
-	//	[](coords const& l, coords const& r) {return l.y < r.y; }
-	//);
-
-	//cout << Coordinates.size() << endl;
-	for (int i = 0; i < Coordinates.size(); ++i) 
+	//SORTED THE VECTOR BY Y Axis while maintaining X values
+	for (int i = 0; i < (Coordinates.size() - 1); ++i) 
 	{
-		cout << Coordinates[i].x << " " << Coordinates[i].y << endl;
+		for (int j = 0; j < Coordinates.size(); ++j) 
+		{
+			//check for same X values
+			if (Coordinates[i].x == Coordinates[j].x) 
+			{
+				//sort by y value
+				if (Coordinates[i].y < Coordinates[j].y) 
+				{
+					//swap
+					swap(Coordinates[i], Coordinates[j]);
+				}
+			}
+		}
 	}
 
-}
+	//Remove duplicates
 
+
+}
 //pushes 8 values in
 vector<coords>find_adjacent_tiles(cityStructure city) 
 {
