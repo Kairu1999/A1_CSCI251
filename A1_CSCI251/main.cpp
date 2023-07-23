@@ -223,7 +223,7 @@ int main()
             }
         case 7:
             //Print Weather Report
-            print_weather_report(CityStructure, Cloudy, Pressure, stoi(files[1]), stoi(files[3]));
+            print_weather_report(cityVect,cloudCoverVect ,PressureVect, stoi(files[1]), stoi(files[3]));
             break;
         case 8:
             cout << "Exiting Program. Goodbye!" << endl;

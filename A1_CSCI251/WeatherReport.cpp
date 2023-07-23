@@ -7,10 +7,50 @@
 #include "Structs.h";
 using namespace std;
 
-void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
+void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize)
 {
 	cout << "Weather Forecast Summary Report" << endl;
 	cout << "-------------------------------" << endl;
+
+	vector<int> cityType{};
+	vector<cityStructure> cityInfo{};
+	vector<cityStructure> Temp{};
+
+	for (int i = 0; i < city.size(); ++i) 
+	{
+		if (city[i].cityType != -1) {
+
+			//remove -1 to push into unique function
+			cityType.push_back(city[i].cityType);
+
+			//remove -1's from cityInfo
+			cityInfo.push_back(city[i]);
+
+		}
+	}
+
+	//find the unique city type values
+	cityType = findUnique(cityType);
+
+	//should be 3....2....1 base case
+	for (int i = 0; i < cityType.size(); ++i) 
+	{
+		for (int j = 0; j < cityInfo.size(); ++j)
+		{
+			//push the vector in a sorted way
+			if (cityInfo[j].cityType == cityType[i]) 
+			{
+				Temp.push_back(cityInfo[j]);
+			}
+		}
+	}
+
+	//for debug
+	for (int k = 0; k < Temp.size(); ++k)
+	{
+		cout << Temp[k].coordinates.x << " " << Temp[k].coordinates.y << " " << Temp[k].cityType << endl;
+	}
+
 
 
 }
@@ -29,7 +69,7 @@ vector<int> findUnique(vector<int> info)
 
 
 	//sort the vector from smallest to biggest
-	sort(result.begin(), result.end());
+	sort(result.begin(), result.end(),greater<int>());
 
 	//return result
 	return result;
