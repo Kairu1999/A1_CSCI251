@@ -7,41 +7,10 @@
 #include "Structs.h";
 using namespace std;
 
-void print_weather_report(int** CityInfo, std::vector<cityStructure> cityData, int** cloudy, int** pressure, int xsize, int ysize)
+void print_weather_report(vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
 {
 	cout << "Weather Forecast Summary Report" << endl;
 	cout << "-------------------------------" << endl;
-
-	
-
-	vector<int> cityType{};
-
-	for (int i = 0; i < xsize; ++i) 
-	{
-		for (int j = 0; j < ysize; ++j) 
-		{
-			cityType.push_back(CityInfo[i][j]);
-		}
-	}
-
-
-	cout << endl;
-
-	vector<int> temp{};
-
-	temp = findUnique(cityType);
-	
-
-	for (int i = 0; i < temp.size(); ++i)
-	{
-		cout << temp[i] << endl;
-	}
-
-
-
-
-
-	
 
 
 }
