@@ -3,16 +3,17 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <numeric>
 #include "WeatherReport.h"
 #include "Structs.h";
 using namespace std;
 
 void print_weather_report(int** cityptr,vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
 vector<coords>find_adjacent_tiles(coords city);
-string compute_average_cloudcover(vector<int> cloudcover_values);
-string compute_average_pressure(vector<int> pressure_values);
+pair<string, char> compute_average_cloudcover(vector<int> cloudcover_values);
+pair<string, char> compute_average_pressure(vector<int> pressure_values);
 vector<int> findUnique(vector<int> info);
-string AsciiRainArt(char cloudCover, char Pressure, int rain);
+pair<int,string> AsciiRainArt(char cloudCover, char Pressure);
 
 
 void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize)
@@ -23,6 +24,8 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	/*================================
 	       Variable Declarations
 	==================================*/	
+	//counter;
+	int count = 0;
 
 	vector<int> cityType{};
 
@@ -63,39 +66,39 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	}
 
 	//3: Now that all the adjacent coordinates have been gotten, retrieve the cloudcover and pressure values of each of them~!
+	//check size of cloud cover
+	for (int i = 0; i < Coordinates[0].size(); ++i)
+	{
+		cout << Coordinates[0][i].x << " " << Coordinates[0][i].y << endl;
+	}
+
+
 
 	//3.1 Loop through the outer vector, base case is 14.
 	for (int k = 0; k < Coordinates.size(); ++k) 
 	{
 		//3.2 Loop through the inner vector, base case is 9.
-		for (int l = 0; l < Coordinates[l].size(); ++l)
+		for (int l = 0; l < Coordinates[k].size(); ++l)
 		{
-			//counter;
-			int m = 0;
+			
 
 			//3.3 Loop through each x and y per vector coord provided to find a match, after match is found, move on
 			//3.3.1 while m{0} != 81(base case size)
-			if (m != cloudy.size()) 
-			{
-				if ((Coordinates[k][l].x == cloudy[m].coordinates.x) && (Coordinates[k][l].y == cloudy[m].coordinates.y)) 
-				{
-					int temp{};
-					temp = cloudy[m].NextDayForecast;
-
-					vector<int> ndfcvect{};
-
-					ndfcvect.push_back(temp);
-
-					cloudCoverArea.push_back(ndfcvect);
-				}
-				++m;
-			}
+			//for(int count = 0; count < cloudy.size(); ++count)
+			//{
+			//	//check X and Y Values match
+			//	if ((Coordinates[k][l].x == cloudy[count].coordinates.x) && (Coordinates[k][l].x == cloudy[count].coordinates.x))
+			//	{
+			//		//push the corresponding next day forecast into the vector
+			//		int ndfc{ 0 };
+			//		ndfc = cloudy[count].NextDayForecast;
+			//		vector<int> temp;
+			//		temp.push_back(ndfc);
+			//		cloudCoverArea.push_back(temp);
+			//	}
+			//}
 
 		}
-	}
-	
-	for (int i = 0; i < cloudCoverArea.size(); ++i) {
-		cout << cloudCoverArea[0][i] << endl;
 	}
 
 	//Check the size of everything
@@ -103,12 +106,14 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	cout << cloudCoverArea.size() << endl;
 
 	
-
+	//Steps to do here:
+	//1) Sort each vector in the vector<vector>
+	//2) run them through to find the pressure and cloud cover
 
 
 	//4: compute average cloud cover and average pressure
 
-	//5: compute Probability of Rain
+	//5: compute rain and ascii art
 
 	//6: push it all into vector display
 
@@ -143,16 +148,60 @@ vector<coords>find_adjacent_tiles(coords cords)
 	return vect;
 }
 //compute the average pressure
-string compute_average_pressure(vector<int> pressure_values) 
+pair<string, char> compute_average_pressure(vector<int> pressure_values)
 {
-	return "";
+	pair<string, char> p1;
+	int length = pressure_values.size();
+	
+	float number = (accumulate(pressure_values.begin(), pressure_values.end(), 0) / length);
+
+	if ((number >= 0) && (number < 35)) 
+	{
+		p1.second = 'L';
+	}
+	else if ((number >= 35) && (number < 65))
+	{
+		p1.second = 'M';
+	}
+	else
+	{
+		p1.second = 'H';
+	}
+
+
+	//STILL NEED ADD SECOND BEHIND FIRST
+	p1.first = to_string(number);
+
+	return p1;
 }
 
 
 //compute average cloud pressure
-string compute_average_cloudcover(vector<int> cloudcover_values) 
+pair<string,char> compute_average_cloudcover(vector<int> cloudcover_values) 
 {
-	return "";
+	pair<string, char> p1;
+	int length = cloudcover_values.size();
+
+	float number = (accumulate(cloudcover_values.begin(), cloudcover_values.end(), 0) / length);
+
+	if ((number >= 0) && (number < 35))
+	{
+		p1.second = 'L';
+	}
+	else if ((number >= 35) && (number < 65))
+	{
+		p1.second = 'M';
+	}
+	else
+	{
+		p1.second = 'H';
+	}
+
+
+	//STILL NEED ADD SECOND BEHIND FIRST
+	p1.first = to_string(number);
+
+	return p1;
 }
 
 
@@ -177,8 +226,9 @@ vector<int> findUnique(vector<int> info)
 
 }
 
-string AsciiRainArt(char cloudCover, char Pressure, int rain) 
+pair<int,string> AsciiRainArt(char cloudCover, char Pressure) 
 {
+	pair<int, string> p1{};
 	string l{}, m{}, n{}, o{}, p{}, q{}, r{}, s{}, t{};
 
 	l = "~\n~~\n";
@@ -191,40 +241,69 @@ string AsciiRainArt(char cloudCover, char Pressure, int rain)
 	s = "~~~~\n~~~~~\n \\\\\\\\";
 	t = "~~~~\n~~~~~\n\\\\\\\\\\";
 
-	if ((cloudCover == 'L') && (Pressure == 'H') && (rain == 90)) 
+	int rain{};
+
+	if ((cloudCover == 'L')) 
 	{
-		return t;
+		if ((Pressure == 'H')) 
+		{
+			p1.first = 90;
+			p1.second = t;
+		}
+		else if ((Pressure == 'M'))
+		{
+			p1.first = 80;
+			p1.second = s;
+		}
+		else 
+		{
+			p1.first = 70;
+			p1.second = r;
+
+		}
 	}
-	if ((cloudCover == 'L') && (Pressure == 'M') && (rain == 80))
+	if ((cloudCover == 'M'))
 	{
-		return s;
+		if ((Pressure == 'H'))
+		{
+			p1.first = 60;
+			p1.second = q;
+		}
+		else if ((Pressure == 'M'))
+		{
+			p1.first = 50;
+			p1.second = p;
+		}
+		else
+		{
+			p1.first = 40;
+			p1.second = o;
+
+		}
+
 	}
-	if ((cloudCover == 'L') && (Pressure == 'L') && (rain == 70))
+	if((cloudCover == 'H'))
 	{
-		return r;
+		if ((Pressure == 'H'))
+		{
+			p1.first = 30;
+			p1.second = n;
+		}
+		else if ((Pressure == 'M'))
+		{
+			p1.first = 20;
+			p1.second = m;
+		}
+		else 
+		{
+			p1.first = 10;
+			p1.second = l;
+		}
+
 	}
-	if ((cloudCover == 'M') && (Pressure == 'H') && (rain == 60))
-	{
-		return q;
-	}
-	if ((cloudCover == 'M') && (Pressure == 'M') && (rain == 50))
-	{
-		return p;
-	}
-	if ((cloudCover == 'M') && (Pressure == 'L') && (rain == 40))
-	{
-		return o;
-	}
-	if ((cloudCover == 'H') && (Pressure == 'H') && (rain == 30))
-	{
-		return n;
-	}
-	if ((cloudCover == 'H') && (Pressure == 'M') && (rain == 20))
-	{
-		return m;
-	}
-	if ((cloudCover == 'H') && (Pressure == 'L') && (rain == 10))
-	{
-		return l;
-	}
+
+	cout << p1.first << " " << endl;
+	cout << p1.second << endl;
+	return p1;
+
 }

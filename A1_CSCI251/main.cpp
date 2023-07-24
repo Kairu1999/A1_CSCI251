@@ -221,6 +221,7 @@ int main()
                 generate_gridLMH(CloudyLMH, stoi(files[1]), stoi(files[3]));
                 break;
             }
+
         case 7:
             //Print Weather Report
             print_weather_report(CityStructure,cityVect,cloudCoverVect ,PressureVect, stoi(files[1]), stoi(files[3]));

@@ -21,8 +21,8 @@ struct display
 //methods
 void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);
 vector<coords>find_adjacent_tiles(coords city);
-string compute_average_cloudcover(vector<int> cloudcover_values);
-string compute_average_pressure(vector<int> pressure_values);
+pair<string, char> compute_average_cloudcover(vector<int> cloudcover_values);
+pair<string, char> compute_average_pressure(vector<int> pressure_values);
 vector<int> findUnique(vector<int> info);
-string AsciiRainArt(char cloudCover, char Pressure, int rain);
+pair<int, string> AsciiRainArt(char cloudCover, char Pressure);
 #endif
