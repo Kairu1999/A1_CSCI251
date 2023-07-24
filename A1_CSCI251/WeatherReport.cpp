@@ -24,91 +24,70 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	/*================================
 	       Variable Declarations
 	==================================*/	
-	//counter;
-	int count = 0;
-
-	vector<int> cityType{};
-
-	//to hold unique city types
-	vector<int> uniqueCityType{};
-
-	//to hold next day forecast
+	vector<vector<cityStructure>> cityType{};
 	vector<vector<int>> cloudCoverArea{};
 	vector<vector<int>> PressureArea{};
 
-	//to push back all the new coordinates from every set of 8
-	vector<vector<coords>> Coordinates{};
+
 	//to use for display:
-	vector<cityStructure> displayVect{};
+	vector<display> displayVect{};
 	/*=================================*/
 
-	//1: get the unique city types from city():
-	for (int i = 0; i < city.size(); ++i) 
-	{
-		cityType.push_back(city[i].cityType);
-	}
-
-	//find the unique values
-	 uniqueCityType = findUnique(cityType);
-
-
-
-	 //2: find the possible points both adjacent and diagonal for each city type;
-	for (int j = 0; j < city.size(); ++j) 
-	{
-		vector<coords> proliferate8tiles{};
-
-		//populate the vector<coords>
-		proliferate8tiles = find_adjacent_tiles(city[j].coordinates);
-		
-		//push back into vector<vectors>
-		Coordinates.push_back(proliferate8tiles);
-	}
-
-	//3: Now that all the adjacent coordinates have been gotten, retrieve the cloudcover and pressure values of each of them~!
-	//check size of cloud cover
-	for (int i = 0; i < Coordinates[0].size(); ++i)
-	{
-		cout << Coordinates[0][i].x << " " << Coordinates[0][i].y << endl;
-	}
-
-
-
-	//3.1 Loop through the outer vector, base case is 14.
-	for (int k = 0; k < Coordinates.size(); ++k) 
-	{
-		//3.2 Loop through the inner vector, base case is 9.
-		for (int l = 0; l < Coordinates[k].size(); ++l)
-		{
-			
-
-			//3.3 Loop through each x and y per vector coord provided to find a match, after match is found, move on
-			//3.3.1 while m{0} != 81(base case size)
-			//for(int count = 0; count < cloudy.size(); ++count)
-			//{
-			//	//check X and Y Values match
-			//	if ((Coordinates[k][l].x == cloudy[count].coordinates.x) && (Coordinates[k][l].x == cloudy[count].coordinates.x))
-			//	{
-			//		//push the corresponding next day forecast into the vector
-			//		int ndfc{ 0 };
-			//		ndfc = cloudy[count].NextDayForecast;
-			//		vector<int> temp;
-			//		temp.push_back(ndfc);
-			//		cloudCoverArea.push_back(temp);
-			//	}
-			//}
-
-		}
-	}
-
-	//Check the size of everything
-	cout << Coordinates.size() << "x" << Coordinates[0].size() << endl;
-	cout << cloudCoverArea.size() << endl;
-
+	//sort first
+	sort(city.begin(), city.end(), [](const cityStructure& x, const cityStructure& y) {return (x.cityType > y.cityType); });
 	
+	//debug
+	for (int i = 0; i < city.size(); ++i)
+	{
+		vector<coords> temp = find_adjacent_tiles(city[i].coordinates);
+
+		//for (int j = 0; j < temp.size(); ++j)
+		//{
+		//	cout << temp[j].x << " " << temp[j].y << endl;
+		//}
+		//cout << "==============" << endl;
+
+		vector<cityStructure> temp_cityVect{};
+
+		for (int k = 0; k < temp.size(); ++k) 
+		{
+			cityStructure cs;
+			cs.coordinates = temp[k];
+			cs.cityType = -1;
+			cs.cityTypeName = "";
+
+			temp_cityVect.push_back(cs);
+		}
+		cityType.push_back(temp_cityVect);
+	}
+
+	for (int h = 0; h < cityType.size(); ++h) 
+	{
+		for (int i = 0; i < cityType[h].size(); ++i)
+		{
+			for (int l = 0; l < city.size(); ++l)
+			{
+				if ((cityType[h][i].coordinates.x == city[l].coordinates.x) && (cityType[h][i].coordinates.y == city[l].coordinates.y))
+				{
+					cityType[h][i].cityType = city[l].cityType;
+					cityType[h][i].cityTypeName = city[l].cityTypeName;
+				}
+			}
+			cout << cityType[h][i].coordinates.x << " " << cityType[h][i].coordinates.y << " " << cityType[h][i].cityType << " " << cityType[h][i].cityTypeName << endl;
+		}
+		cout << "==========" << endl;
+	}
+
+
+	cout << (cityType.size() * cityType[0].size()) << endl;
+
+
 	//Steps to do here:
+	//APPROACH 1:
 	//1) Sort each vector in the vector<vector>
 	//2) run them through to find the pressure and cloud cover
+	//APPROACH 2:
+	//1) run the vector<vector> through cloudy and pressure ve
 
 
 	//4: compute average cloud cover and average pressure
@@ -122,7 +101,7 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	
 }
 //pushes 8 values in
-vector<coords>find_adjacent_tiles(coords cords) 
+vector<coords>find_adjacent_tiles(coords cords)
 {
 	vector<coords> vect{};
 
@@ -143,7 +122,7 @@ vector<coords>find_adjacent_tiles(coords cords)
 
 
 	//insert them all into the vector
-	vect.insert(vect.end(), { x1,x2,x3,x4,x5,x6,x7,x8,x9 });
+	vect.insert(vect.end(),{x1,x2,x3,x4,x5,x6,x7,x8,x9});
 
 	return vect;
 }
