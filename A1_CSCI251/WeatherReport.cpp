@@ -22,7 +22,8 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 
 	/*================================
 	       Variable Declarations
-	==================================*/
+	==================================*/	
+
 	vector<int> cityType{};
 
 	//to hold unique city types
@@ -30,7 +31,8 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 
 	//to hold next day forecast
 	vector<vector<int>> cloudCoverArea{};
-	
+	vector<vector<int>> PressureArea{};
+
 	//to push back all the new coordinates from every set of 8
 	vector<vector<coords>> Coordinates{};
 	//to use for display:
@@ -61,6 +63,47 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	}
 
 	//3: Now that all the adjacent coordinates have been gotten, retrieve the cloudcover and pressure values of each of them~!
+
+	//3.1 Loop through the outer vector, base case is 14.
+	for (int k = 0; k < Coordinates.size(); ++k) 
+	{
+		//3.2 Loop through the inner vector, base case is 9.
+		for (int l = 0; l < Coordinates[l].size(); ++l)
+		{
+			//counter;
+			int m = 0;
+
+			//3.3 Loop through each x and y per vector coord provided to find a match, after match is found, move on
+			//3.3.1 while m{0} != 81(base case size)
+			if (m != cloudy.size()) 
+			{
+				if ((Coordinates[k][l].x == cloudy[m].coordinates.x) && (Coordinates[k][l].y == cloudy[m].coordinates.y)) 
+				{
+					int temp{};
+					temp = cloudy[m].NextDayForecast;
+
+					vector<int> ndfcvect{};
+
+					ndfcvect.push_back(temp);
+
+					cloudCoverArea.push_back(ndfcvect);
+				}
+				++m;
+			}
+
+		}
+	}
+	
+	for (int i = 0; i < cloudCoverArea.size(); ++i) {
+		cout << cloudCoverArea[0][i] << endl;
+	}
+
+	//Check the size of everything
+	cout << Coordinates.size() << "x" << Coordinates[0].size() << endl;
+	cout << cloudCoverArea.size() << endl;
+
+	
+
 
 
 	//4: compute average cloud cover and average pressure
