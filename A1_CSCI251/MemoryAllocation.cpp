@@ -14,14 +14,14 @@ void DeAllocate2DArrayMemory(int** ptr, int x_size);
 
 int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vect)
 {
-	//declare 3 Values
+	//some values updated
 	int i{ 0 }, j{ 0 }, k{ 0 };
 
 	//allocate memory for pointer
 	int** ptr = new int* [xsize];
 
 	//allocate memory for pointer
-	for (int row = 0; i <= xsize; ++i)
+	for (int row = 0; row <= xsize; ++row)
 	{
 		ptr[row] = new int[ysize];
 	}
