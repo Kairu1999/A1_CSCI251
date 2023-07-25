@@ -24,9 +24,16 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	/*================================
 	       Variable Declarations
 	==================================*/	
+	int cnt{ 0 },citycount{ 0 }, coordscheck{ 0 };
+	
+	vector<cityStructure>UniqueCityType{};
+
 	vector<vector<cityStructure>> cityType{};
-	vector<vector<int>> cloudCoverArea{};
-	vector<vector<int>> PressureArea{};
+
+	vector <vector<cloudyPressure>> storage;
+
+	vector<vector<pair<int,int>>> cloudCoverArea{};
+	vector<vector<pair<int,int>>> PressureArea{};
 
 
 	//to use for display:
@@ -35,20 +42,17 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 
 	//sort first
 	sort(city.begin(), city.end(), [](const cityStructure& x, const cityStructure& y) {return (x.cityType > y.cityType); });
-	
+
+
+
 	//debug
 	for (int i = 0; i < city.size(); ++i)
 	{
 		vector<coords> temp = find_adjacent_tiles(city[i].coordinates);
 
-		//for (int j = 0; j < temp.size(); ++j)
-		//{
-		//	cout << temp[j].x << " " << temp[j].y << endl;
-		//}
-		//cout << "==============" << endl;
-
 		vector<cityStructure> temp_cityVect{};
 
+		//insert the adjacent sagas + base coordinates into the vector
 		for (int k = 0; k < temp.size(); ++k) 
 		{
 			cityStructure cs;
@@ -61,44 +65,90 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 		cityType.push_back(temp_cityVect);
 	}
 
-	for (int h = 0; h < cityType.size(); ++h) 
+	//loop through the vector of vectors
+	for (int h = 0; h < cityType.size(); ++h)
 	{
 		for (int i = 0; i < cityType[h].size(); ++i)
 		{
 			for (int l = 0; l < city.size(); ++l)
 			{
+				//if any of the adjacent coordinates matches any coordinates in the list of numbers, update their city type and name
 				if ((cityType[h][i].coordinates.x == city[l].coordinates.x) && (cityType[h][i].coordinates.y == city[l].coordinates.y))
 				{
 					cityType[h][i].cityType = city[l].cityType;
 					cityType[h][i].cityTypeName = city[l].cityTypeName;
 				}
 			}
-			cout << cityType[h][i].coordinates.x << " " << cityType[h][i].coordinates.y << " " << cityType[h][i].cityType << " " << cityType[h][i].cityTypeName << endl;
+			//cout << cityType[h][i].coordinates.x << " " << cityType[h][i].coordinates.y << " " << cityType[h][i].cityType << " " << cityType[h][i].cityTypeName << endl;
 		}
-		cout << "==========" << endl;
+		//cout << endl;
+	}
+
+	//Try for 1D Vector first, then move to 2D Vector!
+	while(cnt != city.size())
+	{
+		//if citycount not equal to 
+		if(citycount != cityType[cnt].size())
+		{
+			vector<pair<int, int>> temp_city;
+			vector<pair<int, int>> temp_pressure;
+
+			if (coordscheck != cloudy.size())
+			{
+				if ((cityType[cnt][citycount].coordinates.x) == (cloudy[coordscheck].coordinates.x) && (cityType[cnt][citycount].coordinates.y) == (cloudy[coordscheck].coordinates.y))
+				{
+
+					//cout << "citytype x and y: " << "[" << cityType[citycounter][citycount].coordinates.x << "," << cityType[citycounter][citycount].coordinates.y << "]" << endl;
+					//cout << "cloudy x and y  : " << "[" << cloudy[coordscheck].coordinates.x << "," << cloudy[coordscheck].coordinates.y << "]" << endl;
+
+
+					//push into vector:
+					//cout << "pushing in: " << cloudy[coordscheck].NextDayForecast << endl;
+
+
+					//push the value into city and pressure;
+					int ndfc_c = cloudy[coordscheck].NextDayForecast;   //next day forecast cloudcover
+					int ndfc_p = pressure[coordscheck].NextDayForecast; //next day forecast city
+					int ct = cityType[cnt][citycount].cityType;         //pair with the cityType(used for later)
+
+					//push into the 1d, then 2d vector
+					temp_city.push_back({ ndfc_c, ct });
+					temp_pressure.push_back({ ndfc_p, ct });
+
+					cloudCoverArea.push_back(temp_city);
+					PressureArea.push_back(temp_pressure);
+
+					//reset coords check to cloudy[0] to start again;
+					coordscheck = 0;
+
+					//increment citycount to next coordinate pair city[]
+					++citycount;
+				}
+				else
+				{
+					//increment coords check if the coordinates do not match
+					++coordscheck;
+				}
+			}
+		}
+		else 
+		{
+			//after citycount
+			++cnt;
+		}
 	}
 
 
-	cout << (cityType.size() * cityType[0].size()) << endl;
+	//with the <cloudcover, related cityType> vector<vector> and the <pressure, related cityType> vector<vector>, 
+	//loop through the cloud cover and pressure 2D vectors and check if the [i][6]'th one(base coordinate is within any city type)
+	//then group the relevant coordinates together! <city type 1> <city type 2> <city type 3>
+	/*
+		vector<vector<pair>> ---> <vector<pair>>
+	*/
+	//then run it through the calculate average pressure and calculate average cloudcover
+	//Generate through ASCII Rain Art
+	//Push Everything into the display class and display!
 
-
-	//Steps to do here:
-	//APPROACH 1:
-	//1) Sort each vector in the vector<vector>
-	//2) run them through to find the pressure and cloud cover
-	//APPROACH 2:
-	//1) run the vector<vector> through cloudy and pressure ve
-
-
-	//4: compute average cloud cover and average pressure
-
-	//5: compute rain and ascii art
-
-	//6: push it all into vector display
-
-	//7: Display Vector
-
-	
 }
 //pushes 8 values in
 vector<coords>find_adjacent_tiles(coords cords)
@@ -126,6 +176,7 @@ vector<coords>find_adjacent_tiles(coords cords)
 
 	return vect;
 }
+
 //compute the average pressure
 pair<string, char> compute_average_pressure(vector<int> pressure_values)
 {
@@ -189,16 +240,17 @@ vector<int> findUnique(vector<int> info)
 {
 	vector<int> result{};
 
-	//find unique values in the vector and then push back into results
-	for (unsigned i = 0; i < info.size(); ++i) {
-		if (count(result.begin(), result.end(), info.at(i)) == 0) {
-			result.push_back(info.at(i));
-		}
-	}
+	//HAVE TO FIND A WAY TO RETURN THE 
+	////find unique values in the vector and then push back into results
+	//for (unsigned i = 0; i < info.size(); ++i) {
+	//	if (count(result.begin(), result.end(), info.at(i)) == 0) {
+	//		result.push_back(info.at(i));
+	//	}
+	//}
 
 
-	//sort the vector from smallest to biggest
-	sort(result.begin(), result.end(),greater<int>());
+	////sort the vector from smallest to biggest
+	//sort(result.begin(), result.end(),greater<int>());
 
 	//return result
 	return result;
