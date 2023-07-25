@@ -12,7 +12,7 @@ void print_weather_report(int** cityptr,vector<cityStructure> city, vector<cloud
 vector<coords>find_adjacent_tiles(coords city);
 pair<string, char> compute_average_cloudcover(vector<int> cloudcover_values);
 pair<string, char> compute_average_pressure(vector<int> pressure_values);
-vector<int> findUnique(vector<int> info);
+vector<pair<int, string>> findUnique(vector<cityStructure> info);
 pair<int,string> AsciiRainArt(char cloudCover, char Pressure);
 
 
@@ -146,7 +146,7 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 		vector<vector<pair>> ---> <vector<pair>>
 	*/
 	//then run it through the calculate average pressure and calculate average cloudcover
-	//Generate through ASCII Rain Art
+	//Generate through ASCII Rain Art with the LMH Values gotten from the above step
 	//Push Everything into the display class and display!
 
 }
@@ -236,7 +236,7 @@ pair<string,char> compute_average_cloudcover(vector<int> cloudcover_values)
 
 
 //PURELY USED TO FIND UNIQUE CITY TYPES
-vector<int> findUnique(vector<int> info) 
+vector<pair<int,string>> findUnique(vector<cityStructure> info) 
 {
 	vector<int> result{};
 
