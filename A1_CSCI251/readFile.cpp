@@ -193,7 +193,7 @@ vector<string> readConfigFile(string filename)
         for (int i = 0; i < store_line1.size(); ++i)
         {
             //Debug
-            //cout << store_line1[i] << endl;
+            cout << store_line1[i] << endl;
 
             //use this comment to find the commented lines
             string comment{ "/" };
@@ -201,8 +201,6 @@ vector<string> readConfigFile(string filename)
             //search if the string in each value of vector has this comment
             if (store_line1[i].find("/") != string::npos)
             {
-                //if found, skip the line
-                //cout << "Found Comment, Skipping Line!" << endl;
                 continue;
             }
             else
@@ -212,25 +210,59 @@ vector<string> readConfigFile(string filename)
             }
         }
 
-        for (int j = 0; j < store_line2[0].length(); ++j)
-        {
-            if (isdigit(store_line2[0][j]))
-            {
-                //cout << "detected digit :" << value << endl;
-                string value(1, store_line2[0][j]);
-                temp.push_back(value);
-            }
-        }
+        //size_t hyphen = store_line2[0].find("-");
+        vector<string> temp  = splitString(store_line2[0],"=");
 
-        for (int k = 0; k < store_line2[1].length(); ++k)
-        {
-            if (isdigit(store_line2[1][k]))
-            {
-                //cout << "detected digit :" << value << endl;
-                string value(1, store_line2[0][k]);
-                temp.push_back(value);
-            }
-        }
+        //check string for numbers
+        vector<string> temp1 = splitString(temp[1], "-");
+
+        //size_t hyphen = store_line2[0].find("-");
+        vector<string> temp2 = splitString(store_line2[1], "=");
+
+        //check string for numbers
+        vector<string> temp3 = splitString(temp2[1], "-");
+
+
+
+        //splitString(store_line2[0], hyphen);
+
+        //for (int j = 0; j < store_line2[0].length(); ++j)
+        //{
+        //    if (isdigit(store_line2[0][j]))
+        //    {
+        //        //check if next number is a digit
+        //        if (isdigit(store_line2[0][j + 1])) 
+        //        {
+        //            string value(1, store_line2[0][j + 1]);
+        //            temp.push_back(value);
+        //        }
+        //        else 
+        //        {
+        //            //cout << "detected digit :" << value << endl;
+        //            string value(1, store_line2[0][j]);
+        //            temp.push_back(value);
+        //        }
+        //    }
+        //}
+
+        //for (int k = 0; k < store_line2[1].length(); ++k)
+        //{
+        //    if (isdigit(store_line2[1][k]))
+        //    {
+        //        //check if next number is a digit
+        //        if (isdigit(store_line2[0][k + 1]))
+        //        {
+        //            string value(1, store_line2[0][k + 1]);
+        //            temp.push_back(value);
+        //        }
+        //        else
+        //        {
+        //            //cout << "detected digit :" << value << endl;
+        //            string value(1, store_line2[0][k]);
+        //            temp.push_back(value);
+        //        }
+        //    }
+        //}
 
         for (int m = 2; m < store_line2.size(); ++m)
         {
@@ -339,14 +371,6 @@ vector<cloudyPressure> readCloudCoverFile(string filename)
 
             CloudyCover.push_back(cld);
         }
-
-       //PURELY USED FOR DEBUG KURWA
-       //for (int i = 0; i < CloudyCover.size(); ++i)
-       //{
-       //    cout << "city Information  : " << endl;
-       //    cout << "city coordinates  : " << CloudyCover[i].coordinates.x << " " << CloudyCover[i].coordinates.y << endl;
-       //    cout << "Next Day Forecast : " << CloudyCover[i].NextDayForecast << endl;
-       //}
        return CloudyCover;
     }
     else
@@ -440,7 +464,6 @@ vector<cloudyPressure> readPressureFile(string filename)
                 nextdayForecast.push_back(stoi(vect1[j]));
             }
         }
-        //cout << nextdayForecast.size() << " " << coordinates.size() << endl;
 
         for (int m = 0; m < coordinates.size(); ++m)
         {
@@ -450,15 +473,6 @@ vector<cloudyPressure> readPressureFile(string filename)
 
             Pressure.push_back(cld);
         }
-
-        //PURELY USED FOR DEBUG KURWA
-        //for (int i = 0; i < Pressure.size(); ++i)
-        //{
-        //    cout << "city Information  : " << endl;
-        //    cout << "city coordinates  : " << Pressure[i].coordinates.x << " " << Pressure[i].coordinates.y << endl;
-        //    cout << "Next Day Forecast : " << Pressure[i].NextDayForecast << endl;
-        //}
-
         return Pressure;
     }
     else
@@ -480,11 +494,7 @@ vector<string> splitString(string input, string delimiter)
         result.push_back(token);
         input.erase(0, pos + delimiter.length());
     }
-
-    if (!input.empty())
-    {
-        result.push_back(input);
-    }
     
+    result.push_back(input);
     return (result);
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -12,11 +13,11 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 	{
 		if (i == 0)
 		{
-			cout << " # ";
+			cout << " #  ";
 		}
 		else
 		{
-			cout << "# ";
+			cout << "#  ";
 		}
 	}
 	cout << endl;
@@ -65,26 +66,26 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
-					cout << " # ";
+					cout << " #  ";
 				}
 				else if (i == ysize) 
 				{
-					cout << "# # #";
+					cout << "#  #  #";
 				}
 				else
 				{
-					cout << "# ";
+					cout << "#  ";
 				}
 			}
 			if (j == 1)
 			{
 				if (i == 0)
 				{
-					cout << "   " << i << " ";
+					cout << "   " << i << "  ";
 				}
 				else
 				{
-					cout << i << " ";
+					cout << i << "  ";
 				}
 			}
 		}
@@ -100,11 +101,11 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 	{
 		if (i == 0)
 		{
-			cout << " # ";
+			cout << "    #  ";
 		}
 		else
 		{
-			cout << "# ";
+			cout << "#  ";
 		}
 	}
 	cout << endl;
@@ -118,7 +119,7 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 			if (j == 0)
 			{
 				//i value + wall of #
-				cout << (ysize - i) << "# ";
+				cout << " " << (ysize - i) << "  #";
 			}
 
 			//print coordinates whether wall was printed or not
@@ -129,14 +130,14 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 			}
 			else
 			{
-				cout << coordinates[i][j] << " ";
+				cout << "  " << coordinates[i][j];
 			}
 
 			//print back wall
 			if (j == xsize)
 			{
 				//print the back wall of the grid
-				cout << "#";
+				cout << "  #";
 			}
 		}
 		cout << endl;
@@ -153,26 +154,26 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
-					cout << " # ";
+					cout << "    #  ";
 				}
 				else if (i == ysize)
 				{
-					cout << "# # #";
+					cout << "#" << setw(3) << setfill(' ') << "#" << setw(3) << setfill(' ') <<"#";
 				}
 				else
 				{
-					cout << "# ";
+					cout << "#  ";
 				}
 			}
 			if (j == 1)
 			{
 				if (i == 0)
 				{
-					cout << "   " << i << " ";
+					cout << setw(8  ) << setfill(' ') << i << "  ";
 				}
 				else
 				{
-					cout << i << " ";
+					cout << i << setw(3) << setfill(' ');
 				}
 			}
 		}
@@ -190,11 +191,11 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 	{
 		if (i == 0)
 		{
-			cout << " # ";
+			cout << "    #  ";
 		}
 		else
 		{
-			cout << "# ";
+			cout << "#  ";
 		}
 	}
 	cout << endl;
@@ -208,7 +209,7 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 			if (j == 0)
 			{
 				//i value + wall of #
-				cout << (ysize - i) << "# ";
+				cout << " " << (ysize - i) << "  #";
 			}
 
 			//print coordinates whether wall was printed or not
@@ -219,18 +220,19 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 			}
 			else
 			{
-				cout << static_cast<char>(coordinates[i][j]) << " ";
+				cout << "  " << static_cast<char>(coordinates[i][j]);
 			}
 
 			//print back wall
 			if (j == xsize)
 			{
 				//print the back wall of the grid
-				cout << "#";
+				cout <<"  #";
 			}
 		}
 		cout << endl;
 	}
+
 
 
 	//This is for the bottom wall
@@ -243,26 +245,26 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
-					cout << " # ";
+					cout << "    #  ";
 				}
 				else if (i == ysize)
 				{
-					cout << "# # #";
+					cout << "#" << setw(3) << setfill(' ') << "#" << setw(3) << setfill(' ') << "#";
 				}
 				else
 				{
-					cout << "# ";
+					cout << "#  ";
 				}
 			}
 			if (j == 1)
 			{
 				if (i == 0)
 				{
-					cout << "   " << i << " ";
+					cout << setw(8) << setfill(' ') << i << "  ";
 				}
 				else
 				{
-					cout << i << " ";
+					cout << i << setw(3) << setfill(' ');
 				}
 			}
 		}
