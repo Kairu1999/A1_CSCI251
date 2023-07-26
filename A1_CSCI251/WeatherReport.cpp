@@ -28,7 +28,9 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	
 	vector<cityStructure>UniqueCityType{};
 
+	//used to store the next day forecast based on city type
 	vector<vector<cityStructure>> cityType{};
+
 
 	vector <vector<cloudyPressure>> storage;
 
