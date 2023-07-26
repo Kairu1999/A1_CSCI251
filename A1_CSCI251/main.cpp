@@ -82,8 +82,8 @@ int main()
             //parse filename to read from file
             files = readConfigFile(str);
 
-            /*if (!files.empty()) {
-         
+            if (!files.empty()) {
+
 
                 cout << "Reading in GridX_IdxRange: " << files[0] << "-" << files[1] << "...done!" << endl;
                 cout << "Reading in GridY_IdxRange: " << files[2] << "-" << files[3] << "...done!" << endl;
@@ -96,19 +96,13 @@ int main()
                     cout << files[i] << "...done!" << endl;
                 }
 
-                for (int i = 0; i < files.size(); ++i)
-                {
-                    cout << files[i] << endl;
-                }*/
-
-
                 //read the map files and populate the Vector of Structs:
-                //cityVect = readMapFile(files[4]);
+                cityVect = readMapFile(files[4]);
                 //cloudCoverVect = readCloudCoverFile(files[5]);
                 //PressureVect = readPressureFile(files[6]);
 
 
-                
+
 
                 //allocate memory and populate the array
                 //CityStructure = Allocate2DArrayMemory_city(stoi(files[1]), stoi(files[3]), cityVect);
@@ -156,6 +150,7 @@ int main()
                 break;
 
             }*/
+            }
             break;
 
         case 2:

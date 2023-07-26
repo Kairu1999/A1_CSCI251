@@ -16,79 +16,57 @@ vector<string> splitString(string input, string delimiter);
 vector<cityStructure>readMapFile(string filename);
 vector<cloudyPressure> readCloudCoverFile(string filename);
 vector<cloudyPressure> readPressureFile(string filename);
-vector<string> ReadRangeOfIdx(string line, size_t foundIdxRange, int& count);
 
-
-vector<string>ReadRangeOfIdx(string line, size_t foundIdxRange, int& count)
-{
-    //tokenize string at the "="
-    vector<string> vect1 = splitString(line, "=");
-    vector<string> temp{};
-
-    cout << "Reading: " << vect1[0] << "," << vect1[1] << endl;
-    
-    
-    if (vect1[0] == "GridX_IdxRange") 
-    {
-        //split string
-        temp = splitString(vect1[1], "-");
-        count++;
-    }
-    else {
-        //split string
-        temp = splitString(vect1[1], "-");
-        count++;
-    }
-    return temp;
-}
 vector<cityStructure> readMapFile(string filename)
 {
     //declare input file stream
     ifstream inputfile;
 
-
-    //individual struct variable
-    coords coords1{};
-
-    vector<coords> coordinates{};
-
-    vector<int> cityType{};
-
-    vector<string>cityName{};
-
-    
     //to store the city information
     vector<cityStructure> cityInfo{};
+
+    //declare string line variable
+    string line{};
+    cout << "File " << filename << " successfully opened! " << endl;
 
 
     cout << "opening the file :" << filename << endl;
 
-    //open input file stream
+    //open the input file
     inputfile.open(filename.c_str());
-    if (inputfile)
+
+    while (inputfile)
     {
-        //declare string line variable
-        string line{};
-        cout << "File " << filename << " successfully opened! " << endl;
-        
         //read the file line by line
         while (getline(inputfile, line))
         {
             if (line.find("-") != string::npos)
             {
-                cout << line << endl;
+                //cout << line << endl;
+                vector<string> temp = splitString(line, "-");
+
+                temp[0].erase(remove(temp[0].begin(), temp[0].end(), '['), temp[0].end()); //remove [ from string
+                temp[0].erase(remove(temp[0].begin(), temp[0].end(), ']'), temp[0].end()); //remove [ from string
+                temp[0].erase(remove(temp[0].begin(), temp[0].end(), ' '), temp[0].end()); //remove [ from string
+
+                vector<string> hatred = splitString(temp[0], ",");
+
+                //cout << hatred[0] << " " << hatred[1] << endl;
+                
+
+                cityStructure city{};
+
+                city.coordinates.x = stoi(hatred[0]);
+                city.coordinates.y = stoi(hatred[1]);
+                city.cityType = stoi(temp[1]);
+                city.cityTypeName = temp[2];
+                
+                cityInfo.push_back(city);
             }
-            //return the vector of structures
-            return cityInfo;
-
         }
+    
     }
-    else {
-        cout << "Unable to find the file " << filename << endl;
-
-        //return blank vector
-        return {};
-    }
+    return cityInfo;
 }
 vector<string> readConfigFile(string filename)
 {
