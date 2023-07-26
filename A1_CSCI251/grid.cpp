@@ -7,13 +7,12 @@ using namespace std;
 void generate_grid_city(int** coordinates, int xsize, int ysize)
 {
 	cout << "Generating grid with numbers!" << endl;
-
 	//THIS IS THE TOP WALL
-	for (int i = 0; i <= ysize+2; ++i)
+	for (int i = 0; i <= ysize + 2; ++i)
 	{
 		if (i == 0)
 		{
-			cout << " #  ";
+			cout << "    #  ";
 		}
 		else
 		{
@@ -23,15 +22,15 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 	cout << endl;
 
 	//THIS IS THE DATA
-	for (int i = 0; i <= ysize; ++i) 
+	for (int i = 0; i <= ysize; ++i)
 	{
 		for (int j = 0; j <= xsize; ++j)
 		{
 			//for the left wall
-			if (j == 0) 
+			if (j == 0)
 			{
 				//i value + wall of #
-				cout << (ysize - i) << "# ";
+				cout << " " << (ysize - i) << "  #";
 			}
 
 			//print coordinates whether wall was printed or not
@@ -42,14 +41,14 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 			}
 			else
 			{
-				cout << coordinates[i][j] << " ";
+				cout << "  " << coordinates[i][j];
 			}
 
 			//print back wall
-			if (j == xsize) 
+			if (j == xsize)
 			{
 				//print the back wall of the grid
-				cout << "#";
+				cout << "  #";
 			}
 		}
 		cout << endl;
@@ -57,7 +56,7 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 
 
 	//This is for the bottom wall
-	for (int j = 0; j < 2; j++) 
+	for (int j = 0; j < 2; j++)
 	{
 
 		for (int i = 0; i <= ysize; ++i)
@@ -66,11 +65,11 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
-					cout << " #  ";
+					cout << "    #  ";
 				}
-				else if (i == ysize) 
+				else if (i == ysize)
 				{
-					cout << "#  #  #";
+					cout << "#" << setw(3) << setfill(' ') << "#" << setw(3) << setfill(' ') << "#";
 				}
 				else
 				{
@@ -81,11 +80,11 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
-					cout << "   " << i << "  ";
+					cout << setw(8) << setfill(' ') << i << "  ";
 				}
 				else
 				{
-					cout << i << "  ";
+					cout << i << setw(3) << setfill(' ');
 				}
 			}
 		}
