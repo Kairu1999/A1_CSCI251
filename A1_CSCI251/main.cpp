@@ -225,17 +225,17 @@ int main()
 
         case 7:
             //Print Weather Report
-            //print_weather_report(CityStructure,cityVect,cloudCoverVect ,PressureVect, stoi(files[1]), stoi(files[3]));
+            print_weather_report(CityStructure,cityVect,cloudCoverVect ,PressureVect, stoi(files[1]), stoi(files[3]));
             break;
         case 8:
             cout << "Exiting Program. Goodbye!" << endl;
             
             //Deallocate memory here!
             DeAllocate2DArrayMemory(CityStructure, stoi(files[1]));
-            /*DeAllocate2DArrayMemory(Cloudy, stoi(files[1]));
+            DeAllocate2DArrayMemory(Cloudy, stoi(files[1]));
             DeAllocate2DArrayMemory(Pressure, stoi(files[1]));
             DeAllocate2DArrayMemory(CloudyLMH, stoi(files[1]));
-            DeAllocate2DArrayMemory(PressureLMH, stoi(files[1]));*/
+            DeAllocate2DArrayMemory(PressureLMH, stoi(files[1]));
             return 0;
 
         default:
