@@ -86,7 +86,7 @@ int main()
          
 
                 cout << "Reading in GridX_IdxRange: " << files[0] << "-" << files[1] << "...done!" << endl;
-                cout << "Reading in GridX_IdxRange: " << files[2] << "-" << files[3] << "...done!" << endl;
+                cout << "Reading in GridY_IdxRange: " << files[2] << "-" << files[3] << "...done!" << endl;
 
                 cout << endl;
 
