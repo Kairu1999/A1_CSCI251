@@ -211,58 +211,19 @@ vector<string> readConfigFile(string filename)
         }
 
         //size_t hyphen = store_line2[0].find("-");
-        vector<string> temp  = splitString(store_line2[0],"=");
+        vector<string> temp1  = splitString(store_line2[0],"=");
 
         //check string for numbers
-        vector<string> temp1 = splitString(temp[1], "-");
+        vector<string> temp2 = splitString(temp1[1], "-");
 
         //size_t hyphen = store_line2[0].find("-");
-        vector<string> temp2 = splitString(store_line2[1], "=");
+        vector<string> temp3 = splitString(store_line2[1], "=");
 
         //check string for numbers
-        vector<string> temp3 = splitString(temp2[1], "-");
+        vector<string> temp4 = splitString(temp3[1], "-");
 
-
-
-        //splitString(store_line2[0], hyphen);
-
-        //for (int j = 0; j < store_line2[0].length(); ++j)
-        //{
-        //    if (isdigit(store_line2[0][j]))
-        //    {
-        //        //check if next number is a digit
-        //        if (isdigit(store_line2[0][j + 1])) 
-        //        {
-        //            string value(1, store_line2[0][j + 1]);
-        //            temp.push_back(value);
-        //        }
-        //        else 
-        //        {
-        //            //cout << "detected digit :" << value << endl;
-        //            string value(1, store_line2[0][j]);
-        //            temp.push_back(value);
-        //        }
-        //    }
-        //}
-
-        //for (int k = 0; k < store_line2[1].length(); ++k)
-        //{
-        //    if (isdigit(store_line2[1][k]))
-        //    {
-        //        //check if next number is a digit
-        //        if (isdigit(store_line2[0][k + 1]))
-        //        {
-        //            string value(1, store_line2[0][k + 1]);
-        //            temp.push_back(value);
-        //        }
-        //        else
-        //        {
-        //            //cout << "detected digit :" << value << endl;
-        //            string value(1, store_line2[0][k]);
-        //            temp.push_back(value);
-        //        }
-        //    }
-        //}
+        //insert everything in, then lastly insert
+        temp.insert(temp.end(), {temp2[0],temp2[1],temp4[0],temp4[1]});
 
         for (int m = 2; m < store_line2.size(); ++m)
         {

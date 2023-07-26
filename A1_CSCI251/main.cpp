@@ -117,8 +117,8 @@ int main()
                 //try printing output
                 //print_2DArr_output(stoi(files[1]), stoi(files[3]), CityStructure);
                 //cout << endl;
-                print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
-                cout << endl;
+                //print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
+                //cout << endl;
 
 
                 //Update the 2D Array Values:
