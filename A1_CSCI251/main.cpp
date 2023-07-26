@@ -96,22 +96,28 @@ int main()
                     cout << files[i] << "...done!" << endl;
                 }
 
+                for (int i = 0; i < files.size(); ++i)
+                {
+                    cout << files[i] << endl;
+                }
 
 
                 //read the map files and populate the Vector of Structs:
                 cityVect = readMapFile(files[4]);
                 cloudCoverVect = readCloudCoverFile(files[5]);
                 PressureVect = readPressureFile(files[6]);
+
+
                 
 
                 //allocate memory and populate the array
                 CityStructure = Allocate2DArrayMemory_city(stoi(files[1]), stoi(files[3]), cityVect);
-                Cloudy = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),cloudCoverVect);
+                //Cloudy = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),cloudCoverVect);
                 Pressure = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),PressureVect);
-                
-                //Low Medium High
-                CloudyLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), cloudCoverVect);
-                PressureLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), PressureVect);
+                //
+                ////Low Medium High
+                //CloudyLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), cloudCoverVect);
+                //PressureLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), PressureVect);
 
 
                 //try printing output
@@ -122,14 +128,14 @@ int main()
 
 
                 //Update the 2D Array Values:
-                Update2DArray(Cloudy, stoi(files[1]), stoi(files[3]), 0);
-                Update2DArray(CloudyLMH, stoi(files[1]), stoi(files[3]), 1);
-                Update2DArray(Pressure, stoi(files[1]), stoi(files[3]),0);
-                Update2DArray(PressureLMH, stoi(files[1]), stoi(files[3]),1);
+                //Update2DArray(Cloudy, stoi(files[1]), stoi(files[3]), 0);
+                //Update2DArray(CloudyLMH, stoi(files[1]), stoi(files[3]), 1);
+                //Update2DArray(Pressure, stoi(files[1]), stoi(files[3]),0);
+                //Update2DArray(PressureLMH, stoi(files[1]), stoi(files[3]),1);
 
 
 
-                print_2DArr_output_city(stoi(files[1]), stoi(files[3]), CityStructure);
+                //print_2DArr_output_city(stoi(files[1]), stoi(files[3]), CityStructure);
                 //print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
 
                 cout << endl;
@@ -162,7 +168,7 @@ int main()
                 cout << "Displaying City Map!" << endl;
 
                 // NUMBERS MODE
-                generate_grid_city(CityStructure, stoi(files[1]), stoi(files[3]));
+                //generate_grid_city(CityStructure, stoi(files[1]), stoi(files[3]));
                 break;
             }
         case 3:
@@ -176,7 +182,7 @@ int main()
                 cout << "Displaying Cloud Coverage Map!" << endl;
 
                 //NORMAL MODE
-                generate_grid(Cloudy, stoi(files[1]), stoi(files[3]));
+                //generate_grid(Cloudy, stoi(files[1]), stoi(files[3]));
                 break;
             }
 
@@ -192,7 +198,7 @@ int main()
                 cout << "Displaying Cloud Coverage Map with LMH Symbols!" << endl;
                 cout << endl;
 
-                generate_gridLMH(CloudyLMH, stoi(files[1]), stoi(files[3]));
+                //generate_gridLMH(CloudyLMH, stoi(files[1]), stoi(files[3]));
                 break;
             }
         case 5:
@@ -206,7 +212,7 @@ int main()
                 cout << "Displaying Pressure Map!" << endl;
                 cout << endl;
 
-                generate_grid(Pressure, stoi(files[1]), stoi(files[3]));
+                //generate_grid(Pressure, stoi(files[1]), stoi(files[3]));
                 break;
             }
         case 6:
@@ -218,23 +224,23 @@ int main()
             else
             {
                 cout << "Displaying Atmospheric Pressure with LMH Symbols!" << endl;
-                generate_gridLMH(CloudyLMH, stoi(files[1]), stoi(files[3]));
+                //generate_gridLMH(CloudyLMH, stoi(files[1]), stoi(files[3]));
                 break;
             }
 
         case 7:
             //Print Weather Report
-            print_weather_report(CityStructure,cityVect,cloudCoverVect ,PressureVect, stoi(files[1]), stoi(files[3]));
+            //print_weather_report(CityStructure,cityVect,cloudCoverVect ,PressureVect, stoi(files[1]), stoi(files[3]));
             break;
         case 8:
             cout << "Exiting Program. Goodbye!" << endl;
             
             //Deallocate memory here!
-            DeAllocate2DArrayMemory(CityStructure, stoi(files[1]));
+         /*   DeAllocate2DArrayMemory(CityStructure, stoi(files[1]));
             DeAllocate2DArrayMemory(Cloudy, stoi(files[1]));
             DeAllocate2DArrayMemory(Pressure, stoi(files[1]));
             DeAllocate2DArrayMemory(CloudyLMH, stoi(files[1]));
-            DeAllocate2DArrayMemory(PressureLMH, stoi(files[1]));
+            DeAllocate2DArrayMemory(PressureLMH, stoi(files[1]));*/
             return 0;
 
         default:
