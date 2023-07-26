@@ -136,103 +136,108 @@ vector<string> readConfigFile(string filename)
 vector<cloudyPressure> readCloudCoverFile(string filename)
 {
 
-    ////declare input file stream
-    //ifstream inputfile;
+    //declare input file stream
+    ifstream inputfile;
+
+    //to store the city information
+    vector < cloudyPressure > cloudy {};
+
+    //declare string line variable
+    string line{};
+    cout << "File " << filename << " successfully opened! " << endl;
 
 
-    ////variable declaration:
-    //coords coords1{};
+    cout << "opening the file :" << filename << endl;
 
-    ////declare a vector
-    //vector<string> vect1{};
+    //open the input file
+    inputfile.open(filename.c_str());
 
-    //vector<coords> coordinates{};
-    //vector<int> nextdayForecast{};
+    while(inputfile)
+    {
+        //read the file line by line
+        while (getline(inputfile, line))
+        {
+            if (line.find("-") != string::npos)
+            {
+                //cout << line << endl;
+                vector<string> temp = splitString(line, "-");
 
-    //vector <cloudyPressure> CloudyCover{};
+                temp[0].erase(remove(temp[0].begin(), temp[0].end(), '['), temp[0].end()); //remove [ from string
+                temp[0].erase(remove(temp[0].begin(), temp[0].end(), ']'), temp[0].end()); //remove [ from string
+                temp[0].erase(remove(temp[0].begin(), temp[0].end(), ' '), temp[0].end()); //remove [ from string
 
-    //cout << "opening the file :" << filename << endl;
+                vector<string> hatred = splitString(temp[0], ",");
 
-    ////open input file stream
-    //inputfile.open(filename.c_str());
+                //cout << hatred[0] << " " << hatred[1] << endl;
 
-    //if (inputfile)
-    //{
-    //    //declare string line variable
-    //    string line;
-    //    cout << "File " << filename << " successfully opened! " << endl;
-    //    //check if inputfile exists
-    //    while (getline(inputfile, line))
-    //    {
 
-    //        if (line.find("-") != string::npos) 
-    //        {
+                cloudyPressure cp{};
 
-    //        }
+                cp.coordinates.x = stoi(hatred[0]);
+                cp.coordinates.y = stoi(hatred[1]);
+                cp.NextDayForecast = stoi(temp[1]);
 
-    //    }
-    //}
-    //else
-    //{
-    //    cout << "Unable to find the file " << filename << endl;
-    //    return {};
-    //}
+                cloudy.push_back(cp);
+            }
+        }
 
-    ////close filestream
-    //inputfile.close();
-    return {};
+    }
+
+    inputfile.close();
+    return cloudy;
     
 }
 
 vector<cloudyPressure> readPressureFile(string filename)
 {
-    ////declare input file stream
-    //ifstream inputfile;
+    //declare input file stream
+    ifstream inputfile;
 
-    ////declare string line variable
-    //string line;
+    //to store the city information
+    vector < cloudyPressure > pressure{};
 
-    ////variable declaration:
-    //coords coords1{};
-
-    ////declare a vector
-    //vector<string> vect1{};
-
-    //vector<coords> coordinates{};
-    //vector<int> nextdayForecast{};
-
-    //vector <cloudyPressure> Pressure{};
-
-    //cout << "opening the file :" << filename << endl;
-
-    ////open input file stream
-    //inputfile.open(filename.c_str());
-
-    //if (inputfile)
-    //{
-    //    cout << "File " << filename << " successfully opened! " << endl;
-
-    //    //check if inputfile exists
-    //    while (getline(inputfile, line))
-    //    {
-    //        if (line.find('-') != string::npos) 
-    //        {
-
-    //            //split the string
-    //            vect1 = splitString(line, "-");
+    //declare string line variable
+    string line{};
+    cout << "File " << filename << " successfully opened! " << endl;
 
 
-    //        }
-    //    }
+    cout << "opening the file :" << filename << endl;
 
-    //}
-    //else
-    //{
-    //    cout << "Unable to find the file " << filename << endl;
-    //    return {};
-    //}
-    return {};
+    //open the input file
+    inputfile.open(filename.c_str());
 
+    while (inputfile)
+    {
+        //read the file line by line
+        while (getline(inputfile, line))
+        {
+            if (line.find("-") != string::npos)
+            {
+                //cout << line << endl;
+                vector<string> temp = splitString(line, "-");
+
+                temp[0].erase(remove(temp[0].begin(), temp[0].end(), '['), temp[0].end()); //remove [ from string
+                temp[0].erase(remove(temp[0].begin(), temp[0].end(), ']'), temp[0].end()); //remove [ from string
+                temp[0].erase(remove(temp[0].begin(), temp[0].end(), ' '), temp[0].end()); //remove [ from string
+
+                vector<string> hatred = splitString(temp[0], ",");
+
+                //cout << hatred[0] << " " << hatred[1] << endl;
+
+
+                cloudyPressure cp{};
+
+                cp.coordinates.x = stoi(hatred[0]);
+                cp.coordinates.y = stoi(hatred[1]);
+                cp.NextDayForecast = stoi(temp[1]);
+
+                pressure.push_back(cp);
+            }
+        }
+
+    }
+    inputfile.close();
+    return pressure;
 }
 vector<string> splitString(string input, string delimiter)
 {

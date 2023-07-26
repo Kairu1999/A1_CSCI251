@@ -98,8 +98,8 @@ int main()
 
                 //read the map files and populate the Vector of Structs:
                 cityVect = readMapFile(files[4]);
-                //cloudCoverVect = readCloudCoverFile(files[5]);
-                //PressureVect = readPressureFile(files[6]);
+                cloudCoverVect = readCloudCoverFile(files[5]);
+                PressureVect = readPressureFile(files[6]);
 
 
 
