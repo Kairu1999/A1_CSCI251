@@ -139,6 +139,15 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	}
 
 
+	//PURELY FOR DEBUGGING
+	for (auto &x : PressureArea) 
+	{
+		for (auto &y : x) 
+		{
+			cout << y.first << " " << y.second << endl;
+		}
+	}
+
 	//with the <cloudcover, related cityType> vector<vector> and the <pressure, related cityType> vector<vector>, 
 	//loop through the cloud cover and pressure 2D vectors and check if the [i][6]'th one(base coordinate is within any city type)
 	//then group the relevant coordinates together! <city type 1> <city type 2> <city type 3>
@@ -238,7 +247,8 @@ pair<string,char> compute_average_cloudcover(vector<int> cloudcover_values)
 //PURELY USED TO FIND UNIQUE CITY TYPES
 vector<pair<int,string>> findUnique(vector<cityStructure> info) 
 {
-	vector<int> result{};
+	vector<pair<int,string>> result{};
+
 
 	//HAVE TO FIND A WAY TO RETURN THE 
 	////find unique values in the vector and then push back into results
