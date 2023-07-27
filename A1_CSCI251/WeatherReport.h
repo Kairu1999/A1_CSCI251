@@ -6,16 +6,31 @@
 #include "Structs.h"
 using namespace std;
 
-struct display 
+struct display
 {
-	string cityTypeName;
-	int cityNumber;
-	string Average_cloudcover;
-	string Average_pressure;
-	float Rain_Probability;
+	//store the name of the city
+	string cityTypeName{};
+
+	//store the cityNumber(1...2...3...etc)
+	int cityNumber{};
+
+	//store the average cloud cover
+	string Average_cloudcover{};
+
+	//store the LMH Value for cloud cover
+	char cloudcoverLMH{};
+
+	//store the average pressure
+	string Average_pressure{};
+
+	//store the LMH Value for pressure
+	char PressureLMH{};
+
+	//store the rain probability
+	float Rain_Probability{};
 
 	//display ascii art
-	string ascii_rain;
+	string ascii_rain{};
 };
 
 //methods

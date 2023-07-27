@@ -36,6 +36,8 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 
 	vector<vector<pair<int,int>>> cloudCoverArea{};
 	vector<vector<pair<int,int>>> PressureArea{};
+	vector<int> cloudCoverNDFCVal;
+	vector<int> PressureNDFCVal;
 
 
 	//to use for display:
@@ -117,8 +119,11 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 					temp_city.push_back({ ndfc_c, ct });
 					temp_pressure.push_back({ ndfc_p, ct });
 
+
+					//push into the 2d vector
 					cloudCoverArea.push_back(temp_city);
 					PressureArea.push_back(temp_pressure);
+
 
 					//reset coords check to cloudy[0] to start again;
 					coordscheck = 0;
@@ -196,6 +201,10 @@ pair<string, char> compute_average_pressure(vector<int> pressure_values)
 	
 	float number = (accumulate(pressure_values.begin(), pressure_values.end(), 0) / length);
 
+
+	//STILL NEED ADD SECOND BEHIND FIRST
+	p1.first = to_string(number);
+
 	if ((number >= 0) && (number < 35)) 
 	{
 		p1.second = 'L';
@@ -209,10 +218,6 @@ pair<string, char> compute_average_pressure(vector<int> pressure_values)
 		p1.second = 'H';
 	}
 
-
-	//STILL NEED ADD SECOND BEHIND FIRST
-	p1.first = to_string(number);
-
 	return p1;
 }
 
@@ -224,6 +229,9 @@ pair<string,char> compute_average_cloudcover(vector<int> cloudcover_values)
 	int length = cloudcover_values.size();
 
 	float number = (accumulate(cloudcover_values.begin(), cloudcover_values.end(), 0) / length);
+
+	//STILL NEED ADD SECOND BEHIND FIRST
+	p1.first = to_string(number);
 
 	if ((number >= 0) && (number < 35))
 	{
@@ -238,9 +246,6 @@ pair<string,char> compute_average_cloudcover(vector<int> cloudcover_values)
 		p1.second = 'H';
 	}
 
-
-	//STILL NEED ADD SECOND BEHIND FIRST
-	p1.first = to_string(number);
 
 	return p1;
 }

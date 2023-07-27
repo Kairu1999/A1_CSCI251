@@ -162,10 +162,12 @@ vector<cloudyPressure> readCloudCoverFile(string filename)
                 //cout << line << endl;
                 vector<string> temp = splitString(line, "-");
 
+                //remove the "[", " " and "]" from each value
                 temp[0].erase(remove(temp[0].begin(), temp[0].end(), '['), temp[0].end()); //remove [ from string
                 temp[0].erase(remove(temp[0].begin(), temp[0].end(), ']'), temp[0].end()); //remove [ from string
                 temp[0].erase(remove(temp[0].begin(), temp[0].end(), ' '), temp[0].end()); //remove [ from string
 
+                //split the string at the comma to get the 2 numbers
                 vector<string> hatred = splitString(temp[0], ",");
 
                 //cout << hatred[0] << " " << hatred[1] << endl;
@@ -173,10 +175,12 @@ vector<cloudyPressure> readCloudCoverFile(string filename)
 
                 cloudyPressure cp{};
 
+                //allocate a new variable to cloudy
                 cp.coordinates.x = stoi(hatred[0]);
                 cp.coordinates.y = stoi(hatred[1]);
                 cp.NextDayForecast = stoi(temp[1]);
 
+                //push back into the array
                 cloudy.push_back(cp);
             }
         }
@@ -216,21 +220,28 @@ vector<cloudyPressure> readPressureFile(string filename)
                 //cout << line << endl;
                 vector<string> temp = splitString(line, "-");
 
+
+
+                //remove the "[", " " and "]" from each value
                 temp[0].erase(remove(temp[0].begin(), temp[0].end(), '['), temp[0].end()); //remove [ from string
                 temp[0].erase(remove(temp[0].begin(), temp[0].end(), ']'), temp[0].end()); //remove [ from string
                 temp[0].erase(remove(temp[0].begin(), temp[0].end(), ' '), temp[0].end()); //remove [ from string
 
+                //split the string at the comma to get the 2 numbers
                 vector<string> hatred = splitString(temp[0], ",");
 
                 //cout << hatred[0] << " " << hatred[1] << endl;
 
 
+                //create a new pressure struct
                 cloudyPressure cp{};
 
+                //assign values to pressure
                 cp.coordinates.x = stoi(hatred[0]);
                 cp.coordinates.y = stoi(hatred[1]);
                 cp.NextDayForecast = stoi(temp[1]);
 
+                //push back to 2d vector
                 pressure.push_back(cp);
             }
         }
