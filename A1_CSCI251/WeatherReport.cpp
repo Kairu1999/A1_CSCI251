@@ -12,7 +12,7 @@ void print_weather_report(int** cityptr,vector<cityStructure> city, vector<cloud
 vector<coords>find_adjacent_tiles(coords city);
 pair<string, char> compute_average_cloudcover(vector<int> cloudcover_values);
 pair<string, char> compute_average_pressure(vector<int> pressure_values);
-vector<pair<int, string>> findUnique(vector<cityStructure> info);
+
 pair<int,string> AsciiRainArt(char cloudCover, char Pressure);
 
 
@@ -26,7 +26,8 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	==================================*/	
 	int cnt{ 0 },citycount{ 0 }, coordscheck{ 0 };
 	
-	vector<cityStructure>UniqueCityType{};
+	vector<pair<int, string>> temp{}, temp1{};
+
 
 	//used to store the next day forecast based on city type
 	vector<vector<cityStructure>> cityType{};
@@ -44,10 +45,25 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 	vector<display> displayVect{};
 	/*=================================*/
 
+
 	//sort first
 	sort(city.begin(), city.end(), [](const cityStructure& x, const cityStructure& y) {return (x.cityType > y.cityType); });
 
+	//for (int i = 0; i < city.size(); ++i) 
+	//{
+	//	pair<int, string> t1{};
 
+	//	t1.first = city[i].cityType;
+	//	t1.second = city[i].cityTypeName;
+	//	temp.push_back(t1);
+	//}
+
+
+
+	/*for (pair<int, string> x : temp) 
+	{
+		cout << x.first << " " << x.second << endl;
+	}*/
 
 	//debug
 	for (int i = 0; i < city.size(); ++i)
@@ -250,29 +266,6 @@ pair<string,char> compute_average_cloudcover(vector<int> cloudcover_values)
 	return p1;
 }
 
-
-//PURELY USED TO FIND UNIQUE CITY TYPES
-vector<pair<int,string>> findUnique(vector<cityStructure> info) 
-{
-	vector<pair<int,string>> result{};
-
-
-	//HAVE TO FIND A WAY TO RETURN THE 
-	////find unique values in the vector and then push back into results
-	//for (unsigned i = 0; i < info.size(); ++i) {
-	//	if (count(result.begin(), result.end(), info.at(i)) == 0) {
-	//		result.push_back(info.at(i));
-	//	}
-	//}
-
-
-	////sort the vector from smallest to biggest
-	//sort(result.begin(), result.end(),greater<int>());
-
-	//return result
-	return result;
-
-}
 
 pair<int,string> AsciiRainArt(char cloudCover, char Pressure) 
 {

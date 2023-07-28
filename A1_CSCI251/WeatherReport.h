@@ -38,6 +38,5 @@ void print_weather_report(int ** cityptr, vector<cityStructure> city, vector<clo
 vector<coords>find_adjacent_tiles(coords city);
 pair<string, char> compute_average_cloudcover(vector<int> cloudcover_values);
 pair<string, char> compute_average_pressure(vector<int> pressure_values);
-vector<pair<int, string>> findUnique(vector<cityStructure> info);
 pair<int, string> AsciiRainArt(char cloudCover, char Pressure);
 #endif
