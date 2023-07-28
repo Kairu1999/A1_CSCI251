@@ -70,13 +70,13 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 			ptr[x][y] = -1;
 		}
 	}
+
 	for (int j = 0; j <= ysize; ++j)
 	{
 		for (int k = 0; k <= xsize; ++k)
-
 		{
-			ptr[j][k] = vect[(k * xsize) + j].NextDayForecast;
-			
+			ptr[j][k] = vect[(k * (ysize + 1)) + j].NextDayForecast;
+
 		}
 
 	}
@@ -141,9 +141,9 @@ int Update2DArrayValues(int value)
 
 	return value;
 }
-int Update2DArrayValuesLMH(int value) 
+int Update2DArrayValuesLMH(int value)
 {
-	int temp{0};
+	int temp{ 0 };
 
 	if ((value >= 0) && (value < 35))
 	{
@@ -153,35 +153,35 @@ int Update2DArrayValuesLMH(int value)
 	{
 		temp = 'M';
 	}
-	if((value >= 65) && (value < 100))
+	if ((value >= 65) && (value < 100))
 	{
 		temp = 'H';
 	}
-	
+
 	return temp;
 }
 
 //USED ONLY FOR CLOUDY AND PRESSURE.CPP
-void Update2DArray(int** ptr, int xsize, int ysize, int mode) 
+void Update2DArray(int** ptr, int xsize, int ysize, int mode)
 {
 
-	for (int i = 0; i <= (ysize); ++i) 
+	for (int i = 0; i <= (ysize); ++i)
 	{
 		for (int j = 0; j <= (xsize); ++j)
 		{
-			
+
 			int xan{ 0 };
 
-			switch (mode) 
+			switch (mode)
 			{
-				case 0:
-					xan = Update2DArrayValues(ptr[i][j]);
-					ptr[i][j] = xan;
-					break;
-				case 1:
-					xan = Update2DArrayValuesLMH(ptr[i][j]);
-					ptr[i][j] = xan;
-					break;
+			case 0:
+				xan = Update2DArrayValues(ptr[i][j]);
+				ptr[i][j] = xan;
+				break;
+			case 1:
+				xan = Update2DArrayValuesLMH(ptr[i][j]);
+				ptr[i][j] = xan;
+				break;
 			}
 
 			//cout << "Old Value: " << ptr[i][j] << " replaced by: " << static_cast<char>(xan) << endl;
@@ -191,9 +191,9 @@ void Update2DArray(int** ptr, int xsize, int ysize, int mode)
 }
 
 //DeAllocate Memory for 2D Array
-void DeAllocate2DArrayMemory(int** ptr, int x_size) 
+void DeAllocate2DArrayMemory(int** ptr, int x_size)
 {
-	for (int i = 0; i < x_size; ++i) 
+	for (int i = 0; i < x_size; ++i)
 	{
 		delete[] ptr[i];
 	}
