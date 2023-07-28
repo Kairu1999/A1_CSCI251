@@ -8,7 +8,7 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 {
 	cout << "Generating grid with numbers!" << endl;
 	//THIS IS THE TOP WALL
-	for (int i = 0; i <= ysize + 2; ++i)
+	for (int i = 0; i <= xsize + 2; ++i)
 	{
 		if (i == 0)
 		{
@@ -22,7 +22,7 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 	cout << endl;
 
 	//THIS IS THE DATA
-	for (int i = 0; i <= ysize; ++i)
+	for (int i = ysize; i >= 0; --i)
 	{
 		for (int j = 0; j <= xsize; ++j)
 		{
@@ -30,17 +30,18 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 			if (j == 0)
 			{
 				//i value + wall of #
-				cout << " " << (ysize - i) << "  #";
+				cout << " " << setw(2) << i << " #";
 			}
 
 			//print coordinates whether wall was printed or not
 			if (coordinates[i][j] == -1)
 			{
 				//print the rest of the grid as blank if vector has -1 inside
-				cout << "  ";
+				cout << "   ";
 			}
 			else
 			{
+				//if value exists, 2 space required
 				cout << "  " << coordinates[i][j];
 			}
 
@@ -59,7 +60,7 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 	for (int j = 0; j < 2; j++)
 	{
 
-		for (int i = 0; i <= ysize; ++i)
+		for (int i = 0; i <= xsize; ++i)
 		{
 			if (j == 0)
 			{
@@ -67,9 +68,9 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 				{
 					cout << "    #  ";
 				}
-				else if (i == ysize)
+				else if (i == xsize)
 				{
-					cout << "#" << setw(3) << setfill(' ') << "#" << setw(3) << setfill(' ') << "#";
+					cout << "#  #  #";
 				}
 				else
 				{
@@ -80,11 +81,11 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
-					cout << setw(8) << setfill(' ') << i << "  ";
+					cout << "       " << i << "  ";
 				}
 				else
 				{
-					cout << i << setw(3) << setfill(' ');
+					cout << i << "  ";
 				}
 			}
 		}
@@ -95,8 +96,9 @@ void generate_grid_city(int** coordinates, int xsize, int ysize)
 void generate_grid(int** coordinates, int xsize, int ysize)
 {
 
+	cout << "Generating grid with numbers!" << endl;
 	//THIS IS THE TOP WALL
-	for (int i = 0; i <= ysize + 2; ++i)
+	for (int i = 0; i <= xsize + 2; ++i)
 	{
 		if (i == 0)
 		{
@@ -110,7 +112,7 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 	cout << endl;
 
 	//THIS IS THE DATA
-	for (int i = 0; i <= ysize; ++i)
+	for (int i = ysize; i >= 0; --i)
 	{
 		for (int j = 0; j <= xsize; ++j)
 		{
@@ -118,17 +120,18 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 			if (j == 0)
 			{
 				//i value + wall of #
-				cout << " " << (ysize - i) << "  #";
+				cout << " " << setw(2) << i << " #";
 			}
 
 			//print coordinates whether wall was printed or not
 			if (coordinates[i][j] == -1)
 			{
 				//print the rest of the grid as blank if vector has -1 inside
-				cout << "  ";
+				cout << "   ";
 			}
 			else
 			{
+				//if value exists, 2 space required
 				cout << "  " << coordinates[i][j];
 			}
 
@@ -147,7 +150,7 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 	for (int j = 0; j < 2; j++)
 	{
 
-		for (int i = 0; i <= ysize; ++i)
+		for (int i = 0; i <= xsize; ++i)
 		{
 			if (j == 0)
 			{
@@ -155,9 +158,9 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 				{
 					cout << "    #  ";
 				}
-				else if (i == ysize)
+				else if (i == xsize)
 				{
-					cout << "#" << setw(3) << setfill(' ') << "#" << setw(3) << setfill(' ') <<"#";
+					cout << "#  #  #";
 				}
 				else
 				{
@@ -168,11 +171,11 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
-					cout << setw(8  ) << setfill(' ') << i << "  ";
+					cout << "       " << i << "  ";
 				}
 				else
 				{
-					cout << i << setw(3) << setfill(' ');
+					cout << i << "  ";
 				}
 			}
 		}
@@ -182,11 +185,9 @@ void generate_grid(int** coordinates, int xsize, int ysize)
 
 void generate_gridLMH(int** coordinates, int xsize, int ysize)
 {
-	cout << "Generating grid with LMH Values: " << endl;
-	cout << endl;
-
+	cout << "Generating grid with numbers!" << endl;
 	//THIS IS THE TOP WALL
-	for (int i = 0; i <= ysize + 2; ++i)
+	for (int i = 0; i <= xsize + 2; ++i)
 	{
 		if (i == 0)
 		{
@@ -200,7 +201,7 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 	cout << endl;
 
 	//THIS IS THE DATA
-	for (int i = 0; i <= ysize; ++i)
+	for (int i = ysize; i >= 0; --i)
 	{
 		for (int j = 0; j <= xsize; ++j)
 		{
@@ -208,17 +209,18 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 			if (j == 0)
 			{
 				//i value + wall of #
-				cout << " " << (ysize - i) << "  #";
+				cout << " " << setw(2) << i << " #";
 			}
 
 			//print coordinates whether wall was printed or not
 			if (coordinates[i][j] == -1)
 			{
 				//print the rest of the grid as blank if vector has -1 inside
-				cout << "  ";
+				cout << "   ";
 			}
 			else
 			{
+				//if value exists, 2 space required
 				cout << "  " << static_cast<char>(coordinates[i][j]);
 			}
 
@@ -226,19 +228,18 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 			if (j == xsize)
 			{
 				//print the back wall of the grid
-				cout <<"  #";
+				cout << "  #";
 			}
 		}
 		cout << endl;
 	}
 
 
-
 	//This is for the bottom wall
 	for (int j = 0; j < 2; j++)
 	{
 
-		for (int i = 0; i <= ysize; ++i)
+		for (int i = 0; i <= xsize; ++i)
 		{
 			if (j == 0)
 			{
@@ -246,9 +247,9 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 				{
 					cout << "    #  ";
 				}
-				else if (i == ysize)
+				else if (i == xsize)
 				{
-					cout << "#" << setw(3) << setfill(' ') << "#" << setw(3) << setfill(' ') << "#";
+					cout << "#  #  #";
 				}
 				else
 				{
@@ -259,11 +260,11 @@ void generate_gridLMH(int** coordinates, int xsize, int ysize)
 			{
 				if (i == 0)
 				{
-					cout << setw(8) << setfill(' ') << i << "  ";
+					cout << "       " << i << "  ";
 				}
 				else
 				{
-					cout << i << setw(3) << setfill(' ');
+					cout << i << "  ";
 				}
 			}
 		}

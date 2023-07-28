@@ -14,61 +14,38 @@ void DeAllocate2DArrayMemory(int** ptr, int x_size);
 
 int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vect)
 {
-	//some values updated
-	int i{ 0 }, j{ 0 }, k{ 0 };
 
 	//allocate memory for pointer
-	int** ptr = new int* [xsize];
+	int** ptr = new int* [ysize];
 
 	//allocate memory for pointer
-	for (int row = 0; row <= xsize; ++row)
+	for (int row = 0; row <= ysize; ++row)
 	{
-		ptr[row] = new int[ysize];
+		ptr[row] = new int[xsize];
 	}
 
-	for (int x = 0; x <= xsize; ++x)
+	for (int x = 0; x <= ysize; ++x)
 	{
-		for (int y = 0; y <= ysize; ++y)
+		for (int y = 0; y <= xsize; ++y)
 		{
 			ptr[x][y] = -1;
 		}
 	}
 
-	//loop through the vector with the values
-	//loop through vector(0 --> 8)
-	while(i != vect.size())
+	for (int i = 0; i < vect.size(); ++i)
 	{
-		//1 --> 8
-		//example if j == 1 and value == 1;
-		if (j == vect[i].coordinates.x)
+		for (int j = 0; j <= ysize; ++j)
 		{
-			//if k matches the coordinates of vect[i]
-			if (k == vect[i].coordinates.y)
-			{			
-				//insert value
-				ptr[xsize - k][j] = vect[i].cityType;
-
-				//cout << "Match Found at: " << "[" << j << "," << k <<"]" << " with value of: " << ptr[j][k] << endl;
-
-				//set back j and k to the start and increment i to the next variable!
-				j = 0;
-				k = 0;
-				++i;
-
-			}
-			else 
+			for (int k = 0; k <= xsize; ++k)
 			{
-				//increment k
-				++k;
+				if ((k == vect[i].coordinates.x) && (j == vect[i].coordinates.y))
+				{
+					ptr[j][k] = vect[i].cityType;
+				}
 			}
 		}
-		else
-		{
-			//increment j
-			++j;
-		}
-
 	}
+
 	return ptr;
 }
 
@@ -76,48 +53,32 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 //Coordinates to check for --> [0,0] [0,1] [1,3] [2,1] [2,2]
 int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect)
 {
-	int i = 0;
+	//allocate memory for pointer
+	int** ptr = new int* [ysize];
 
 	//allocate memory for pointer
-	int** ptr = new int* [xsize];
-
-
-	//Allocate memory for the 2d Array, +1 because 0 --> 8
-	for (int i = 0; i <= xsize; i++)
+	for (int row = 0; row <= ysize; ++row)
 	{
-		//cout <<"y value: " << i << endl;
-		ptr[i] = new int[ysize];
+		ptr[row] = new int[xsize];
 	}
 
-	//populate with 0 first
-	for (int x = 0; x <= xsize; ++x)
+	//populate the array
+	for (int x = 0; x <= ysize; ++x)
 	{
-		for (int y = 0; y <= ysize; ++y)
+		for (int y = 0; y <= xsize; ++y)
 		{
 			ptr[x][y] = -1;
-			//cout << "[" << x << "," << y << "]" << endl;
 		}
 	}
-
-
-	//loop through the vector with the values
-
-	//1 --> 8
-	//example if j == 1 and value == 1;
-	for (int j = 0; j <= (xsize); ++j)
+	for (int j = 0; j <= ysize; ++j)
 	{
-		//for each j, incrmeent k
-		for (int k = 0; k <= (ysize); ++k)
+		for (int k = 0; k <= xsize; ++k)
+
 		{
-			//THIS LINE WORKS GODDAMIT
-			ptr[xsize - k][j] = vect[i].NextDayForecast;
-
-			//cout << "x" << k << " y" << (xsize - j) << endl;
-			//cout << "Match Found at: " << "[" << j << "," << k << "]" << " with value of: " << ptr[j][k] << endl;
-
-			//incrment i;
-			++i;
+			ptr[j][k] = vect[(k * xsize) + j].NextDayForecast;
+			
 		}
+
 	}
 
 
@@ -203,9 +164,10 @@ int Update2DArrayValuesLMH(int value)
 //USED ONLY FOR CLOUDY AND PRESSURE.CPP
 void Update2DArray(int** ptr, int xsize, int ysize, int mode) 
 {
-	for (int i = 0; i <= (xsize); ++i) 
+
+	for (int i = 0; i <= (ysize); ++i) 
 	{
-		for (int j = 0; j <= (ysize); ++j)
+		for (int j = 0; j <= (xsize); ++j)
 		{
 			
 			int xan{ 0 };
