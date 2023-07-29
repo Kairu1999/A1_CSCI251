@@ -59,88 +59,88 @@ void print_weather_report(int** cityptr, vector<cityStructure> city, vector<clou
 	}
 
 
-	//separator here
-	for (int j = 0; j < temp1.size(); j++)
-	{
-		cout << " temp1 check" << endl;
-		for (int i = 0; i < city.size(); ++i)
-		{
-			if (temp1[j] == city[i].cityType)
-			{
-				cout << " city check" << endl;
-				//generate the 8 coordinates for the surrounding grids for each city coordinate
-				vector<coords> unique = find_adjacent_tiles(city[i].coordinates);
-				next = false;
+	////separator here
+	//for (int j = 0; j < temp1.size(); j++)
+	//{
+	//	cout << " temp1 check" << endl;
+	//	for (int i = 0; i < city.size(); ++i)
+	//	{
+	//		if (temp1[j] == city[i].cityType)
+	//		{
+	//			cout << " city check" << endl;
+	//			//generate the 8 coordinates for the surrounding grids for each city coordinate
+	//			vector<coords> unique = find_adjacent_tiles(city[i].coordinates);
+	//			next = false;
 
-				for (int x = 0; x < unique.size(); ++x)
-				{
-					if (unique[x].x < 0 || unique[x].x >= xsize || unique[x].y < 0 || unique[x].y >= ysize)
-					{
-						next = true;
-					}
-					//check if point has already been pushed in to finalpts
-					for (int k = 0; k < finalpts.size(); ++k)
-					{
-						//check if the point exists in final points
-						if ((unique[x].x == finalpts[k].x) && (unique[x].y == finalpts[k].y))
-						{
-							next = true;
-							break;
-						}
-					}
+	//			for (int x = 0; x < unique.size(); ++x)
+	//			{
+	//				if (unique[x].x < 0 || unique[x].x >= xsize || unique[x].y < 0 || unique[x].y >= ysize)
+	//				{
+	//					next = true;
+	//				}
+	//				//check if point has already been pushed in to finalpts
+	//				for (int k = 0; k < finalpts.size(); ++k)
+	//				{
+	//					//check if the point exists in final points
+	//					if ((unique[x].x == finalpts[k].x) && (unique[x].y == finalpts[k].y))
+	//					{
+	//						next = true;
+	//						break;
+	//					}
+	//				}
 
-					//check if point intersects with any point in the city
-					for (int k = 0; k < city.size(); ++k)
-					{
-						if ((unique[x].x == city[k].coordinates.x) && (unique[x].y == city[k].coordinates.y))
-						{
-							next = true;
-							break;
-						}
-					}
+	//				//check if point intersects with any point in the city
+	//				for (int k = 0; k < city.size(); ++k)
+	//				{
+	//					if ((unique[x].x == city[k].coordinates.x) && (unique[x].y == city[k].coordinates.y))
+	//					{
+	//						next = true;
+	//						break;
+	//					}
+	//				}
 
-					if (next == false)
-					{
-						//push back to final points
-						finalpts.push_back(unique[x]);
-					}
+	//				if (next == false)
+	//				{
+	//					//push back to final points
+	//					finalpts.push_back(unique[x]);
+	//				}
 
-				}
+	//			}
 
-			}
-		}
+	//		}
+	//	}
 
-		cout << "city code: " << temp[j] << endl;
-		for (coords x : finalpts)
-		{
-			cout << x.x << " " << x.y << endl;
-		}
-	}
-
-
+	//	cout << "city code: " << temp[j] << endl;
+	//	for (coords x : finalpts)
+	//	{
+	//		cout << x.x << " " << x.y << endl;
+	//	}
+	//}
 
 
 
 
 
-	//loop through the possible city codes
-	for (int i = 0; i < temp1.size(); ++i)
-	{
-		//loop through unique city codes
-		for (int j = 0; j < temp.size(); ++j)
-		{
-			//compare type with value in array
-			if (city[i].cityType == temp[j])
-			{
-				//if same type, save all the data into the stuff
-				display dist;
-				//allocat the name and city type
-				dist.cityTypeName = city[i].cityTypeName;
-				dist.cityNumber = city[i].cityType;
 
-			}
-		}
-	}
+
+	////loop through the possible city codes
+	//for (int i = 0; i < temp1.size(); ++i)
+	//{
+	//	//loop through unique city codes
+	//	for (int j = 0; j < temp.size(); ++j)
+	//	{
+	//		//compare type with value in array
+	//		if (city[i].cityType == temp[j])
+	//		{
+	//			//if same type, save all the data into the stuff
+	//			display dist;
+	//			//allocat the name and city type
+	//			dist.cityTypeName = city[i].cityTypeName;
+	//			dist.cityNumber = city[i].cityType;
+
+	//		}
+	//	}
+	//}
 
 }
 //pushes 8 values in

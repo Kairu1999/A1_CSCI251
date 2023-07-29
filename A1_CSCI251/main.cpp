@@ -228,8 +228,8 @@ int main()
             cout << "Exiting Program. Goodbye!" << endl;
             
             //Deallocate memory here!
-           /* DeAllocate2DArrayMemory(CityStructure, stoi(files[1]));
-            DeAllocate2DArrayMemory(Cloudy, stoi(files[1]));
+            //DeAllocate2DArrayMemory(CityStructure, stoi(files[3]));
+            /*DeAllocate2DArrayMemory(Cloudy, stoi(files[1]));
             DeAllocate2DArrayMemory(Pressure, stoi(files[1]));
             DeAllocate2DArrayMemory(CloudyLMH, stoi(files[1]));
             DeAllocate2DArrayMemory(PressureLMH, stoi(files[1]));*/

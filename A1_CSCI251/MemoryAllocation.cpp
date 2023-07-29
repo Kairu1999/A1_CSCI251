@@ -193,10 +193,13 @@ void Update2DArray(int** ptr, int xsize, int ysize, int mode)
 //DeAllocate Memory for 2D Array
 void DeAllocate2DArrayMemory(int** ptr, int x_size)
 {
-	for (int i = 0; i < x_size; ++i)
+
+	//allocate memory for pointer
+	for (int row = 0; row <= x_size; ++row)
 	{
-		delete[] ptr[i];
+		delete ptr[row];
 	}
+
 
 	delete[] ptr;
 }
