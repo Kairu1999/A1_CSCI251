@@ -6,7 +6,7 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 int Update2DArrayValues(int value);
 int Update2DArrayValuesLMH(int value);
 void Update2DArray(int** ptr, int xsize, int ysize, int mode);
-void DeAllocate2DArrayMemory(int** ptr, int x_size, int ysize);
+void DeAllocate2DArrayMemory(int** ptr, int x_size, int y_size);
 
 
 #endif;

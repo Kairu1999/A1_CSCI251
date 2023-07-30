@@ -7,9 +7,10 @@
 
 int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vect);
 int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect);
-int Update2DArrayValues(int value, int mode);
-void Update2DArray(int** ptr, int xsize, int ysize);
-void DeAllocate2DArrayMemory(int** ptr, int x_size);
+int Update2DArrayValues(int value);
+int Update2DArrayValuesLMH(int value);
+void Update2DArray(int** ptr, int xsize, int ysize, int mode);
+void DeAllocate2DArrayMemory(int** ptr, int x_size, int y_size);
 
 
 int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vect)
@@ -19,14 +20,16 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 	int** ptr = new int* [ysize];
 
 	//allocate memory for pointer
-	for (int row = 0; row <= ysize; ++row)
+	for (int row = 0; row < ysize; ++row)
 	{
 		ptr[row] = new int[xsize];
 	}
 
-	for (int x = 0; x <= ysize; ++x)
+
+
+	for (int x = 0; x < ysize; ++x)
 	{
-		for (int y = 0; y <= xsize; ++y)
+		for (int y = 0; y < xsize; ++y)
 		{
 			ptr[x][y] = -1;
 		}
@@ -34,9 +37,9 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 
 	for (int i = 0; i < vect.size(); ++i)
 	{
-		for (int j = 0; j <= ysize; ++j)
+		for (int j = 0; j < ysize; ++j)
 		{
-			for (int k = 0; k <= xsize; ++k)
+			for (int k = 0; k < xsize; ++k)
 			{
 				if ((k == vect[i].coordinates.x) && (j == vect[i].coordinates.y))
 				{
@@ -57,31 +60,29 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 	int** ptr = new int* [ysize];
 
 	//allocate memory for pointer
-	for (int row = 0; row <= ysize; ++row)
+	for (int row = 0; row < ysize; ++row)
 	{
 		ptr[row] = new int[xsize];
 	}
 
 	//populate the array
-	for (int x = 0; x <= ysize; ++x)
+	for (int x = 0; x < ysize; ++x)
 	{
-		for (int y = 0; y <= xsize; ++y)
+		for (int y = 0; y < xsize; ++y)
 		{
 			ptr[x][y] = -1;
 		}
 	}
 
-	for (int j = 0; j <= ysize; ++j)
+	for (int j = 0; j < ysize; ++j)
 	{
-		for (int k = 0; k <= xsize; ++k)
+		for (int k = 0; k < xsize; ++k)
 		{
-			ptr[j][k] = vect[(k * (ysize + 1)) + j].NextDayForecast;
-
+			int x = k + (ysize + 1) + j;
+			ptr[j][k] = vect[x].NextDayForecast;
 		}
 
 	}
-
-
 	return ptr;
 }
 
@@ -165,9 +166,9 @@ int Update2DArrayValuesLMH(int value)
 void Update2DArray(int** ptr, int xsize, int ysize, int mode)
 {
 
-	for (int i = 0; i <= (ysize); ++i)
+	for (int i = 0; i < ysize; ++i)
 	{
-		for (int j = 0; j <= (xsize); ++j)
+		for (int j = 0; j < xsize; ++j)
 		{
 
 			int xan{ 0 };
@@ -196,7 +197,7 @@ void DeAllocate2DArrayMemory(int** ptr, int x_size, int y_size)
 	}
 
 	//allocate memory for pointer
-	for (int row = 0; row <= x_size; ++row)
+	for (int row = 0; row < x_size; ++row)
 	{
 		delete ptr[row];
 	}

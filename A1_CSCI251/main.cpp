@@ -51,6 +51,9 @@ int main()
     //return to main menu boolean
     bool returnToMain = true;
 
+    //store the max X and Y values
+    int MaxX{}, MaxY{};
+
     
     //2D Arrays to Allocate Memory For
     int** CityStructure{nullptr};
@@ -96,26 +99,29 @@ int main()
                     cout << files[i] << "...done!" << endl;
                 }
 
+                //declare the maxX and maxY Value, add 1 to prevent buffer overflow
+                MaxX = stoi(files[1]) + 1;
+                MaxY = stoi(files[3]) + 1;
+ 
                 //read the map files and populate the Vector of Structs:
                 cityVect = readMapFile(files[4]);
                 cloudCoverVect = readCloudCoverFile(files[5]);
                 PressureVect = readPressureFile(files[6]);
 
                 //allocate memory and populate the array
-                CityStructure = Allocate2DArrayMemory_city(stoi(files[1]), stoi(files[3]), cityVect);
-                Cloudy = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),cloudCoverVect);
-                Pressure = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]),PressureVect);
-                ////Low Medium High
-                CloudyLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), cloudCoverVect);
-                PressureLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), PressureVect);
+                CityStructure = Allocate2DArrayMemory_city(MaxX,MaxY,cityVect);
+                Cloudy = Allocate2DArrayMemory_cp(MaxX,MaxY,cloudCoverVect);
+                Pressure = Allocate2DArrayMemory_cp(MaxX,MaxY,PressureVect);
+                //Low Medium High
+                CloudyLMH = Allocate2DArrayMemory_cp(MaxX, MaxY, cloudCoverVect);
+                PressureLMH = Allocate2DArrayMemory_cp(MaxX, MaxY, PressureVect);
 
 
                 //Update the 2D Array Values:
-                Update2DArray(Cloudy, stoi(files[1]), stoi(files[3]), 0);
-                Update2DArray(CloudyLMH, stoi(files[1]), stoi(files[3]), 1);
-                Update2DArray(Pressure, stoi(files[1]), stoi(files[3]),0);
-                Update2DArray(PressureLMH, stoi(files[1]), stoi(files[3]),1);
-
+                Update2DArray(Cloudy, MaxX,MaxY, 0);
+                Update2DArray(CloudyLMH,MaxX, MaxY, 1);
+                Update2DArray(Pressure, MaxX, MaxY,0);
+                Update2DArray(PressureLMH, MaxX, MaxY, 1);
 
                 cout << endl;
 
@@ -218,10 +224,10 @@ int main()
             
             //Deallocate memory here!
             DeAllocate2DArrayMemory(CityStructure, stoi(files[1]),stoi(files[3]));
-            /*DeAllocate2DArrayMemory(Cloudy, stoi(files[1]));
-            DeAllocate2DArrayMemory(Pressure, stoi(files[1]));
-            DeAllocate2DArrayMemory(CloudyLMH, stoi(files[1]));
-            DeAllocate2DArrayMemory(PressureLMH, stoi(files[1]));*/
+            DeAllocate2DArrayMemory(Cloudy, (stoi(files[1]) + 1), (stoi(files[3]) + 1));
+            DeAllocate2DArrayMemory(Pressure, (stoi(files[1]) + 1), (stoi(files[3]) + 1));
+            DeAllocate2DArrayMemory(CloudyLMH, (stoi(files[1]) + 1), (stoi(files[3]) + 1));
+            DeAllocate2DArrayMemory(PressureLMH, (stoi(files[1]) + 1), (stoi(files[3]) + 1));
             return 0;
 
         default:
