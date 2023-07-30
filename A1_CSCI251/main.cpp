@@ -110,23 +110,12 @@ int main()
                 PressureLMH = Allocate2DArrayMemory_cp(stoi(files[1]), stoi(files[3]), PressureVect);
 
 
-
-                //try printing output
-                //print_2DArr_output(stoi(files[1]), stoi(files[3]), CityStructure);
-                //cout << endl;
-                //print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
-                //cout << endl;
-
-
                 //Update the 2D Array Values:
                 Update2DArray(Cloudy, stoi(files[1]), stoi(files[3]), 0);
                 Update2DArray(CloudyLMH, stoi(files[1]), stoi(files[3]), 1);
                 Update2DArray(Pressure, stoi(files[1]), stoi(files[3]),0);
                 Update2DArray(PressureLMH, stoi(files[1]), stoi(files[3]),1);
 
-
-                //print_2DArr_output_city(stoi(files[1]), stoi(files[3]), CityStructure);
-                //print_2DArr_output(stoi(files[1]), stoi(files[3]), Cloudy);
 
                 cout << endl;
 

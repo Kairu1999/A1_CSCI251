@@ -7,10 +7,12 @@ using namespace std;
 //USE TO PRINT 2D Array for city
 void print_2DArr_output_city(int row, int col, int** ptr)
 {
+	//loop through rows and columns
 	for (int i = 0; i < row; i++)
 	{
 		for (int j = 0; j < col; j++)
 		{
+			//check the output of the city 2D Array
 			cout << "[" << i << "," << j << "]" << "-" << ptr[i][j] << " ";
 			//cout << char(ptr[i][j]) << " ";
 		}
