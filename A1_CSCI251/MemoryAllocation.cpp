@@ -184,15 +184,16 @@ void Update2DArray(int** ptr, int xsize, int ysize, int mode)
 				break;
 			}
 
-			//cout << "Old Value: " << ptr[i][j] << " replaced by: " << static_cast<char>(xan) << endl;
-
 		}
 	}
 }
 
 //DeAllocate Memory for 2D Array
-void DeAllocate2DArrayMemory(int** ptr, int x_size)
+void DeAllocate2DArrayMemory(int** ptr, int x_size, int y_size)
 {
+	if (y_size == 0) {
+		return;
+	}
 
 	//allocate memory for pointer
 	for (int row = 0; row <= x_size; ++row)
