@@ -3,10 +3,8 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <regex>
-
 //struct is here
-#include "structs.h"
+#include "Structs.h"
 
 using namespace std;
 
@@ -89,17 +87,19 @@ vector<string> readConfigFile(string filename)
             size_t GridY = line.find("GridY_IdxRange");
             size_t txt = line.find(".txt");
 
+            //Grid X Coordinates
             if (GridX != string::npos)
             {
                 ////cout << line << endl;
                 result.push_back(line);
             }
-
+            //Grid Y Coordinates
             if (GridY != string::npos) 
             {
                 //cout << line << endl;
                 result.push_back(line);
             }
+            //file names
             if (txt != string::npos) 
             {
                 //cout << line << endl;
@@ -116,18 +116,18 @@ vector<string> readConfigFile(string filename)
 
     //split string for result[0]
     vector<string> temp1 = splitString(result[0], "=");
+
+    //get individual x and y coordinates
     vector<string> temp2 = splitString(temp1[1] , "-");
 
+    //split string for result[1]
     vector<string> temp3 = splitString(result[1], "=");
+
+    //get individual x and y coordinates
     vector<string> temp4 = splitString(temp3[1], "-");
 
+    //insert them into result[2]
     result2.insert(result2.end(), { temp2[0],temp2[1],temp4[0],temp4[1],result[2],result[3],result[4] });
-
-    //debug
-   /* for (string s : result2) 
-    {
-        cout << s << endl;
-    }*/
 
     //return the array
     return result2;

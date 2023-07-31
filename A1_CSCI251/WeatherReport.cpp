@@ -148,23 +148,23 @@ vector<coords>find_adjacent_tiles(coords cords)
 {
 	vector<coords> vect{};
 
-	// x - 1's first
-	coords x1 = { (cords.x - 1), (cords.y) };
-	coords x2 = { (cords.x - 1), (cords.y - 1) };
-	coords x3 = { (cords.x - 1), (cords.y + 1) };
+	//// x - 1's first
+	//coords x1 = { (cords.x - 1), (cords.y) };
+	//coords x2 = { (cords.x - 1), (cords.y - 1) };
+	//coords x3 = { (cords.x - 1), (cords.y + 1) };
 
-	//x + 1's next
-	coords x4 = { (cords.x + 1), (cords.y) };
-	coords x5 = { (cords.x + 1), (cords.y - 1) };
-	coords x6 = { (cords.x + 1), (cords.y + 1) };
+	////x + 1's next
+	//coords x4 = { (cords.x + 1), (cords.y) };
+	//coords x5 = { (cords.x + 1), (cords.y - 1) };
+	//coords x6 = { (cords.x + 1), (cords.y + 1) };
 
-	//x's last
-	coords x7 = { (cords.x), (cords.y - 1) };
-	coords x8 = { (cords.x), (cords.y + 1) };
+	////x's last
+	//coords x7 = { (cords.x), (cords.y - 1) };
+	//coords x8 = { (cords.x), (cords.y + 1) };
 
 
-	//insert them all into the vector
-	vect.insert(vect.end(), { x1,x2,x3,x4,x5,x6,x7,x8 });
+	////insert them all into the vector
+	//vect.insert(vect.end(), { x1,x2,x3,x4,x5,x6,x7,x8 });
 
 	return vect;
 }

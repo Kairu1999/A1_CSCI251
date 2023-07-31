@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "structs.h"
+#include "Structs.h"
 
 //Allocate Memory for 2D Array + Insert Values at certain areas
 //Coordinates to check for --> [1,1] [1,2] [1,3] [2,1] [2,2]
