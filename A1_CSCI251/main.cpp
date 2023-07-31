@@ -156,6 +156,10 @@ int main()
 
                 // NUMBERS MODE
                 generate_grid_city(CityStructure, stoi(files[1]), stoi(files[3]));
+
+                cout << "Press Enter to return to main menu!" << endl;
+                cin.ignore();
+                cin.ignore();
                 break;
             }
         case 3:
@@ -170,6 +174,9 @@ int main()
 
                 //NORMAL MODE
                 generate_grid(Cloudy, stoi(files[1]), stoi(files[3]));
+                cout << "Press Enter to return to main menu!" << endl;
+                cin.ignore();
+                cin.ignore();
                 break;
             }
 
@@ -186,6 +193,9 @@ int main()
                 cout << endl;
 
                 generate_gridLMH(CloudyLMH, stoi(files[1]), stoi(files[3]));
+                cout << "Press Enter to return to main menu!" << endl;
+                cin.ignore();
+                cin.ignore();
                 break;
             }
         case 5:
@@ -200,6 +210,9 @@ int main()
                 cout << endl;
 
                 generate_grid(Pressure, stoi(files[1]), stoi(files[3]));
+                cout << "Press Enter to return to main menu!" << endl;
+                cin.ignore();
+                cin.ignore();
                 break;
             }
         case 6:
@@ -212,12 +225,18 @@ int main()
             {
                 cout << "Displaying Atmospheric Pressure with LMH Symbols!" << endl;
                 generate_gridLMH(CloudyLMH, stoi(files[1]), stoi(files[3]));
+                cout << "Press Enter to return to main menu!" << endl;
+                cin.ignore();
+                cin.ignore();
                 break;
             }
 
         case 7:
             //Print Weather Report
             print_weather_report(CityStructure,cityVect,cloudCoverVect ,PressureVect, stoi(files[1]), stoi(files[3]));
+            cout << "Press Enter to return to main menu!" << endl;
+            cin.ignore();
+            cin.ignore();
             break;
         case 8:
             cout << "Exiting Program. Goodbye!" << endl;
