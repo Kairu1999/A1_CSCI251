@@ -78,8 +78,8 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 	{
 		for (int k = 0; k < xsize; ++k)
 		{
-			int x = k + (ysize + 1) + j;
-			ptr[j][k] = vect[x].NextDayForecast;
+			int x = k + (ysize) * j;
+			ptr[k][j] = vect[x].NextDayForecast;
 		}
 
 	}
