@@ -25,8 +25,6 @@ int** Allocate2DArrayMemory_city(int xsize, int ysize, vector<cityStructure> vec
 		ptr[row] = new int[xsize];
 	}
 
-
-
 	for (int x = 0; x < ysize; ++x)
 	{
 		for (int y = 0; y < xsize; ++y)
@@ -78,8 +76,8 @@ int** Allocate2DArrayMemory_cp(int xsize, int ysize, vector<cloudyPressure> vect
 	{
 		for (int k = 0; k < xsize; ++k)
 		{
-			int x = k + (ysize) * j;
-			ptr[k][j] = vect[x].NextDayForecast;
+			int x = k * (ysize) + j;
+			ptr[j][k] = vect[x].NextDayForecast;
 		}
 
 	}
