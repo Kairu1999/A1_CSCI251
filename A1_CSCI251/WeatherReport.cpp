@@ -5,7 +5,7 @@
 #include <iterator>
 #include <numeric>
 #include "WeatherReport.h"
-#include "Structs.h";
+#include "Structs.h"
 using namespace std;
 
 void print_weather_report(int** cityptr, vector<cityStructure> city, vector<cloudyPressure> cloudy, vector<cloudyPressure> pressure, int xsize, int ysize);

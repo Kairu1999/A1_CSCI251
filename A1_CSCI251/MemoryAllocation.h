@@ -9,4 +9,4 @@ void Update2DArray(int** ptr, int xsize, int ysize, int mode);
 void DeAllocate2DArrayMemory(int** ptr, int x_size, int y_size);
 
 
-#endif;
+#endif
